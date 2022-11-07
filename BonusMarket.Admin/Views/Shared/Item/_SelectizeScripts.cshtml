@@ -1,0 +1,67 @@
+<partial name="Item/_XhrScripts"/>
+<script>
+$(document).ready(function() {
+    // Selectize service
+    
+    /*****Main Function******/
+    window.selectizeServiceClass = function () {
+        var _self = this;
+        _self.addUrl = null;
+        _self.removeUrl = null;
+        _self.postService = window.postServiceClass;
+    
+        function init() {
+    
+            bindMainEvents();
+        }
+    
+        _self.Bind = function() {
+            init();
+    
+        };
+    
+        async function saveContent(input) {
+            let result = await _self.postService.postJsonAsync({value: input}, _self.addUrl);
+            return result;
+        }
+    
+        _self.onCreate = function(input) {
+            console.log(_self.addUrl, _self.removeUrl);
+            var res = saveContent(_self.postService);
+            console.log(res);
+            return {
+                text: input,
+                value: input
+            };
+        };
+    
+        _self.BindWithCreate = function (addUrl, removeUrl) {
+            _self.addUrl = addUrl;
+            _self.removeUrl = removeUrl;
+            $('.selectize').each(function(e) {
+                $(this).selectize( {
+                    delimiter: ',',
+                    persist: false,
+                    create: _self.onCreate,
+                });
+            });
+        };
+    
+    
+        _self.BindChangeEvent = function(elem, func) {
+    
+            var selectizeControl = $(elem)[0].selectize;
+            selectizeControl.on('change', func);
+        };
+    
+        function bindMainEvents() {
+    
+            $('.selectize').each(function(e) {
+                $(this).selectize();
+            });
+        }
+    };
+    /************************/
+    
+});
+</script>

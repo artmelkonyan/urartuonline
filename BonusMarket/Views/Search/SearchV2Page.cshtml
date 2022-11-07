@@ -1,0 +1,220 @@
+﻿@model SearchV2VM
+@{
+    ViewData["Title"] = "Products";
+}
+
+@using Models
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Localization
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+
+
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.Extensions.Options
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var currentCultureCode = requestCulture.RequestCulture.UICulture.TwoLetterISOLanguageName;
+    
+}
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        @* <h2 class="page-heading">@Model.CategoryName</h2> *@
+                        <ol class="breadcrumb">
+                            <li>@SharedLocalizer["OrderBy"]</li>
+                            <li>
+                                <form class="filterForm" action="/searchv2page">
+                                    @* <input type="hidden" name="Products.CurrentPage" value="@(Model.Products.CurrentPage)" /> *@
+                                    <input type="hidden" name="hyName" value="@(Model.HyName)" />
+                                    <input type="hidden" name="engName" value="@(Model.EngName)" />
+                                    <input type="hidden" name="ruName" value="@(Model.RuName)" />
+                                    <input type="hidden" name="hyBrand" value="@(Model.HyBrand)" />
+                                    <input type="hidden" name="engBrand" value="@(Model.EngBrand)" />
+                                    <input type="hidden" name="ruBrand" value="@(Model.RuBrand)" />
+                                    @* <input type="hidden" name="PageCount" value="@(Model.Products.PageSize)" /> *@
+                                    <select name="OrderBy" onchange="formChange()">
+                                        <option selected="@(Model.OrderBy == "" || Model.OrderBy == "name")" value="name">@SharedLocalizer["ByName"]</option>
+                                        <option selected="@(Model.OrderBy == "price")" value="price">@SharedLocalizer["PriceIncrease"]</option>
+                                        <option selected="@(Model.OrderBy == "priceDesc")" value="priceDesc">@SharedLocalizer["DecreasePrice"]</option>
+                                    </select>
+                                </form>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="row product-row">
+                    @foreach (var item in Model.Products.Results)
+                    {
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="single-product">
+                                <div class="product-image">
+                                    <a href="@("/Product/OneProductById?id="+item.Id)"><img src="@ImageHelper.GenImageLink(item.ProductPictures.First(r => r.Picture.Main == true).Picture.FullPath)" alt=""></a>
+                                </div>
+                                <div class="product-item-content">
+                                    <div class="product-item-title">@item.ProductTranslations.Where(r => r.Language == currentCultureCode).FirstOrDefault().Name</div>
+                                    <div class="productl-item-info">
+                                        <div class="product-item-price">
+                                            @if (item.OldPrice != 0)
+                                            {
+                                                <span class="old-price-line">@GeneralHelper.GetPriceString(item.OldPrice.Value) <i class="dram">AMD</i></span>
+                                            }
+                                            <span>@GeneralHelper.GetPriceString(item.Price.Value) <i class="dram">AMD</i></span>
+                                        </div>
+                                        <div class="product-item-actions">
+                                            <span><img class="wishItem" data-id="@item.Id" data-toggle="modal" data-target="#wishModal" src="~/img/icons/heart-silver.png" alt="" title="ավելացնել ցանկությունների ցուցակ"></span>
+                                            <span><img class="basketItem" data-id="@item.Id" data-toggle="modal" data-target="#basketModal" src="~/img/icons/cart-silver.png" alt="" title="ավելացնել զամբյուղ"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- Modal basket -->
+                    <div id="basketModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content ">
+                                <div class="modal-header"></div>
+                                <h4 class="modal-text">Ապրանքն ավելացվել է զամբյուղում</h4>
+                                <div class="basket-modal">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="basket-modal-buttons">
+                                                <a href=""> ձեվակերպել պատվեր</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">ՓԱԿԵԼ</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ...............modal end.................    -->
+                </div>
+            </div>
+
+            <div class="row container">
+
+                <div class="col-md-12">
+                    <div class="text-right">
+
+
+                        <nav class="products-pagination">
+                            @if (Model.Products != null && Model.Products.RowCount > 1)
+                            {
+                                string backClass = "";
+                                string nextClass = "";
+                                if (Model.Products.CurrentPage == 1)
+                                {
+                                    backClass = "disabled";
+                                }
+
+                                if (Model.Products.CurrentPage == Model.Products.PageCount)
+                                {
+                                    nextClass = "disabled";
+                                }
+
+                                if (backClass == "")
+                                {
+                                    <a href="@("/searchv2page?hyName=" + Model.HyName +
+                                               "&engName="+Model.EngName + 
+                                               "&ruName="+Model.EngName+
+                                               "&hyBrand="+Model.HyBrand+
+                                               "&engBrand="+Model.EngBrand+
+                                               "&ruBrand="+Model.RuBrand+"&OrderBy=" + Model.OrderBy + "&CurrentPage=" + 1)" data-pagenumber=""></a>
+                                    <a href="@("/searchv2page?hyName=" +Model.HyName +
+                                               "&engName="+Model.EngName + 
+                                               "&ruName="+Model.EngName+
+                                               "&hyBrand="+Model.HyBrand+
+                                               "&engBrand="+Model.EngBrand+
+                                               "&ruBrand="+Model.RuBrand+"&OrderBy=" + Model.OrderBy + "&CurrentPage=" + (Model.Products.CurrentPage - 1))"></a>
+                                }
+                                else
+                                {
+                                    @*<a data-pagenumber="1"></a>
+                                        <a data-pagenumber="@(Model.Products.CurrentPage - 1)">@(Model.Products.CurrentPage - 1)</a>*@
+                                }
+
+                                int i = 1;
+                                int t = Model.Products.PageCount;
+                                int c = Model.Products.CurrentPage;
+                                int v = Model.Products.PageSize;
+                                int l = v;
+
+                                if (t > v)
+                                {
+                                    if (c > ((double)v / 2.0) && c <= t - ((double)v / 2.0))
+                                    {
+                                        i = c - (v / 2 - 1) - v % 2;
+                                        l = c + v / 2;
+                                    }
+                                    else if (c >= t - ((double)v / 2.0))
+                                    {
+                                        i = t - v + 1;
+                                        l = t;
+                                    }
+                                }
+                                else if (t < v)
+                                {
+                                    l = t;
+                                }
+                                for (; i <= l; i++)
+                                {
+                                    <a href="@("/searchv2page?hyName="+Model.HyName + 
+                                               "&engName="+Model.EngName + 
+                                               "&ruName="+Model.EngName+
+                                               "&hyBrand="+Model.HyBrand+
+                                               "&engBrand="+Model.EngBrand+
+                                               "&ruBrand="+Model.RuBrand+
+                                               "&OrderBy=" + Model.OrderBy + "&CurrentPage=" +@i)" class="@((i == Model.Products.CurrentPage) ? "active" : "")">@i</a>
+                                }
+                                if (nextClass == "")
+                                {
+                                    <a href="@("/searchv2page?hyName=" +Model.HyName +
+                                               "&engName="+Model.EngName + 
+                                               "&ruName="+Model.EngName+
+                                               "&hyName="+Model.HyBrand+
+                                               "&engName="+Model.EngBrand+
+                                               "&ruName="+Model.RuBrand+
+                                               "&OrderBy=" + Model.OrderBy +"&OrderBy=" + Model.OrderBy+ "&CurrentPage=" + (Model.Products.CurrentPage + 1))" data-pagenumber="@(c + 1)">></a>
+                                    <a href="@("/searchv2page?hyName=" + Model.HyName +
+                                               "&engName="+Model.EngName + 
+                                               "&ruName="+Model.EngName+
+                                               "&hyBrand="+Model.HyBrand+
+                                               "&engBrand="+Model.EngBrand+
+                                               "&ruBrand="+Model.RuBrand+
+                                               "&OrderBy=" + Model.OrderBy +"&OrderBy=" + Model.OrderBy + "&CurrentPage=" + Model.Products.PageCount)" data-pagenumber="@t">>></a>
+                                }
+                                else
+                                {
+                                    @*<a data-pagenumber="@(c + 1)">></a>
+                                        <a data-pagenumber="@t ">>></a>*@
+                                }
+                            }
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<script>
+function formChange() {
+    let form = $('.filterForm');
+    location.href = '/searchv2page?'+form.serialize();
+}
+</script>
+

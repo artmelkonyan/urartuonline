@@ -1,0 +1,16 @@
+﻿@model Models.CategoryEntity
+
+@using Models
+
+<li class="dropdown-li">
+    <a href="@(Model.SubCategories.Count == 0 ? Url.Action("ProductsList","Product", new {categoryId=Model.Id }): "/Category/GetCategoriesByParentId?parentid="+Model.Id )" data-id="@Model.Id" class="dropdown-opener">@Model.Translation.Name</a>
+    @if (Model.SubCategories.Count > 0)
+    {
+        <ul>
+            @foreach (CategoryEntity subData in Model.SubCategories)
+            {
+                @Html.Partial("_MenuListPartial", subData)
+            }
+        </ul>
+    }
+</li>

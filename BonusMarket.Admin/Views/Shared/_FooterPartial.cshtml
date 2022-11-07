@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Http.Features
+@inject BonusMarket.Shared.Services.AuthorizeUserHelper authorizeUserHelper
+
+@{
+    bool hasPermission = authorizeUserHelper.HasPermission(User);
+}
+
+@if (hasPermission)
+{
+    <footer class="color-1-bg invisibile">
+        <div class="footerIn">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="clearfix">
+                            <div class="footerLeft">
+                                &copy; @DateTime.Now.Year, BonusMarket
+                            </div>
+                            <div class="footerRight"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+}

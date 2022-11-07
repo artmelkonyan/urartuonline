@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<PaymentFields xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <amount>20</amount>
+  <approveamount>0</approveamount>
+  <cardnumber>457889**1028</cardnumber>
+  <clientname>GAREGIN HAMBARDZUMYAN</clientname>
+  <currency>051</currency>
+  <datetime>01.01.1970 04:00:00</datetime>
+  <depositamount>0</depositamount>
+  <descr>Decline by iReq in PARes: - Նախնական ավտորիզացումը մերժված է:</descr>
+  <merchantid>19003087</merchantid>
+  <opaque>Opaque140</opaque>
+  <orderid>140</orderid>
+  <orderstatuscode>6</orderstatuscode>
+  <payment_state>payment_declined</payment_state>
+  <paymenttype>5</paymenttype>
+  <refundamount>0</refundamount>
+  <respcode>0-2019</respcode>
+  <rewardpoint>0</rewardpoint>
+  <rrn>367f3c96-26f8-4eb7-89d8-9d039b8dbafa</rrn>
+  <terminalid>19533087</terminalid>
+  <trxnDetails>DescrIP</trxnDetails>
+</PaymentFields>

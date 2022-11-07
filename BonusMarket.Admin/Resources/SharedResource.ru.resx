@@ -1,0 +1,837 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>О нас</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Администратор</value>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Вы уверены?</value>
+  </data>
+  <data name="Armenian" xml:space="preserve">
+    <value>Армянский</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="CardTypes" xml:space="preserve">
+    <value>Типы файлов</value>
+  </data>
+  <data name="Collectings" xml:space="preserve">
+    <value>Коллекторская работа</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Обратная связь</value>
+  </data>
+  <data name="Courts" xml:space="preserve">
+    <value>Судьи</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="CreateNew" xml:space="preserve">
+    <value>Добавить новый</value>
+  </data>
+  <data name="CreationDate" xml:space="preserve">
+    <value>Дата Создания</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>Раздел</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Детали</value>
+  </data>
+  <data name="DOCTYPE_CHANNEL_NAME" xml:space="preserve">
+    <value>Имя Канала</value>
+  </data>
+  <data name="DOCTYPE_NEW_BALANCES" xml:space="preserve">
+    <value>Новые Балансы</value>
+  </data>
+  <data name="DOCTYPE_OLD_BALANCES" xml:space="preserve">
+    <value>Прошлые Балансы</value>
+  </data>
+  <data name="DOCTYPE_PAYMENTS" xml:space="preserve">
+    <value>Платежи</value>
+  </data>
+  <data name="Document" xml:space="preserve">
+    <value>Ввод информации</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Почта</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>Английский</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="ForgotYourPassword" xml:space="preserve">
+    <value>Забыли Ваш Пароль?</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Привет</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Домой</value>
+  </data>
+  <data name="IdentityType" xml:space="preserve">
+    <value>Тип идентификатора</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Главная</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="Manager" xml:space="preserve">
+    <value>Менеджер</value>
+  </data>
+  <data name="ModificationDate" xml:space="preserve">
+    <value>Дата изменения</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="PAYED_FIZ" xml:space="preserve">
+    <value>Фикс физ. Лица</value>
+  </data>
+  <data name="PAYED_IRAV" xml:space="preserve">
+    <value>Фикс юр. Лица</value>
+  </data>
+  <data name="Payments" xml:space="preserve">
+    <value>Платежи</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="POSTPAYED_FIZ" xml:space="preserve">
+    <value>Постпейд физ. Лица</value>
+  </data>
+  <data name="POSTPAYED_IRAV" xml:space="preserve">
+    <value>Постпейд юр. Лица</value>
+  </data>
+  <data name="PrepareForSid" xml:space="preserve">
+    <value>Подготовка к СИД</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Отчеты</value>
+  </data>
+  <data name="REPORT_COLLECTIONS" xml:space="preserve">
+    <value>Коллекторская работа</value>
+  </data>
+  <data name="REPORT_PREPARE_FOR_SID" xml:space="preserve">
+    <value>Подготовка к СИД</value>
+  </data>
+  <data name="REPORT_SID" xml:space="preserve">
+    <value>СИД</value>
+  </data>
+  <data name="Russian" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Выбрать</value>
+  </data>
+  <data name="Sid" xml:space="preserve">
+    <value>СИД</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Пользователь</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Имя Пользователя</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Пользователи</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Мой аккаунт</value>
+  </data>
+  <data name="AnotherParts" xml:space="preserve">
+    <value>Другие разделы</value>
+  </data>
+  <data name="MainParts" xml:space="preserve">
+    <value>Разделы</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Запомнить</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="AgreementStatus" xml:space="preserve">
+    <value>Статус соглашения</value>
+  </data>
+  <data name="Ban" xml:space="preserve">
+    <value>Ban</value>
+  </data>
+  <data name="BanCancelDate" xml:space="preserve">
+    <value>Дата Отказа BAN</value>
+  </data>
+  <data name="BanCreationDate" xml:space="preserve">
+    <value>Дата Создания BAN</value>
+  </data>
+  <data name="BanSt" xml:space="preserve">
+    <value>Статус Бана</value>
+  </data>
+  <data name="BoxNumber" xml:space="preserve">
+    <value>Номер ящика</value>
+  </data>
+  <data name="ChannelName" xml:space="preserve">
+    <value>Имя канала</value>
+  </data>
+  <data name="ClientIdentityType" xml:space="preserve">
+    <value>Тип идентификации</value>
+  </data>
+  <data name="ClientStatus" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="COLUMN_TYPE_ADDRESS" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="COLUMN_TYPE_BAN" xml:space="preserve">
+    <value>BAN</value>
+  </data>
+  <data name="COLUMN_TYPE_CTN" xml:space="preserve">
+    <value>CTN</value>
+  </data>
+  <data name="COLUMN_TYPE_INN" xml:space="preserve">
+    <value>INN</value>
+  </data>
+  <data name="COLUMN_TYPE_NAME" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="COLUMN_TYPE_PASSPORT" xml:space="preserve">
+    <value>Паспорт</value>
+  </data>
+  <data name="Court" xml:space="preserve">
+    <value>Суд</value>
+  </data>
+  <data name="CreateReport" xml:space="preserve">
+    <value>Создать отчет</value>
+  </data>
+  <data name="Ctn" xml:space="preserve">
+    <value>Ctn</value>
+  </data>
+  <data name="CtnCancelDate" xml:space="preserve">
+    <value>CTN Cancel Date</value>
+  </data>
+  <data name="CtnCreationDate" xml:space="preserve">
+    <value>CTN Creation Date</value>
+  </data>
+  <data name="DATE_BAN_CANCEL" xml:space="preserve">
+    <value>BAN Cancel Date</value>
+  </data>
+  <data name="DATE_BAN_CREATION" xml:space="preserve">
+    <value>BAN Creation Date</value>
+  </data>
+  <data name="DATE_CREATE" xml:space="preserve">
+    <value>File Date Creation</value>
+  </data>
+  <data name="DATE_CTN_CANCEL" xml:space="preserve">
+    <value>CTN Cancel Date</value>
+  </data>
+  <data name="DATE_CTN_CREATION" xml:space="preserve">
+    <value>CTN Creation Date</value>
+  </data>
+  <data name="DATE_MODIFY" xml:space="preserve">
+    <value>Date Modification</value>
+  </data>
+  <data name="DATE_PAYMENT" xml:space="preserve">
+    <value>Дата Платежа</value>
+  </data>
+  <data name="DATE_SEND" xml:space="preserve">
+    <value>Дата Отправки</value>
+  </data>
+  <data name="FieldsToShow" xml:space="preserve">
+    <value>Таблицы для показа</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Фильтр</value>
+  </data>
+  <data name="FILTER_NEW_BALANCE" xml:space="preserve">
+    <value>Новый баланс</value>
+  </data>
+  <data name="FILTER_OLD_BALANCE" xml:space="preserve">
+    <value>Основной баланс</value>
+  </data>
+  <data name="FILTER_PAYMENT_AMOUNT" xml:space="preserve">
+    <value>Платежи</value>
+  </data>
+  <data name="FILTER_PAYMENT_BALANCE" xml:space="preserve">
+    <value>Платежный баланс</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Завершить</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Номер</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="Inn" xml:space="preserve">
+    <value>Inn</value>
+  </data>
+  <data name="IsInArchive" xml:space="preserve">
+    <value>Есть в архиве?</value>
+  </data>
+  <data name="IsReadyForSid" xml:space="preserve">
+    <value>Готов к сиду?</value>
+  </data>
+  <data name="ItemDesc" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="NewBalance" xml:space="preserve">
+    <value>Новый баланс</value>
+  </data>
+  <data name="OldBalance" xml:space="preserve">
+    <value>Старый баланс</value>
+  </data>
+  <data name="Passport" xml:space="preserve">
+    <value>Паспорт</value>
+  </data>
+  <data name="PaymentAmount" xml:space="preserve">
+    <value>Сумма платежа</value>
+  </data>
+  <data name="PaymentBalance" xml:space="preserve">
+    <value>Баланс платежа</value>
+  </data>
+  <data name="PaymentCount" xml:space="preserve">
+    <value>Срок рассрочки</value>
+  </data>
+  <data name="PaymentDate" xml:space="preserve">
+    <value>Дата платежа</value>
+  </data>
+  <data name="ResetFilter" xml:space="preserve">
+    <value>Сбросить</value>
+  </data>
+  <data name="Results" xml:space="preserve">
+    <value>Результатов</value>
+  </data>
+  <data name="SearchAmountFrom" xml:space="preserve">
+    <value>Сумма от</value>
+  </data>
+  <data name="SearchAmountTo" xml:space="preserve">
+    <value>Сумма до</value>
+  </data>
+  <data name="SearchAmountType" xml:space="preserve">
+    <value>Тип суммы</value>
+  </data>
+  <data name="SearchChannelName" xml:space="preserve">
+    <value>По канала</value>
+  </data>
+  <data name="SearchClientIdentityType" xml:space="preserve">
+    <value>По идентификации</value>
+  </data>
+  <data name="SearchClientStatus" xml:space="preserve">
+    <value>По статусу</value>
+  </data>
+  <data name="SearchColumnFile" xml:space="preserve">
+    <value>По файлу</value>
+  </data>
+  <data name="SearchColumnType" xml:space="preserve">
+    <value>Тип значения</value>
+  </data>
+  <data name="SearchColumnValue" xml:space="preserve">
+    <value>Значение</value>
+  </data>
+  <data name="SearchCourtId" xml:space="preserve">
+    <value>По суду</value>
+  </data>
+  <data name="SearchDateFrom" xml:space="preserve">
+    <value>Дата От</value>
+  </data>
+  <data name="SearchDateTo" xml:space="preserve">
+    <value>Дата до</value>
+  </data>
+  <data name="SearchDateType" xml:space="preserve">
+    <value>Тип даты</value>
+  </data>
+  <data name="SearchUserId" xml:space="preserve">
+    <value>По сотруднику</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="SendDate" xml:space="preserve">
+    <value>Дата отправки</value>
+  </data>
+  <data name="StoreId" xml:space="preserve">
+    <value>Магазин</value>
+  </data>
+  <data name="SetName" xml:space="preserve">
+    <value>Наименование файла</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>Выбрано</value>
+  </data>
+  <data name="Roli" xml:space="preserve">
+    <value>Роли</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Страница</value>
+  </data>
+  <data name="ACTIVE" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Баланс</value>
+  </data>
+  <data name="BalanceFrom" xml:space="preserve">
+    <value>Баланс от</value>
+  </data>
+  <data name="BalanceTo" xml:space="preserve">
+    <value>Баланс до</value>
+  </data>
+  <data name="CANCEL" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>количество</value>
+  </data>
+  <data name="Customers" xml:space="preserve">
+    <value>Клиенты</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Дата окончания</value>
+  </data>
+  <data name="Equipments" xml:space="preserve">
+    <value>Оборудование</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>экспорт</value>
+  </data>
+  <data name="FileAdded" xml:space="preserve">
+    <value>Файл добавлен</value>
+  </data>
+  <data name="FileSearch" xml:space="preserve">
+    <value>Поиск файлов</value>
+  </data>
+  <data name="FromStatus" xml:space="preserve">
+    <value>Из статуса</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>ФИО</value>
+  </data>
+  <data name="GoTo" xml:space="preserve">
+    <value>Идти к</value>
+  </data>
+  <data name="HomePage" xml:space="preserve">
+    <value>Домашняя страница</value>
+  </data>
+  <data name="Invoices" xml:space="preserve">
+    <value>Счета-фактуры</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>Список</value>
+  </data>
+  <data name="NewUsers" xml:space="preserve">
+    <value>Новые пользователи</value>
+  </data>
+  <data name="PaymentFullAmount" xml:space="preserve">
+    <value>Вся сумма рассрочки</value>
+  </data>
+  <data name="PaymentFullAmountFrom" xml:space="preserve">
+    <value>Вся сумма рассрочки от</value>
+  </data>
+  <data name="PaymentFullAmountTo" xml:space="preserve">
+    <value>Вся сумма рассрочки до</value>
+  </data>
+  <data name="PaymentLeftAmount" xml:space="preserve">
+    <value>Ост. суммы от расс.</value>
+  </data>
+  <data name="PaymentLeftAmountFrom" xml:space="preserve">
+    <value>Ост. суммы от расс. от</value>
+  </data>
+  <data name="PaymentLeftAmountTo" xml:space="preserve">
+    <value>Ост. суммы от расс. до</value>
+  </data>
+  <data name="PrePayAmount" xml:space="preserve">
+    <value>Предоплата</value>
+  </data>
+  <data name="PrePayAmountFrom" xml:space="preserve">
+    <value>Предоплата Сумма от</value>
+  </data>
+  <data name="PrePayAmountTo" xml:space="preserve">
+    <value>Предоплата Сумма до</value>
+  </data>
+  <data name="PriceFrom" xml:space="preserve">
+    <value>Цена от</value>
+  </data>
+  <data name="PriceTo" xml:space="preserve">
+    <value>Цена до</value>
+  </data>
+  <data name="PrivateStatistics" xml:space="preserve">
+    <value>Частная статистика</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>отчет</value>
+  </data>
+  <data name="ReportForSpecificStatusChange" xml:space="preserve">
+    <value>Отчет по конкретному изменению статуса</value>
+  </data>
+  <data name="ReportForStatusChange" xml:space="preserve">
+    <value>Отчет об изменении статуса</value>
+  </data>
+  <data name="ReportNewCustomers" xml:space="preserve">
+    <value>Отчет о новых клиентах</value>
+  </data>
+  <data name="ReportSubCheck" xml:space="preserve">
+    <value>Отчет о проверке</value>
+  </data>
+  <data name="SellDate" xml:space="preserve">
+    <value>Дата продажи</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Дата начала</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Статистика</value>
+  </data>
+  <data name="StatusChange" xml:space="preserve">
+    <value>Изменение статуса</value>
+  </data>
+  <data name="StatusChangeDate" xml:space="preserve">
+    <value>Дата изм. статуса</value>
+  </data>
+  <data name="StatusNumber" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="StatusToStatus" xml:space="preserve">
+    <value>Статус в статус</value>
+  </data>
+  <data name="SUSPEND" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="ToStatus" xml:space="preserve">
+    <value>К статусу</value>
+  </data>
+  <data name="UniBank" xml:space="preserve">
+    <value>Юни Банк</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Загрузить</value>
+  </data>
+  <data name="UploadFile" xml:space="preserve">
+    <value>Загрузить файл</value>
+  </data>
+  <data name="VtbBank" xml:space="preserve">
+    <value>ВТБ Банк</value>
+  </data>
+  <data name="ViewDetails" xml:space="preserve">
+    <value>по подробнее</value>
+  </data>
+  <data name="OldStatusNumber" xml:space="preserve">
+    <value>прежний статус</value>
+  </data>
+  <data name="ByDate" xml:space="preserve">
+    <value>по дате</value>
+  </data>
+  <data name="ByFile" xml:space="preserve">
+    <value>по файлу</value>
+  </data>
+  <data name="ByMemo" xml:space="preserve">
+    <value>по мемо</value>
+  </data>
+  <data name="ByStatusChangeDate" xml:space="preserve">
+    <value>дата изм. статуса</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>от</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>до</value>
+  </data>
+  <data name="Reviews" xml:space="preserve">
+    <value>Банковская Гарантия</value>
+  </data>
+  <data name="ReviewItem" xml:space="preserve">
+    <value>Банковская Гарантия</value>
+  </data>
+  <data name="ReviewItems" xml:space="preserve">
+    <value>Банковская Гарантия</value>
+  </data>
+  <data name="ReviewList" xml:space="preserve">
+    <value>Списки Банковских Гарантий</value>
+  </data>
+  <data name="ReviewItemList" xml:space="preserve">
+    <value>Списки Банковских Гарантий</value>
+  </data>
+  <data name="FinanceFlows" xml:space="preserve">
+    <value>Финансовые потоки</value>
+  </data>
+  <data name="LeftAmount" xml:space="preserve">
+    <value>Итоговый остаток</value>
+  </data>
+  <data name="LeftAmountUs" xml:space="preserve">
+    <value>Остаток у нас</value>
+  </data>
+  <data name="LeftAmountBank" xml:space="preserve">
+    <value>Остаток банка</value>
+  </data>
+  <data name="ReportStatusChange" xml:space="preserve">
+    <value>отчеты по изменению статуса</value>
+  </data>
+  <data name="ReportNewUsers" xml:space="preserve">
+    <value>отчеты по новым продаж</value>
+  </data>
+  <data name="Naming" xml:space="preserve">
+    <value>Наименование склада</value>
+  </data>
+  <data name="ModifyStatusComment" xml:space="preserve">
+    <value>Memory</value>
+  </data>
+  <data name="GuaranteeCount" xml:space="preserve">
+    <value>Тип (срок) гарантии</value>
+  </data>
+  <data name="ReviewStatusId" xml:space="preserve">
+    <value>Review Status</value>
+  </data>
+  <data name="ReviewStatus" xml:space="preserve">
+    <value>Review Status</value>
+  </data>
+  <data name="Field1" xml:space="preserve">
+    <value>Номер документа</value>
+  </data>
+  <data name="Field2" xml:space="preserve">
+    <value>Номер</value>
+  </data>
+  <data name="Field3" xml:space="preserve">
+    <value>Дебетовый остаток</value>
+  </data>
+  <data name="Field4" xml:space="preserve">
+    <value>номер счёта</value>
+  </data>
+  <data name="Field5" xml:space="preserve">
+    <value>наименование</value>
+  </data>
+  <data name="Field6" xml:space="preserve">
+    <value>цель</value>
+  </data>
+  <data name="Field7" xml:space="preserve">
+    <value>тип</value>
+  </data>
+  <data name="FromBank" xml:space="preserve">
+    <value>из банка</value>
+  </data>
+  <data name="Vtb" xml:space="preserve">
+    <value>VTB</value>
+  </data>
+  <data name="Unibank" xml:space="preserve">
+    <value>Унибанк</value>
+  </data>
+  <data name="BillingReports" xml:space="preserve">
+    <value>Отчеты По Биллингу</value>
+  </data>
+  <data name="StatusName" xml:space="preserve">
+    <value>Статус номера(наименование)</value>
+  </data>
+  <data name="BeginningStatus" xml:space="preserve">
+    <value>Comment CD</value>
+  </data>
+  <data name="AddingDate" xml:space="preserve">
+    <value>Дата перечисления</value>
+  </data>
+  <data name="Moz" xml:space="preserve">
+    <value>МОЗ-сумма</value>
+  </data>
+  <data name="MozDiff" xml:space="preserve">
+    <value>РАЗНИЦА ВТБ-МОЗ</value>
+  </data>
+  <data name="CommentDiff" xml:space="preserve">
+    <value>Комментарий к разнице</value>
+  </data>
+  <data name="Credit" xml:space="preserve">
+    <value>Кредит</value>
+  </data>
+  <data name="IncomingDate" xml:space="preserve">
+    <value>Дата перечисления</value>
+  </data>
+  <data name="IncomingAmount" xml:space="preserve">
+    <value>Сумма перечисления</value>
+  </data>
+  <data name="OutgoingAmount" xml:space="preserve">
+    <value>Остаток</value>
+  </data>
+  <data name="UniDescription" xml:space="preserve">
+    <value>Описание сделки</value>
+  </data>
+  <data name="MozBan" xml:space="preserve">
+    <value>МОЗ -BAN</value>
+  </data>
+  <data name="MozSum" xml:space="preserve">
+    <value>МОЗ -SUM</value>
+  </data>
+  <data name="UniMozDiff" xml:space="preserve">
+    <value>Разница Юнибанк-МОЗ</value>
+  </data>
+  <data name="MozDiff" xml:space="preserve">
+    <value>Разница МОЗ</value>
+  </data>
+  <data name="RoundDiff" xml:space="preserve">
+    <value>Округление разниц</value>
+  </data>
+  <data name="DiffDescription" xml:space="preserve">
+    <value>Комментарий разниц</value>
+  </data>
+  <data name="InsertDate" xml:space="preserve">
+    <value>дата ввода</value>
+  </data>
+  <data name="ItemsEdit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="SumAmount" xml:space="preserve">
+    <value>Сумма перечисления</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="ReportLavash" xml:space="preserve">
+    <value>Result Report</value>
+  </data>
+</root>

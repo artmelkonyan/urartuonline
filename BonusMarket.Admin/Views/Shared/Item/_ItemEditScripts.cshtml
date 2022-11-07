@@ -1,0 +1,25 @@
+<partial name="Item/_TinyMCEScripts"/>
+<partial name="Item/_SelectizeScripts"/>
+<partial name="Item/_DateTimeScripts"/>
+<script>
+$(document).ready(function() {
+    let tinyService = new window.tinyMCEServiceClass();
+    tinyService.Bind();
+    
+    let selectizeService = new window.selectizeServiceClass();
+    selectizeService.Bind();
+    
+    let dateService = new window.datetimeServiceClass();
+    dateService.BindDatePicker();
+    
+    $('#Language').change(function(e) {
+        e.preventDefault();
+        let val = $('#Language').val();
+        $('.languageElem').each(function(element) {
+            $(this).addClass('hidden');
+        });
+        $('.languageElem'+val).removeClass('hidden');
+    })
+    
+});
+</script>

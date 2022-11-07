@@ -1,0 +1,23 @@
+﻿version: '3.4'
+
+networks:
+  frontend:
+    external:
+      name: nginx_proxy
+
+services:
+  bonusmarket:
+    restart: always
+    networks:
+      - frontend
+    image: dregistry.k7-clan.com/bonusmarket:master
+    container_name: bonusmarket
+    build:
+      context: .
+      dockerfile: ./BonusMarket/Dockerfile
+    environment:
+      - VIRTUAL_HOST=urartuonline.am
+      - VIRTUAL_PORT=5000
+      - LETSENCRYPT_HOST=urartuonline.am
+      - LETSENCRYPT_EMAIL=info@k7-clan.com
+      - ASPNETCORE_ENVIRONMENT=Release

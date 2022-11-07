@@ -1,0 +1,328 @@
+<script>
+$(document).ready(function() {
+    // post service
+    
+    /*****Main Function******/
+    window.postServiceClass = function () {
+        var self = this;
+        self.loaderWidget = null;
+        self.divClass = 'loaderClass';
+        self.partialXHRList = [];
+        
+        // Json Post With return Datatype json
+        self.postJsonReturn = function (data, url, callback) {
+            if (typeof url != 'undefined') {
+                try {
+                    // enable loader
+                    self.loaderWidget = _core.getService('Loading').Service;
+                    self.loaderWidget.enableBlur(self.divClass);
+    
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        dataType: 'text',
+                        beforeSend: function (xhr) { // for ASP.NET auto deserialization
+                            xhr.setRequestHeader("Content-type", "application/json");
+                        },
+                        data: data,
+                        statusCode: {
+                            401: function () {
+                                location.reload();
+                            }
+                        },
+                        success: function (res, textStatus, xhr) {
+                            // disable loader
+                            self.loaderWidget = _core.getService('Loading').Service;
+    
+                            callback(JSON.parse(res));
+                        },
+                        error: function (xhr, textStatus, err) {
+                            // disable loader
+                            self.loaderWidget = _core.getService('Loading').Service;
+    
+                            callback(null);
+                        }
+                    });
+                } catch (err) {
+                    //console.log(err);
+                    callback(null);
+                }
+            }
+            else {
+                console.log('error', 'undefined parameter (plugins.post)');
+                callback(null);
+            }
+        };
+    
+        // Json Post
+        self.post = function (data, url, callback) {
+            if (typeof url != 'undefined') {
+                try {
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        dataType: 'text',
+                        data: data,
+                        statusCode: {
+                            401: function () {
+                                location.reload();
+                            }
+                        },
+                        success: function (res, textStatus, xhr) {
+                            callback(res);
+                        },
+                        error: function (xhr, textStatus, err) {
+                            callback(null);
+                        }
+                    });
+                } catch (err) {
+                    //console.log(err);
+                    callback(null);
+                }
+            }
+            else {
+                console.log('error', 'undefined parameter (plugins.post)');
+                callback(null);
+            }
+        }
+    
+        // Json Post
+        self.postJson = function (data, url, callback) {
+            if (typeof data != 'undefined' && typeof url != 'undefined') {
+                try {
+                    // enable loader
+                    //self.loaderWidget = _core.getService('Loading').Service;
+                    //self.loaderWidget.enableBlur(self.divClass);
+    
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        dataType: 'text',
+                        beforeSend: function (xhr) { // for ASP.NET auto deserialization
+                            xhr.setRequestHeader("Content-type", "application/json");
+                        },
+                        data: JSON.stringify(data),
+                        statusCode: {
+                            401: function () {
+                                location.reload();
+                            }
+                        },
+                        success: function (res, textStatus, xhr) {
+                            // disable loader
+                            //self.loaderWidget = _core.getService('Loading').Service;
+    
+                            callback(JSON.parse(res));
+                        },
+                        error: function (xhr, textStatus, err) {
+                            // disable loader
+                            self.loaderWidget = _core.getService('Loading').Service;
+    
+                            callback(null);
+                        }
+                    });
+                } catch (err) {
+                    //console.log(err);
+                    callback(null);
+                }
+            }
+            else {
+                console.log('error', 'undefined parameter (plugins.post)');
+                callback(null);
+            }
+        }
+    
+        // Json Post
+        self.postJsonAsync = function (data, url, callback) {
+    
+            return new Promise(function (resolve, reject) {
+                if (typeof data != 'undefined' && typeof url != 'undefined') {
+                    try {
+                        // enable loader
+                        //self.loaderWidget = _core.getService('Loading').Service;
+                        //self.loaderWidget.enableBlur(self.divClass);
+    
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            dataType: 'text',
+                            beforeSend: function (xhr) { // for ASP.NET auto deserialization
+                                xhr.setRequestHeader("Content-type", "application/json");
+                            },
+                            data: JSON.stringify(data),
+                            statusCode: {
+                                401: function () {
+                                    location.reload();
+                                }
+                            },
+                            success: function (res, textStatus, xhr) {
+                                // disable loader
+                                //self.loaderWidget = _core.getService('Loading').Service;
+                                resolve(JSON.parse(res));
+                            },
+                            error: function (xhr, textStatus, err) {
+                                // disable loader
+                                self.loaderWidget = _core.getService('Loading').Service;
+    
+                                reject(JSON.parse(err));
+                            }
+                        });
+                    } catch (err) {
+                        //console.log(err);
+                        callback(null);
+                    }
+                } else {
+                    console.log('error', 'undefined parameter (plugins.post)');
+                    callback(null);
+                }
+            });
+        };
+    
+        // post Partial
+        self.postPartial = function (data, url, callback) {
+            if (typeof data != 'undefined' && typeof url != 'undefined') {
+                try {
+                    var xhr = $.ajax({
+                        type: "POST",
+                        url: url,
+                        dataType: 'text',
+                        beforeSend: function (xhr) { // for ASP.NET auto deserialization
+                            xhr.setRequestHeader("Content-type", "application/json");
+                        },
+                        data: JSON.stringify(data),
+                        statusCode: {
+                            401: function () {
+                                location.reload();
+                            }
+                        },
+                        success: function (res, textStatus, xhr) {
+                            // clean list
+                            cleanPartialList();
+    
+                            // callback
+                            callback(res);
+                        },
+                        error: function (xhr, textStatus, err) {
+                            // clean list
+                            cleanPartialList();
+    
+                            // callback
+                            callback(null);
+                        }
+                    });
+                    
+                    // clean list and push in new xhr
+                    cleanPartialList();
+                    self.partialXHRList.push(xhr);
+                } catch (err) {
+                    //console.log(err);
+                    callback(null);
+                }
+            }
+            else {
+                console.log('error', 'undefined parameter (plugins.post)');
+                callback(null);
+            }
+        }
+    
+        // post Partial async
+        self.postPartialAsync = function (data, url, callback) {
+            if (typeof data != 'undefined' && typeof url != 'undefined') {
+                try {
+                    var xhr = $.ajax({
+                        type: "POST",
+                        url: url,
+                        dataType: 'text',
+                        beforeSend: function (xhr) { // for ASP.NET auto deserialization
+                            xhr.setRequestHeader("Content-type", "application/json");
+                        },
+                        data: JSON.stringify(data),
+                        statusCode: {
+                            401: function () {
+                                location.reload();
+                            }
+                        },
+                        success: function (res, textStatus, xhr) {
+                            // clean list
+                            //cleanPartialList();
+    
+                            // callback
+                            callback(res);
+                        },
+                        error: function (xhr, textStatus, err) {
+                            // clean list
+                            //cleanPartialList();
+    
+                            // callback
+                            callback(null);
+                        }
+                    });
+    
+                    // clean list and push in new xhr
+                    //cleanPartialList();
+                    //self.partialXHRList.push(xhr);
+                } catch (err) {
+                    //console.log(err);
+                    callback(null);
+                }
+            }
+            else {
+                console.log('error', 'undefined parameter (plugins.post)');
+                callback(null);
+            }
+        }
+    
+        // FormData Post
+        self.postFormData = function (data, url, callback) {
+            if (typeof data != 'undefined' && typeof url != 'undefined') {
+                try {
+                    // enable loader
+                    //self.loaderWidget = _core.getService('Loading').Service;
+                    //self.loaderWidget.enableBlur(self.divClass);
+    
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        //processData: true,
+                        processData: false,
+                        contentType: false,
+                        data: data,
+                        //beforeSend: function (xhr) { // for ASP.NET auto deserialization
+                        //    xhr.setRequestHeader("Content-type", "multipart/form-data");
+                        //},
+                        statusCode: {
+                            401: function () {
+                                location.reload();
+                            }
+                        },
+                        success: function (res, textStatus, xhr) {
+                            callback(res);
+                        },
+                        error: function (xhr, textStatus, err) {
+                            console.log('error', err.responseText);
+                            callback(null);
+                        }
+                    });
+                } catch (err) {
+                    //console.log(err);
+                    callback(null);
+                }
+            }
+            else {
+                console.log('error', 'undefined parameter (plugins.post)');
+                callback(null);
+            }
+        }
+        
+    
+        // clean partial list
+        function cleanPartialList() {
+            for (var i in self.partialXHRList) {
+                self.partialXHRList[i].abort();
+            }
+    
+            partialXHRList = [];
+        }
+    }
+    /************************/
+});
+</script>

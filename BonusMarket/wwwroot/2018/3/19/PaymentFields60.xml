@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<PaymentFields xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <amount>4660</amount>
+  <approveamount>0</approveamount>
+  <authcode>000000</authcode>
+  <cardnumber>457889**1028</cardnumber>
+  <clientname>GAREGIN HAMBARDZUMYAN</clientname>
+  <currency>051</currency>
+  <datetime>01.01.1970 04:00:00</datetime>
+  <depositamount>0</depositamount>
+  <descr>Decline. Decline. Not enough money: - Նախնական ավտորիզացումը մերժված է:</descr>
+  <merchantid>19003087</merchantid>
+  <opaque>Opaque60</opaque>
+  <orderid>60</orderid>
+  <orderstatuscode>6</orderstatuscode>
+  <payment_state>payment_declined</payment_state>
+  <paymenttype>5</paymenttype>
+  <refundamount>0</refundamount>
+  <respcode>0116</respcode>
+  <rewardpoint>0</rewardpoint>
+  <rrn>6d540222-1234-4d6c-b8b4-3f77b81b513a</rrn>
+  <terminalid>19533087</terminalid>
+  <trxnDetails>Bonus Market</trxnDetails>
+</PaymentFields>

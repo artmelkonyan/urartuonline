@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<PaymentFields xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <amount>20</amount>
+  <approveamount>20</approveamount>
+  <authcode>890354</authcode>
+  <cardnumber>457889**1028</cardnumber>
+  <clientname>GAREGIN HAMBARDZUMYAN</clientname>
+  <currency>051</currency>
+  <datetime>10.03.2018 14:29:42</datetime>
+  <depositamount>20</depositamount>
+  <descr>Approved.: - Վճարման ավտորիզացումը կատարված է:</descr>
+  <merchantid>19003087</merchantid>
+  <opaque>Opaque199</opaque>
+  <orderid>199</orderid>
+  <orderstatuscode>2</orderstatuscode>
+  <payment_state>payment_deposited</payment_state>
+  <paymenttype>5</paymenttype>
+  <refundamount>0</refundamount>
+  <respcode>00</respcode>
+  <rewardpoint>0</rewardpoint>
+  <rrn>1d6402c2-be48-4e37-a2ec-50257f27ca49</rrn>
+  <terminalid>19533087</terminalid>
+  <trxnDetails>Bonus Market</trxnDetails>
+</PaymentFields>

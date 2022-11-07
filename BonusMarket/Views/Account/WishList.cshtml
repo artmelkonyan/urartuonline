@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewData["Title"] = "Wish List";
+}
+
+<section>
+    <div class="container">
+        <div id="cart-wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="cart-heading">You have 3 items in your Wishlist</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table main-table">
+                        <thead>
+                            <tr>
+                                <th>Ապրանք</th>
+                                <th>Կոդ</th>
+                                <th>Գին</th>
+                                <th>Քանակ</th>
+                                <th>Ընդամենը</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="product-image">
+                                        <img src="~/img/shoes.png" alt="">
+                                    </div>
+                                    <div class="product-title">Product title</div>
+                                </td>
+                                <td>2007000091081</td>
+                                <td><span class="price">850</span>dr</td>
+                                <td class="col-md-2">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                                                <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                        </span>
+                                        <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="together">850dr</span>
+                                </td>
+                                <td>
+                                    <a href="" class="remove-item"><span class="glyphicon glyphicon-remove"></span></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="product-image">
+                                        <img src="~/img/shoes.png" alt="">
+                                    </div>
+                                    <div class="product-title">Product title</div>
+                                </td>
+                                <td>2007000091081</td>
+                                <td><span class="price">850</span>dr</td>
+                                <td>
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[2]">
+                                                <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                        </span>
+                                        <input type="text" name="quant[2]" class="form-control input-number" value="1" min="1" max="10">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[2]">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="together">85000000dr</span>
+                                </td>
+                                <td>
+                                    <a href="" class="remove-item"><span class="glyphicon glyphicon-remove"></span></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="product-image">
+                                        <img src="~/img/shoes.png" alt="">
+                                    </div>
+                                    <div class="product-title">Product title</div>
+                                </td>
+                                <td>2007000091081</td>
+                                <td><span class="price">850</span>dr</td>
+                                <td>
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[3]">
+                                                <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                        </span>
+                                        <input type="text" name="quant[3]" class="form-control input-number" value="1" min="1" max="10">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[3]">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="together">850dr</span>
+                                </td>
+                                <td>
+                                    <a href="" class="remove-item"><span class="glyphicon glyphicon-remove"></span></a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="final-order">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="final-order-buttons">
+                            <ul>
+                                <li><a href="">Ավելացնել զամբյուղ</a></li>
+                                <li><a href="">Շարունակել գնումները</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+

@@ -1,0 +1,9 @@
+diff a/BonusMarket/Views/Product/OneProduct.cshtml b/BonusMarket/Views/Product/OneProduct.cshtml	(rejected hunks)
+@@ -9,7 +9,6 @@
+     <div class="container">
+         @{
+             <div class="big-oneproduct col-md-7">
+-                <img src="@Model.OneProduct.MainImage.FullPath" data-id="@Model.OneProduct.MainImage.Id" id="expandedImg">
+                 <img src="@ImageHelper.GenImageLink(Model.OneProduct.MainImage.FullPath)" data-id="@Model.OneProduct.MainImage.Id" id="expandedImg">
+                 <div class=" carusel-container">
+                     <div class="arrow_container  container col-md-1">

@@ -1,0 +1,61 @@
+﻿@model Models.CategoryViewModel
+@{
+    ViewData["Title"] = "Get Categories By Parent";
+}
+
+@using Models
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-3">
+                <ul class="left-sidebar-menu">
+                    @{
+                        var BaseModel = (BaseViewModel)ViewData["BaseModel"];
+
+                        int SearchId = Model.CategoryId;
+
+                        while (true)
+                        {
+                            if (BaseModel.CategoryList.FindAll(r=>r.Id == SearchId).Count != 0)
+                            {
+                                CategoryEntity tempEntity = BaseModel.CategoryList.FindAll(r => r.Id == SearchId)[0];
+                                BaseModel.ParentIds.Add(tempEntity.Id.Value);
+                                SearchId = tempEntity.ParentId.Value;
+                            } else
+                            {
+                                break;
+                            }
+                        }
+
+
+                        @foreach (var item in BaseModel.Categories)
+                        {
+
+                            CategoryLeftMenuViewModel tempModel = new CategoryLeftMenuViewModel();
+                            tempModel.Category = item;
+                            tempModel.ParentIds = BaseModel.ParentIds;
+
+                            @Html.Partial("~/Views/Shared/_CategoryMenuListPartial.cshtml", tempModel)
+                        }
+                    }
+                </ul>
+            </div>
+            <h2 class="page-heading">@Model.CategoryName</h2>
+            <div class="col-md-9 categories container">
+                <div class="row">
+                    @foreach (var item in Model.CategoriesByParent)
+                    {
+                        <div class=" col-xs-12 col-sm-6 col-md-4 category">
+                            <span class="category-title">@item.Translation.Name</span>
+                            <div class="category-image">
+                                <a href="@(item.SubCategories.Count == 0 ? Url.Action("ProductsList", "Product", new {categoryId=item.Id }) : "/Category/GetCategoriesByParentId?parentid="+item.Id)"><img src="@ImageHelper.GenImageLink(item.Picture.FullPath)" alt=""></a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

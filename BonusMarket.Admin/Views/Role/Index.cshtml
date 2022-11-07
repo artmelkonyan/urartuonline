@@ -1,0 +1,196 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model BonusMarket.Admin.Models.Role.RoleVm
+
+<section class="contentWrapTop">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="contentWrapTopLeft">
+                    <h1>Role</h1>
+                </div>
+                <div class="contentWrapTopRight">
+                    <ul>
+                        <li>
+                            <a href="/Role">
+                                <i class="fa fa-shopping-bag"></i>
+                                <span>Role</span>
+                            </a>
+                        </li>
+                        <li><a href="/Role"><span>Role</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+<section class="contentWrap">
+    <div class="row">
+        <div class="col-xs-12">
+            <section class="boxWrap loaderHolder">
+                <div class="box">
+                    <div class="boxHeader">
+                        <div class="boxHeaderLeft">
+                            <h3>
+                                <i class="fa fa-shopping-bag"></i>
+                                <span>Edit</span>
+                            </h3>
+                        </div>
+                        <div class="boxHeaderRight">
+                            <div class="btn-group btn-group-sm nowrap" style="position: relative; top: -2px;">
+                                <a style="width: 28px;height: 28px;line-height: 28px; padding: 0;" href="/Role/Add" type="button" class="btn btn-info btn-flat"><i class="fa fa-plus"></i></a>
+                                <button style="width: 28px;height: 28px;line-height: 28px; padding: 0;" type="button" class="btn btn-info btn-flat" id="deleteAllBtn" data-deleteurl="/Role/Deletes" data-url="/Home/GetDeleteItemsModal" data-returnurl="@Context.Request.Path" ><i class="fa fa-trash-o"></i></button>
+                            </div>
+                            @* <div class="boxLang"> *@
+                            @*     <label for="elemLangs" class="hidden" hidden>Language</label> *@
+                            @*     <select id="elemLangs" class="form-control input-sm"> *@
+                            @*         <option value="en" selected>En</option> *@
+                            @*         <option value="ru" >Ru</option> *@
+                            @*         <option value="hy" >Hy</option> *@
+                            @*     </select> *@
+                            @* </div> *@
+                        </div>
+                    </div>
+                    <div class="boxBody">
+                        <div class="tableWrap">
+                            <div class="tableWrapIn">
+                                <table class="table table-bordered table-valignM">
+                                    <thead>
+                                    <tr>
+                                        <th class="minimal-width">
+                                            <div class="mtCheckbox">
+                                                <label>
+                                                    <input class="selectElems" type="checkbox" />
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </th>
+                                        <th>Name</th>
+                                        <th>System Name</th>
+                                        <th>Active</th>
+                                        <th>Date</th>
+                                        <th>Options</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach (var item in @Model.List.Results)
+                                    {
+                                        <tr>
+                                            <td class="minimal-width">
+                                                <div class="mtCheckbox">
+                                                    <label>
+                                                        <input class="selItems" data-id="@item.ID" type="checkbox"/>
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="lineFix">
+                                                    @item.Name
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="lineFix">
+                                                    @item.SystemName
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="lineFix">
+                                                    @(item.Active ? "Active" : "NotActive")
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @item.CreationDate
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <a type="button" class="btn btn-info btn-flat editElem" href="/Role/Edit/@item.ID"><i class="fa fa-pencil"></i></a>
+                                                    <button type="button" class="btn btn-info btn-flat deleteElem" data-id="@item.ID"  data-deleteurl="/Role/Deletes" data-url="/Home/GetDeleteItemsModal" data-returnurl="@Context.Request.Path"><i class="fa fa-trash-o"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boxFooter boxFooterPagination">
+                        <div class="boxFooterCounterWrap pt-0 pb-0"></div>
+                        <div class="boxFooterPaginationWrap">
+                            <div class="boxFooterLeft">
+                                <div class="pageCountWrap">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-addon">
+                                            <span>Show</span>
+                                        </span>
+                                        <label for="viewCountSelect" hidden=""></label>
+                                        
+                                        <form asp-controller="Role" asp-action="Index" method="get">
+                                            <select name="PageSize" class="form-control" onchange="this.form.submit()">
+                                                <option value="10"  selected="@(Model.List.PageSize == 10 ? true : false)">10</option>
+                                                <option value="20" selected="@(Model.List.PageSize == 20 ? true : false)">20</option>
+                                                <option value="50" selected="@(Model.List.PageSize == 50 ? true : false)">50</option>
+                                                <option value="100" selected="@(Model.List.PageSize == 100 ? true : false)">100</option>
+                                            </select>
+                                        </form>
+                                        <span class="input-group-addon">
+                                            <span>Entries</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="boxFooterRight">
+                                <div class="boxPaganation clearfix">
+                                    <ul class="pagination">
+                                        
+                                        <li class="@(Model.List.CurrentPage == 1 ? "disabled" : null)" ><a class="@(Model.List.CurrentPage == Model.List.PageCount ? "disabled" : null)" href="@Url.Action("Index", new { Page = (Model.List.CurrentPage > 1 ? Model.List.CurrentPage - 1 : Model.List.CurrentPage), PageSize = Model.List.PageSize })"><i class="fa fa-angle-double-left"></i></a></li>
+
+                                        
+                                        @if (Model.List.PageCount <= 3)
+                                        {
+                                            @for (var i = 1; i <= Model.List.PageCount; i++)
+                                             {
+                                                 <li class="page-item">
+                                                     <a href="@Url.Action("Index", new { Page = i, PageSize = Model.List.PageSize })" class="@(Model.List.CurrentPage == i ? "active" : "")">@i</a>
+                                                 </li>
+                                             }
+                                        }
+                                        else
+                                        {
+                                            @if (Model.List.CurrentPage > 1)
+                                             {
+                                                 <li class="page-item">
+                                                     <a href="@Url.Action("Index", new { Page = Model.List.CurrentPage - 1, PageSize = Model.List.PageSize })" class="">@(Model.List.CurrentPage - 1)</a>
+                                                 </li>
+                                             }
+                                            <li class="page-item">
+                                                <a href="@Url.Action("Index", new { Page = Model.List.CurrentPage, PageSize = Model.List.PageSize })" class="@(Model.List.CurrentPage == Model.List.CurrentPage ? "active" : "")">@Model.List.CurrentPage</a>
+                                            </li>
+                                            @if (Model.List.CurrentPage < Model.List.PageCount - 1)
+                                             {
+                                                 <li class="page-item">
+                                                     <a href="@Url.Action("Index", new { Page = Model.List.CurrentPage + 1, PageSize = Model.List.PageSize })" class="@(Model.List.CurrentPage == Model.List.CurrentPage + 1 ? "active" : "")">@(Model.List.CurrentPage + 1)</a>
+                                                 </li>
+                                             }
+                                            @if (Model.List.CurrentPage < Model.List.PageCount)
+                                             {
+                                                 <li class="page-item">
+                                                     <a href="@Url.Action("Index", new { Page = Model.List.PageCount, PageSize = Model.List.PageSize })" class="@(Model.List.CurrentPage == Model.List.PageCount ? "active" : "")">@(Model.List.PageCount)</a>
+                                                 </li>
+                                             }
+                                        }
+
+                                        <li  class="@(Model.List.CurrentPage == Model.List.PageCount ? "disabled" : null)" )><a class="@(Model.List.CurrentPage == Model.List.PageCount ? "disabled" : null)" href="@Url.Action("Index", new { Page = (Model.List.CurrentPage < Model.List.PageCount ? Model.List.CurrentPage + 1 : Model.List.PageCount), PageSize = Model.List.PageSize })"><i class="fa fa-angle-double-right"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<partial name="Table/_ListDeleteScripts"/>

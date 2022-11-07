@@ -1,0 +1,452 @@
+﻿@using Models
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.Extensions.Options
+
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+
+
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var cultureItems = LocOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem { Value = c.Name, Text = SharedLocalizer[c.DisplayName].Value })
+        .ToList();
+
+    var CurCulture = requestCulture.RequestCulture.Culture.Name;
+    var currentCultureCode = requestCulture.RequestCulture.UICulture.TwoLetterISOLanguageName;
+}
+<style>
+
+    .list-group {
+        display: block;
+        position: absolute;
+        z-index: 1000;
+        padding-left: 0;
+        margin-bottom: 20px;
+        max-height: 300px;
+        margin-bottom: 40px;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .searchList a span {
+        width: 100% !important;
+    }
+
+    .search-row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .search-img {
+        width: 50px;
+        height: 100%;
+        margin-right: 5px;
+    }
+
+    .mobile-search-cont {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .mobile-search-cont input {
+            border-right: 1px solid #b3b1b1;
+        }
+
+        .mobile-search-cont div {
+            margin-bottom: 20px;
+        }
+
+    .list-group {
+        width: 100%;
+        left: 0;
+    }
+
+    .mobile-menu .logo-wrapper img {
+        width: 100%;
+    }
+
+    .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="~/js/lib/owl.carousel.min.js"></script>
+    <script src="~/js/Main.js"></script>
+    <script src="~/js/MainUI.js"></script>
+    <meta charset="UTF-8">
+    <title>@SharedLocalizer["MainTitle"]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/fonts/dram/style.css" />
+</head>
+<body>
+    <header>
+        <!-- mobile -->
+        <div class="mobile-version">
+            <div class="mobile-menu">
+                <div class="logo-wrapper">
+                    <a href="/Home/Index">
+                        <img src="~/img/logoempty.png" alt="Logo">
+
+                    </a>
+                </div>
+                <div class="burger-menu">
+                    <label for="menu-content-checkbox" class="glyphicon glyphicon-menu-hamburger" id="menu-button"></label>
+                </div>
+            </div>
+            <input type="checkbox" name="menu-content-checkbox" id="menu-content-checkbox" />
+            <div class="row lower-header " id="menu-content-mob">
+                <div class="col-sm-12 container">
+                    <ul>
+                        @{
+                            var BaseModel = (BaseViewModel)ViewData["BaseModel"];
+                        }
+                        @foreach (var item in BaseModel.Categories)
+                        {
+                            if (item.ParentId == 0)
+                            {
+                                <li class="">
+                                    <a href="@(item.SubCategories.Count== 0 ? Url.Action("ProductsList","Product", new {categoryId=item.Id }): "/Category/GetCategoriesByParentId?parentid="+item.Id )" data-id="@item.Id" class="">@item.Translation.Name</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="container">
+                <div class="mobile-upper-header">
+                    <div class="contact-numbers ">
+                        <div class="glyphicon glyphicon-phone">  098-560-141</div><br>
+                        <div class="glyphicon glyphicon-phone">  091-560-141</div>
+                    </div>
+                    <div class="langbar">
+                        @{
+                            foreach (var item in cultureItems)
+                            {
+
+                                <a href="@("/Home/SetLanguage?culture="+item.Value + "&returnUrl=" + Context.Request.Path +Context.Request.QueryString )" class="lang-item @(item.Value == CurCulture ? "active" : "")">
+                                    @item.Value
+                                </a>
+                            }
+                        }
+                    </div>
+                    <div class="wish-bar">
+                        <div class="wish">
+                            <div class="wish-number">
+                                <a href="/Home/WishList"><img src="~/img/icons/heart.png" alt=""><span class="wishNum">0</span></a>
+                            </div>
+                        </div>
+                        <div class="wish">
+                            <div class="basket-number">
+                                <a href="/Home/Basket"><img src="~/img/icons/cart.png" alt=""><span class="basketNum"></span></a>
+                            </div>
+                        </div>
+                        <div class="wish">
+                            <div>
+                                <a href="/Account/Login"><img src="~/img/icons/profile.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-wrapper">
+                    <div style="margin-bottom:0" action="/Home/Search" method="get">
+                        <div class="input-group mobile-search-cont">
+                            <div class="brand_sector">
+                                <input type="text" autocomplete="off" placeholder='@SharedLocalizer["BrandSearchText"]' value="@Context.Request.Query[currentCultureCode == "en" ? "engBrand" : currentCultureCode + "Brand"]"  class="search-area brandSearchwordInput2 search-js" name="brandSearchWord">
+                                <ul class="list-group brandSearchList"></ul>
+                            </div>
+                            <div class="product_sector">
+                                <input type="text" autocomplete="off"  value="@Context.Request.Query[currentCultureCode == "en" ? "engName" : currentCultureCode + "Name"]"  placeholder='@SharedLocalizer["ProductSearchText"]' class="search-area searchwordInput2 search-js" name="searchword">
+                                <ul class="list-group searchList"></ul>
+                            </div>
+
+                            <span><input type="submit"  class="search-input search-input2" name="" value="@SharedLocalizer["Search"]"></span>
+                            <input type="hidden" name="searchwordFixed" class="searchwordFixedInput" />
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- mobile-version end -->
+
+        <div class="container">
+            <div class="upper-header clearfix">
+                <div class="langbar">
+                    @{
+                        foreach (var item in cultureItems)
+                        {
+
+                            <a href="@("/Home/SetLanguage?culture="+item.Value + "&returnUrl=" + Context.Request.Path +Context.Request.QueryString )" class="lang-item @(item.Value == CurCulture ? "active" : "")">
+                                @item.Value
+                            </a>
+                        }
+                    }
+                    <br>
+                    <div class="glyphicon glyphicon-home"> &nbsp;&nbsp;@SharedLocalizer["Homepageaddress"] </div>
+                </div>
+                <div class="right-side">
+                    <div class="contact-numbers">
+                        <div class="glyphicon glyphicon-phone">  098-560-141</div><br>
+                        <div class="glyphicon glyphicon-phone">  091-560-141</div><br>
+                    </div>
+                    <div class="wish ">
+                        <div class="wish-number">
+                            <img src="~/img/icons/heart.png" alt=""><span class="wishNum">0</span>
+                        </div>
+                        <div><a href="/Home/WishList">@SharedLocalizer["Wishlist"]</a></div>
+                    </div>
+                    <div class="wish">
+                        <div class="basket-number">
+                            <img src="~/img/icons/cart.png" alt=""><span class="basketNum">0</span>
+                        </div>
+                        <div><a href="/Home/Basket">@SharedLocalizer["Basket"]</a></div>
+                    </div>
+                    <div class="wish">
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <img src="~/img/icons/profile.png" alt="">
+                            <div><a href="/Account/Login">@SharedLocalizer["LoginRegister"]</a></div>
+                        }
+                        else
+                        {
+                            <img src="~/img/icons/profile.png" alt="">
+                            <div>
+
+                                <form action="/Account/LogOut" method="post" class="loginForm">
+                                    @Html.AntiForgeryToken()
+                                    <input type="submit" value="@SharedLocalizer["LogOut"]" class="btn logoutBtn" />
+                                </form>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="middle-header clearfix">
+                <div class="logo-wrapper">
+                    <a href="/">
+                        <img src="~/img/logo.png" alt="Logo">
+                    </a>
+                </div>
+                <div class="search-wrapper">
+                    <div action="/Home/Search" method="get">
+                        <div class="input-group search-cont-max">
+                            <div class="brand_sector">
+                                <input type="text" autocomplete="off" placeholder='@SharedLocalizer["BrandSearchText"]' value="@Context.Request.Query[currentCultureCode == "en" ? "engBrand" : currentCultureCode + "Brand"]"  class="search-area brandSearchwordInput1 search-js" name="brandSearchWord">
+                                <ul class="list-group brandSearchList"></ul>
+                            </div>
+                            <div class="product_sector">
+                                <input type="text" autocomplete="off" placeholder='@SharedLocalizer["ProductSearchText"]' value="@Context.Request.Query[currentCultureCode == "en" ? "engName" : currentCultureCode + "Name"]" class="search-area searchwordInput1 search-js" name="searchword">
+                                <ul class="list-group searchList"></ul>
+                            </div>
+                            <span><input type="submit" class="search-input search-input1" name="" value="@SharedLocalizer["Search"]"></span>
+                            <input type="hidden" name="searchwordFixed" class="searchwordFixedInput" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row lower-header " id="menu-content">
+                <div class="col-sm-12">
+                    <ul>
+                        @foreach (var item in BaseModel.Categories)
+                        {
+                            @Html.Partial("_MenuListPartial", item)
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div id="main-slider" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    @for (int i = 0; i < BaseModel.Banners.Count; i++)
+                    {
+
+                        <li data-target="#main-slider" data-slide-to="@i" class="@(i==0?"active":"")"></li>
+                    }
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    @for (int i = 0; i < BaseModel.Banners.Count; i++)
+                    {
+                        if (string.IsNullOrWhiteSpace(BaseModel.Banners[i].Link))
+                        {
+                            <div class="item @(i == 0 ? "active" : "")">
+                                <img src="/uploads/images/@BaseModel.Banners[i].Picture.FullPath">
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="item @(i == 0 ? "active" : "")">
+                                <a href="@BaseModel.Banners[i].Link"><img src="/uploads/images/@BaseModel.Banners[i].Picture.FullPath"></a>
+                            </div>
+                        }
+                    }
+                    @*<div class="item active">
+                            <img src="~/img/slider/1.png">
+                        </div>
+
+                        <div class="item">
+                            <img src="~/img/slider/1.png" alt="Chania">
+                        </div>
+
+                        <div class="item">
+                            <img src="~/img/slider/1.png" alt="Flower">
+                        </div>
+
+                        <div class="item">
+                            <img src="~/img/slider/1.png" alt="Flower">
+                        </div>*@
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    @RenderBody()
+    <div id="wishModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content ">
+                <div class="modal-header"></div>
+                <h4 class="modal-text">@SharedLocalizer["AddedToWishList"]</h4>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@SharedLocalizer["Close"]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal basket -->
+    <div id="basketModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content ">
+                <div class="modal-header"></div>
+                <h4 class="modal-text">@SharedLocalizer["AddedToBasket"]</h4>
+                <div class="basket-modal">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="basket-modal-buttons">
+                                <a href="/Home/Basket"> @SharedLocalizer["PlaceOrder"]</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@SharedLocalizer["Close"]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ...............modal end.................    -->
+    <footer>
+        <div class="container footer-container">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="col-md-6  footer-text-part">
+                        <span class="footer-block-header">@SharedLocalizer["Information"]</span>
+                        <a href="/Home/About">@SharedLocalizer["AboutUs"]</a>
+                        <a href="/Home/ReturnPolicy">@SharedLocalizer["ReturnPolicy"]</a>
+                        <a href="/Home/PrivacyPolicy">@SharedLocalizer["PrivacyPolicy"]</a>
+                        <a href="/Home/Contacts">@SharedLocalizer["Contacts"]</a>
+                    </div>
+                    <div class="col-md-6 footer-text-part">
+                        <span class="footer-block-header">@SharedLocalizer["CustomerService"]</span>
+                        <a href="#">@SharedLocalizer["Search1"]</a>
+                        @*<a href="#">@SharedLocalizer["News"]</a>
+                            <a href="#">@SharedLocalizer["NewProducts"]</a>*@
+                    </div>
+                </div>
+
+                <div class=" col-xs-6">
+                    <div class="col-md-6  footer-text-part">
+                        <span class="footer-block-header">@SharedLocalizer["MyAccount"]</span>
+                        @*<a href="#">@SharedLocalizer["Orders"]</a>*@
+                        @*<a href="#">@SharedLocalizer["Addresses"]</a>*@
+                        <a href="/Home/Basket">@SharedLocalizer["Basket"]</a>
+                        <a href="/Home/Wishlist">@SharedLocalizer["Wishlist"]</a>
+                        <a href="/Account/Login">@SharedLocalizer["Register"]</a>
+                    </div>
+                    <div class="  col-md-6 footer-payment-part container">
+                        <span class="footer-block-header ">@SharedLocalizer["PaymentOptions"]</span>
+                        <div class="footer-paymant">
+                            <a href="#"><img src="~/img/arca1.png" alt="ARCA"></a>
+                            <a href="#"><img src="~/img/visa1.png" alt="VISA"></a>
+                            <a href="#"><img src="~/img/MasterCard1.png" alt="MASTERCARD"></a>
+                            <a href="#"><img src="~/img/idram.png" alt="idram"></a>
+                        </div>
+                        <span class="footer-block-header">@SharedLocalizer["FollowUs"]</span><br />
+                        <div class="footer-contact">
+                            <a href="https://www.facebook.com/Urartumarket/" class="fa fa-facebook" title="facebook"></a>
+                            <a href="https://instagram.com/urartu_market?igshid=um02lbqhjzc8" class="fa fa-instagram" title="instagram"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal wish-bar -->
+        <div class="container-fluid lower-footer">
+            <div class="container">
+                Copyright 2020 urartuonline.am
+            </div>
+        </div>
+    </footer>
+
+
+    @*<environment exclude="Development">
+            <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery"
+                    crossorigin="anonymous"
+                    integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+            </script>
+            <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                    crossorigin="anonymous"
+                    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+            </script>
+            <script src="~/js/site.min.js" asp-append-version="true"></script>
+        </environment>
+        <environment include="Development">
+
+        </environment>*@
+
+    @RenderSection("Scripts", required: false)
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164236183-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-164236183-1');
+    </script>
+    
+    
+    @Html.Partial("SearchPartial");
+
+
+</body>
+</html>

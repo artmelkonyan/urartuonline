@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "Roles";
+}
+
+@model BonusMarket.Admin.Models.Role.RoleEditVm
+
+<section class="contentWrapTop">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="contentWrapTopLeft">
+                    <h1>Role</h1>
+                </div>
+                <div class="contentWrapTopRight">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-edit"></i>
+                                <span>Role</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="contentWrap">
+        <form role="form" id="RoleAddForm" method="post" class="clearfix" action="/Role/Edit">
+            <div class="row">
+                            <div class="col-xs-12 col-md-9 loaderHolder">
+                                <section class="boxWrap">
+                                    <div class="box">
+                                        <div class="boxHeader">
+                                            <div class="boxHeaderLeft">
+                                                <h3><span>Role details</span></h3>
+                                            </div>
+                                        </div>
+                                        <div class="boxBody">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-md-4">
+                                                    <div class="form-group">
+                                                        <input type="hidden" value="@Model.Id" name="Id"/>
+                                                        <label for="Name">Name</label>
+                                                        <input value="@Model.Name" name="Name" type="text" class="form-control collectItemEdit" data-valid="1" id="Name" placeholder="Name"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="SystemName">System Name</label>
+                                                        <input  value="@Model.SystemName" name="SystemName" type="text" class="form-control collectItemEdit" data-valid="1" id="SystemName" placeholder="System Name" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="SystemRole">System Role</label>
+                                                        <input value="true"  name="SystemRole" type="checkbox" class="collectItemEdit" data-valid="1" id="SystemRole" placeholder="SystemRole" checked="@Model.SystemRole" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="Active">Active</label>
+                                                        <input value="true" name="Active" type="checkbox" class="collectItemEdit" data-valid="1" id="Active" placeholder="Active" checked="@Model.Active"  />
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="RolePermissions">Permissions</label>
+                                                        <select id="RolePermissions" name="NewPermissions" class="selectize collectItemEdit" multiple>
+                                                            <option value=""> Select</option>
+                                                            @foreach (var item in Model.AllPermissions)
+                                                            {
+                                                                <option value="@item.Id" selected="@(Model.RolePermissions.Any(r => r.PermissionId == item.Id) ? true : false)">@item.ModuleName - @item.PermissionName</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @* <div class="row"> *@
+                                            @*     <div class="col-xs-12 col-md-12"> *@
+                                            @*         <div class="form-group"> *@
+                                            @*             <label for="Description">Description</label> *@
+                                            @*             <textarea title="" name="Description" id="Description" class="collectItemEdit" cols="" rows=""> *@
+                                            @*             </textarea> *@
+                                            @*         </div> *@
+                                            @*     </div> *@
+                                            @* </div> *@
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="col-xs-12 col-md-3">
+            
+                                <section class="boxWrap">
+                                    <div class="box">
+                                        <div class="boxHeader">
+                                            <div class="boxHeaderLeft">
+                                                <h3><span>Actions</span></h3>
+                                            </div>
+                                        </div>
+                                        <div class="boxBody">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-md-6">
+                                                    <button type="submit" class="btn btn-block btn-success btn-flat" id="itemEditSave">Save</button>
+                                                </div>
+                                                <div class="col-xs-12 col-md-6">
+                                                    <a href="/Role" type="button" class="btn btn-block btn-danger btn-flat">Discard</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+        </form>
+    </section>
+
+<partial name="Item/_ItemEditScripts"/>

@@ -1,0 +1,51 @@
+﻿@model BonusMarket.Admin.Models.Auth.LoginVM
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<section class="loginSection">
+    <section class="boxWrap">
+        <form method="post" asp-controller="Auth" asp-action="Login">
+            <div class="box">
+                <div class="boxHeader">
+                    <div class="boxHeaderLeft">
+                        <h3>
+                            <i class="fa fa-user"></i>
+                            <span>Welcome</span>
+                        </h3>
+                    </div>
+                </div>
+                <div class="boxBody">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="username">Username:</label>
+                                <input class="form-control" id="username" type="email" asp-for="@Model.Email" placeholder="Email" />  
+                                <span asp-validation-for="@Model.Email" class=""></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input class="form-control" type="password" id="password" asp-for="@Model.Password" placeholder="Password" />
+                                <span asp-validation-for="@Model.Password"></span>
+                                <div class="mtCheckbox">
+                                    <label>
+                                        <input type="checkbox" />
+                                        <span>Remember Me</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <span asp-validation-for="@Model.ModelStateNotValid"></span>
+                            </div>                
+                            @* @Html.GoogleReCaptcha() *@
+                        </div>
+                    </div>
+                </div>
+                <div class="boxFooter">
+                    <button type="submit" class="btn btn-flat color-2-bg color-2-hover-bg color-text-white">Login</button>
+                </div>
+            </div>
+        </form>
+    </section>
+</section>

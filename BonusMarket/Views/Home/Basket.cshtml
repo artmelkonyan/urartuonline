@@ -1,0 +1,196 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Localization
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Basket"];
+}
+
+<section>
+    @if(ViewBag.ShowErrorMessage){
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@SharedLocalizer["CartErrorTitle"]</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>@SharedLocalizer["CartErrorMessage"]</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@SharedLocalizer["CartErrorButton"]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('.modal').modal('show');
+    </script>
+    }
+    <div class="container">
+        <div id="cart-wrapper">
+            <form id="payOflineForm" action="/Payment/Pay" method="post">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="cart-heading">@SharedLocalizer["YouHave"] <span class="basketNum"></span> @SharedLocalizer["Itemsincart"]</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table main-table">
+                            <thead>
+                                <tr>
+                                    <th>@SharedLocalizer["Product"]</th>
+                                    <th>@SharedLocalizer["Code"]</th>
+                                    <th>@SharedLocalizer["Price"]</th>
+                                    <th>@SharedLocalizer["Count"]</th>
+                                    <th>@SharedLocalizer["Total"]</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="basketBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="final-order">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h3>@SharedLocalizer["Shipment"]</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">@SharedLocalizer["Enteryourname"] <span style="color: red">*</span></label>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input name="FirstName" required type="text" class="form-control" placeholder="@SharedLocalizer["Name"]">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input name="LastName" required type="text" class="form-control" placeholder="@SharedLocalizer["LastName"]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">@SharedLocalizer["email"] <span style="color: red">*</span></label>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <input name="Email" required type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">@SharedLocalizer["phone"] <span style="color: red">*</span></label>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <input name="Phone" required type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <select name="City" id="" class="form-control">
+                                            <option value="@SharedLocalizer["Yerevan"]">@SharedLocalizer["Yerevan"]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">@SharedLocalizer["Address"]<span style="color: red">*</span></label>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <input type="text" name="Address" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">@SharedLocalizer["Notes"]</label>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <textarea name="OrderComment" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span style="color:red">@ViewBag.buyerr</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="final-data">
+                                <h3>@SharedLocalizer["Total"]</h3>
+                                <div class="diplayFlex dispSbp">
+                                    <div class="diplayFlex dispCol">
+                                        @*<div>
+                                                <input type="radio" value="true" checked name="ShipmentMetod" />
+                                                <label style="font-size: 13px;">Վերցնել Պահեստից</label>
+
+                                            </div>*@
+                                        @*<div>
+                                                <input type="radio" name="ShipmentMetod" value="false" />
+                                                <label style="font-size: 13px;">Առաքել նշված հասցեով</label>
+                                            </div>*@
+                                    </div>
+                                    <div class="diplayFlex dispCol">
+                                        <div >
+                                                <input type="radio"  id="onlineCheck" value="true" checked name="PaymentMethod" />
+                                                <label style="font-size: 13px;">@SharedLocalizer["PayOnline"]</label>
+                                                <img src="~/img/idram.png" style="width: 20px;"/> 
+                                            </div>
+                                        <div>
+                                            <input type="radio" checked name="PaymentMethod" value="false" />
+                                            <label style="font-size: 13px;">@SharedLocalizer["PayOffline"]</label>
+                                        </div>
+                                        <span>
+                                            Քարտով վճարելու համար կարող ենք մոտեցնել պոս տերմինալ
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>@SharedLocalizer["ProductsPrice"]</td>
+                                                <td><span class="totalPrice"></span><span> <i class="dram">AMD</i></span></td>
+                                            </tr>
+                                            <tr class="bringPriceHolder">
+                                                <td>@SharedLocalizer["ShipmentPrice"]</td>
+                                                <td><span class="bringPrice"></span><span> <i class="dram bringPriceIcon">AMD</i></span><span class="bringFreeHolder">@SharedLocalizer["Free"]</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>@SharedLocalizer["FinalPrice"]</td>
+                                                <td><span class="payPrice" name="TotalMoney"></span><span> <i class="dram">AMD</i></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="final-order-buttons">
+                                <ul>
+                                    <li><a asp-action="Index" asp-controller="Home">@SharedLocalizer["ContinueShopping"]</a></li>
+                                    <li><button id="order_btn" type="button" class="order_btn">@SharedLocalizer["PlaceOrder"]</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<form id="onlineForm" hidden method="post" action="https://web.idram.am/payment.aspx/">
+    <input type="text" id="EDP_AMOUNT" name="EDP_AMOUNT" value="" />
+    <input type="text" id="EDP_BILL_NO" name="EDP_BILL_NO" value="" />
+    <input type="text" name="EDP_DESCRIPTION" value="" />
+    <input type="text" name="EDP_LANGUAGE" value="AM" />
+    <input type="text" name="EDP_REC_ACCOUNT" value="110000498" />
+</form>
+<script src="~/js/pay.js"></script>
+<script>
+
+</script>

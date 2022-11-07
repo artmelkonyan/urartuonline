@@ -1,0 +1,23 @@
+﻿
+@model BonusMarket.Admin.Models.ViewComponents.Picture.PictureViewComponentVm
+<h1>
+    <div class="row">
+        @foreach (var item in Model.Pictures)
+        {
+            <div class="col-xs-12 col-md-2">
+            <form>
+                
+            </form>
+                <img src="/files/@item.FileId"/>
+                <div class="row">
+                    <label>name</label>
+                    <input type="checkbox"/>
+                </div>
+                <div class="row">
+                    <label>SeoName</label>
+                    <input type="text" name="" value="@item.SeoName"/>
+                </div>
+            </div>
+        }
+    </div>
+</h1>

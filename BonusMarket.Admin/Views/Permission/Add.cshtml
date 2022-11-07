@@ -1,0 +1,105 @@
+﻿@{
+    ViewData["Title"] = "Permissions";
+}
+    <section class="contentWrapTop">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="contentWrapTopLeft">
+                    <h1>Permission</h1>
+                </div>
+                <div class="contentWrapTopRight">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-edit"></i>
+                                <span>Permission</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="contentWrap">
+        <form role="form" id="PermissionAddForm" class="clearfix" asp-controller="Permission" asp-action="Add">
+            <div class="row">
+                <div class="col-xs-12 col-md-9 loaderHolder">
+                    <section class="boxWrap">
+                        <div class="box">
+                            <div class="boxHeader">
+                                <div class="boxHeaderLeft">
+                                    <h3><span>Permission details</span></h3>
+                                </div>
+                            </div>
+                            <div class="boxBody">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="Module">Module</label>
+                                            <input  value="" name="ModuleNumber" type="text" class="form-control collectItemEdit" data-valid="1" id="Module" placeholder="Module" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="ModuleName">Module Name</label>
+                                            <input  value="" name="ModuleName" type="text" class="form-control collectItemEdit" data-valid="1" id="ModuleName" placeholder="Module Name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="Permission">Permission</label>
+                                            <input  value="" name="PermissionNumber" type="text" class="form-control collectItemEdit" data-valid="1" id="Permission" placeholder="Permission" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="PermissionName">Permission Name</label>
+                                            <input  value="" name="PermissionName" type="text" class="form-control collectItemEdit" data-valid="1" id="PermissionName" placeholder="PermissionName" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="Description">Description</label>
+                                            <input  value="" name="Description" type="text" class="form-control collectItemEdit" data-valid="1" id="Description" placeholder="Description" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-xs-12 col-md-3">
+
+                    <section class="boxWrap">
+                        <div class="box">
+                            <div class="boxHeader">
+                                <div class="boxHeaderLeft">
+                                    <h3><span>Actions</span></h3>
+                                </div>
+                            </div>
+                            <div class="boxBody">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-6">
+                                        <button type="submit" class="btn btn-block btn-success btn-flat" id="itemEditSave">Save</button>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <a href="/Permission" type="button" class="btn btn-block btn-danger btn-flat">Discard</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </form>
+    </section>
+
+<script>
+$('#openAddCoverModalName').click(function(e) {
+   e.preventDefault();
+   $('#coverImageModalName').modal('show');
+    
+});
+</script>

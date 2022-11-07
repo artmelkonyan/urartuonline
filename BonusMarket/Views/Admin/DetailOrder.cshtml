@@ -1,0 +1,119 @@
+﻿@model Models.OrderEntity
+
+@{
+    ViewData["Title"] = "DetailOrder";
+}
+@{
+    Layout = "";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<h2></h2>
+<div class="container">
+    <h1 style="text-align:center; background-color:#d09f17">Պատվեր N: @Model.Id</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Հասցե</label>
+                <input type="text" value="@Model.Address" disabled class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Անուն</label>
+                <input type="text" value="@Model.FirstName" disabled class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Ազգանուն</label>
+                <input type="text" value="@Model.LastName" disabled class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Հեռախոս</label>
+                <input type="text" value="@Model.Phone" disabled class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Մեիլ</label>
+                <input type="text" value="@Model.Email" disabled class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Order Id</label>
+                <input type="text" value="@Model.Id" disabled class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Order Bank Id</label>
+                <input type="text" value="@Model.BankOrderId" disabled class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Պատվերի ամսաթիվ</label>
+                <input type="text" value="@Model.CreationDate" disabled class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Վճարման եղանակ</label>
+                <input type="text" value="@(Model.PaymentMethod.Value?"Վճարված է":"Պիտի վճարի տեղում")" disabled class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Վճարման Գումար</label>
+                <input type="text" value="@(Model.TotalMoney)" disabled class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Առաքման Ստատուս</label>
+                <input type="text" value="@(Model.ShipmentStatus==0?"Առաքված չէ":"Առաքված է")" disabled class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Նկարագրություն</label>
+                <textarea disabled style="height:300px" class="form-control">@(Model.OrderComment)</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th><b>ID</b></th>
+                    <th>
+                        Անուն
+                    </th>
+                    <th>
+                        Sku
+                    </th>
+                    <th>
+                        Քանակ
+                    </th>
+                    <th>
+                        Գին
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderedProducts)
+            {
+
+                <tr>
+                    <td>@item.Id</td>
+
+                    <td>
+                        @item.Translation.NameTranslation
+                    </td>
+                    <td>
+                        @item.Sku
+                    </td>
+                    <td>
+                        @item.Count
+                    </td>
+                    <td>
+                        @item.Price
+                    </td>
+
+                </tr>
+        }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,157 @@
+﻿@inject LocalizationService SharedLocalizer
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+@using BonusMarket.Shared.Resources
+@using BonusMarket.Admin.Models.ViewComponents.Picture
+@using BonusMarket.Shared.Models.Core
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+@inject BonusMarket.Shared.Services.AuthorizeUserHelper authorizeUserHelper
+@model BonusMarket.Admin.Models.Brand.BrandEditVm
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var currentCultureCode = requestCulture.RequestCulture.UICulture.TwoLetterISOLanguageName;
+    var cultureItems = LocOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem {Value = c.TwoLetterISOLanguageName, Text = c.NativeName})
+        .ToList();
+}
+
+
+@{
+    ViewData["Title"] = "Brands";
+}
+    <section class="contentWrapTop">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="contentWrapTopLeft">
+                    <h1>Brand</h1>
+                </div>
+                <div class="contentWrapTopRight">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-edit"></i>
+                                <span>Brand</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="contentWrap">
+        <form role="form" id="BrandAddForm" class="clearfix" method="POST" action="/Brand/Edit">
+            <div class="row">
+                <div class="col-xs-12 col-md-9 loaderHolder">
+                    <section class="boxWrap">
+                        <div class="box">
+                            <div class="boxHeader">
+                                <div class="boxHeaderLeft">
+                                    <h3><span>Brand details</span></h3>
+                                </div>
+                            </div>
+                            <input type="hidden" value="@Model.Brand.Id" name="Brand.Id"/>
+                            <div class="boxBody">
+@*                                 <div class="col-xs-12 col-md-4 parentDiv"> *@
+@*                                     <div class="form-group"> *@
+@*                                         <label for="Brand">Parent Brand</label> *@
+@*                                         <select id="Brand" name="Brand.ParentBrandID" class="selectize collectItemEdit"> *@
+@*                                             <option value="" selected></option> *@
+@*                                             @foreach (var item in Model.Brands) *@
+@*                                             { *@
+@* *@
+@*                                                 <option selected="@(item.ID == Model.Brand.ParentBrandID)" value="@item.ID">@item.BrandTranslations.Where(r => r.Language == currentCultureCode).FirstOrDefault().Title</option> *@
+@*                                             } *@
+@*                                         </select> *@
+@*                                     </div> *@
+@*                                 </div> *@
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="Language">Language</label>
+                                            <select id="Language" class="selectize collectItemEdit">
+                                                @foreach (var item in cultureItems)
+                                                {
+                                                    <option selected="@(item.Value == currentCultureCode)" value="@item.Value">@item.Text</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    @for (int i = 0; i < cultureItems.Count; i++)
+                                    {
+                                        <div class="languageElem languageElem@(cultureItems[i].Value) col-xs-12 col-md-4 @(cultureItems[i].Value != currentCultureCode ? "hidden" : "")">
+                                            
+                                        @{
+                                            var current = Model.Brand.BrandTranslations.Where(r => r.Language == cultureItems[i].Value).FirstOrDefault();
+                                        }
+                                            <div class="form-group">
+                                                <label for="Name">Name</label>
+                                                <input type="hidden" name="Brand.BrandTranslations[@i].ID" value="@(current != null ? current.Id.ToString() : null )"/>
+                                                <input type="hidden" name="Brand.BrandTranslations[@i].Language" value="@cultureItems[i].Value"/>
+                                                <input value="@(current != null ? current.Name : null )" name="Brand.BrandTranslations[@i].Name" type="text" class="form-control collectItemEdit" id="Name@(i)" data-valid="1" placeholder="Name"/>
+                                            </div>
+                                        </div>
+                                    }
+                                    @for (int i = 0; i < cultureItems.Count; i++)
+                                    {
+                                        <div class="languageElem languageElem@(cultureItems[i].Value) col-xs-12 col-md-4 @(cultureItems[i].Value != currentCultureCode ? "hidden" : "")">
+                                            
+                                        @{
+                                            var current = Model.Brand.BrandTranslations.Where(r => r.Language == cultureItems[i].Value).FirstOrDefault();
+                                        }
+                                            <div class="form-group">
+                                                <label for="SeoName">SeoName</label>
+                                                <input value="@(current != null ? current.SeoName : null )" name="Brand.BrandTranslations[@i].SeoName" type="text" class="form-control collectItemEdit" id="SeoName@(i)" data-valid="1" placeholder="SeoName"/>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="row">
+                                    @await Component.InvokeAsync("Picture", new PictureViewComponentVm()
+                                    {
+                                        Name = "PictureId",
+                                        Pictures = new List<Picture>() { Model.Brand.Picture }
+                                    })
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-xs-12 col-md-3">
+
+                    <section class="boxWrap">
+                        <div class="box">
+                            <div class="boxHeader">
+                                <div class="boxHeaderLeft">
+                                    <h3><span>Actions</span></h3>
+                                </div>
+                            </div>
+                            <div class="boxBody">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-6">
+                                        <button type="submit" class="btn btn-block btn-success btn-flat" id="itemEditSave">Save</button>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <a href="/Brand" type="button" class="btn btn-block btn-danger btn-flat">Discard</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </form>
+    </section>
+
+<script>
+$('#openAddCoverModalName').click(function(e) {
+   e.preventDefault();
+   $('#coverImageModalName').modal('show');
+    
+});
+</script>
+
+<partial name="Item/_ItemEditScripts"/>

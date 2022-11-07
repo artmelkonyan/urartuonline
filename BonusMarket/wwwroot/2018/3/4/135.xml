@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RespMessage xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="payments.ameriabank.am/RespMessage">
+  <Opaque>Opaque135</Opaque>
+  <Respcode>07</Respcode>
+  <Respmessage>Payment must be in approved state</Respmessage>
+</RespMessage>

@@ -1,0 +1,138 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Localization
+
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@{
+    ViewData["Title"] = "Login";
+}
+<section>
+    <div class="container register-wrapper">
+        <div class="final-order">
+            <div class="row loginForm">
+                <div class="col-sm-12 col-md-6">
+                    <form asp-controller="Account" asp-action="SignUp">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3>@SharedLocalizer["Register"]</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="register_bock">
+                            <div class="">
+                                <label for="">@SharedLocalizer["Enteryourname"] <span style="color: red">*</span></label>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 form-group">
+                                        <input name="FirstName" onblur="isValid(this,2)" type="text" class="form-control validatereg" placeholder="@SharedLocalizer["Name"]">
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 form-group">
+                                        <input name="LastName" onblur="isValid(this,3)" type="text" class="form-control validatereg" placeholder="@SharedLocalizer["LastName"]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">@SharedLocalizer["email"] <span style="color: red">*</span></label>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <input name="Email"  type="text" onblur="isValid(this,6)" class="form-control validatereg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">@SharedLocalizer["Address"] <span style="color: red">*</span></label>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <input name="Address" onblur="isValid(this,6)" type="text" class="form-control validatereg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">@SharedLocalizer["phone"] <span style="color: red">*</span></label>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <input name="Phone" onblur="isValid(this,6)" type="text" class="form-control validatereg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">@SharedLocalizer["Password"] <span style="color:red">*</span></label>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <input name="Password" onblur="isValid(this,6)" type="password" class="form-control validatereg passval">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">@SharedLocalizer["ConfirmPassword"] <span style="color:red">*</span></label>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <input type="password" onblur="isValid(this,6)" class="form-control validatereg passval">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!--<div class=" container col-md-12">
+                            <div class="row">
+                                <div class=" register-check">
+                                    <input type="checkbox" class="form-control register-checkbox" id="agreement">
+                                    <span style="color:red">*</span>
+                                    <label for="agreement" class="form-group">Համաձայն եմ եւ ընդունում եմ Օգտագործման պայմանները</label>
+                                </div>
+                            </div>
+                        </div>-->
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <button type="submit" onclick="return RegisterValidate(this)" class="btn btn-default">@SharedLocalizer["Register"]</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <form action="/Account/SignIn" method="post">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3>@SharedLocalizer["Login"]</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">@SharedLocalizer["email"] <span style="color: red">*</span></label>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <input type="text" name="UserName" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">@SharedLocalizer["Password"] <span style="color:red">*</span></label>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <input type="password" name="Password" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <button type="submit" class="btn btn-default">@SharedLocalizer["Login"]</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+

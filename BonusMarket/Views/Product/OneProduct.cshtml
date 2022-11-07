@@ -1,0 +1,138 @@
+﻿@model Models.OneProductViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.Extensions.Options
+
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+
+
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var cultureItems = LocOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem { Value = c.Name, Text = SharedLocalizer[c.DisplayName].Value })
+        .ToList();
+
+    var CurCulture = requestCulture.RequestCulture.Culture.Name;
+}
+@using Models
+@{
+    ViewData["Title"] = "OneProduct";
+}
+
+<section>
+    <div class="container">
+        @{
+            <div class="col-md-6">
+                <div class="big-oneproduct">
+                    <img src="@ImageHelper.GenImageLink(Model.OneProduct.MainImage.FullPath)" data-id="@Model.OneProduct.MainImage.Id" id="expandedImg">
+                </div>
+                <div class=" carusel-container">
+                    <div class="arrow_container  container col-md-1">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </div>
+                    <div class=" carusel-img-container">
+                        @foreach (var item in Model.OneProduct.PictureList)
+                        {
+                            <div class="column col-xs-4 small-oneproduct">
+                                <img src="@ImageHelper.GenImageLink(item.FullPath)" alt="img" onclick="myFunction(this);">
+                            </div>
+                        }
+                    </div>
+                    <div class="arrow_container col-md-1 container">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </div>
+                </div>
+            </div>
+            <script>
+                function myFunction(imgs) {
+                    var expandImg = document.getElementById("expandedImg");
+                    expandImg.src = imgs.src;
+                }
+            </script>
+            <div class="col-sm-5 product-info">
+                <div class="general">
+                    <div>
+                        <h2 class="product-name">@Model.OneProduct.Translation.NameTranslation</h2>
+                        <div class="oneproduct-price multiprice">
+                            @if (Model.OneProduct.OldPrice != 0)
+                            {
+                                <span class="product-price old-price-line">@GeneralHelper.GetPriceString(Model.OneProduct.OldPrice.Value) <i class="dram">AMD</i></span>
+                            }
+                            <span class="product-price">@GeneralHelper.GetPriceString(Model.OneProduct.Price.Value) <i class="dram">AMD</i></span>
+                        </div>
+                    </div>
+                    <div class="product-properties">
+                        @if (!string.IsNullOrWhiteSpace(Model.OneProduct.Translation.NameTranslation))
+                        {
+                            <div class="list-content">
+                                @Html.Raw(Model.OneProduct.Translation.NameTranslation)
+                            </div>
+                            <br />
+                        }
+                        @if (!string.IsNullOrWhiteSpace(Model.OneProduct.Translation.ShortDescriptionTranslation))
+                        {
+                            <div class="list-content">
+                                @Html.Raw(Model.OneProduct.Translation.ShortDescriptionTranslation)
+                            </div>
+                            <br />
+                        }
+                        @if (!string.IsNullOrWhiteSpace(Model.OneProduct.Translation.FullDescriptionTranslation))
+                        {
+                            <div class="list-content">
+                                @Html.Raw(Model.OneProduct.Translation.FullDescriptionTranslation)
+                            </div>
+                            <br />
+                        }
+
+
+                    </div>
+                    <div class="options">
+                        <form action="">
+                            <div class="form-group row" style="margin-top: 4px;">
+                                <label for="quantitiy" class="col-xs-7">@SharedLocalizer["ChooseCount"]</label>
+                                <div class="input-group quantity-input-group col-xs-4">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default btn-number" disabled="disabled"
+                                                data-type="minus" data-field="quantitiy">
+                                            <span class="glyphicon glyphicon-minus"></span>
+                                        </button>
+                                    </span>
+                                    <input type="text" name="quantitiy" id="quantitiy" class="form-control input-number"
+                                           value="1" min="1" max="10">
+                                    <span class="input-group-btn">
+                                        <button data-field="quantitiy" type="button" class="btn btn-default btn-number" data-type="plus">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group buttons">
+                                <div role="button" class="basketItem" data-toggle="modal" data-id="@Model.OneProduct.Id" data-target="#basketModal">
+                                    @SharedLocalizer["Add"]
+                                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                                </div>
+                                <div role="button" style="margin-top: 13px;" class="wishItem" data-toggle="modal" data-id="@Model.OneProduct.Id" data-target="#wishModal">
+                                    @SharedLocalizer["Add"]
+                                    <span class="glyphicon glyphicon-heart"></span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="rating">
+                        <span>
+                            @SharedLocalizer["Code"]:  @Model.OneProduct.Sku
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+
+
+
+    </div>
+</section>
+

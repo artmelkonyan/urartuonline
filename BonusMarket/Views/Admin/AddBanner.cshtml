@@ -1,0 +1,82 @@
+﻿@model Models.EntityModels.ViewModels.BannerModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+@{
+    Layout = "";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container">
+    <h1 style="text-align:center; background-color:#d09f17">Փոփոխել բռենդը</h1>
+</div>
+
+<div class="container">
+    <div class="row" style="background-color:#dfe0e2">
+        <hr />
+        <form method="post" asp-action="AddBanner" style="margin-left:15px" enctype="multipart/form-data">
+            <div class="col-md-4">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input hidden asp-for="PictureId" />
+                <div class="container">
+                    <div class="row">
+
+                        <img style="height:200px; float:left; border:1px solid #021a40; margin-bottom:20px;" src="~/img/products/noimg.jpg">
+
+                        <div class="form-group">
+                            <label>
+                                <input type="file" required asp-for="File" class="form-control" style="width: 277px;height: 36px;margin-right: 5px;" />
+                                <span style="font-size:25px;margin-left:5px">Փոխել նկարը</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input asp-for="Id" class="form-control" disabled />
+                            <span asp-validation-for="Id" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Հղում</label>
+                        <input asp-for="Link" class="form-control" />
+                        <span asp-validation-for="Link" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Order</label>
+                        <input asp-for="OrderId" class="form-control" />
+                        <span asp-validation-for="OrderId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" asp-for="Show" style="width: 20px; height: 20px; margin-right:5px;" /> <span style="font-size:20px;margin-left:5px">Կայքում հասանելի</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="float:left">
+                    <input type="submit" value="Պահպանել" class="btn btn-default" />
+                </div>
+                <div>
+                    <a asp-action="Banners" style="font-size:20px;">| Վերադառնալ</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@* *@
+@* *@
+@* @section Scripts { *@
+@*     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} *@
+@* } *@

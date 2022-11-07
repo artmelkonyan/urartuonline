@@ -1,0 +1,145 @@
+@{
+    Layout = null;
+}
+
+@model BonusMarket.Admin.Models.DeleteItemsModalVm
+
+<div class="modal fade" id="deleteModel" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <form action="@Model.Url" method="post">
+            @for (int i = 0; i < @Model.Ids.Count(); i++)
+            {
+                <input type="hidden" name="Items[@i]" value="@(Model.Ids.ToList()[i])"/>
+            } 
+            <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl"/>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="">Confirm action</h4>
+                </div>
+                <div class="modal-body">
+                    Do you really want to remove this item(s)?
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success btn-flat" id="">Yes</button>
+                    <button type="button" class="btn btn-default btn-flat" id="" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    var deleteAllBtnSelect = '#deleteAllBtn';
+    var modelSelect = '#indexItemDeleteModal';
+    var modelYesBtnSelect = '#deleteModelApproveBtn';
+    var itemsSelect = '.selItems';
+    var itemsSelectAll = '.selectElems';
+    
+    var modelSelectSingle = '#indexItemDeleteModalSingle';
+    var modelYesBtnSelectSingle = '#indexItemDeleteModalApproveSingle';
+    var deleteElemSelect = '.deleteElem';
+    $(modelYesBtnSelect).click(function(e) {
+        e.preventDefault();
+        deleteSelectedItems();
+    });
+    $(deleteAllBtnSelect).click(function(e) {
+        if (areAllUnchecked())
+            return;
+        
+        $(modelSelect).modal('show');
+    });
+    $(itemsSelectAll).click(function(e) {
+        checkAll($(this).is(':checked'));
+    });
+    $(itemsSelect).click(function(e) {
+        checkSelectAllStatus();
+    });
+    $(deleteElemSelect).click(function(e){
+        e.preventDefault();
+        
+        $(modelSelectSingle).modal('show');
+    });
+    $(modelYesBtnSelectSingle).click(function(e) {
+        e.preventDefault();
+        
+        let id = $(this).data('id');
+        let url = $(deleteAllBtnSelect).data('url');
+        
+        deleteItem(url, [$(this).data('id')]);
+     });
+    function isAnyUnChecked() {
+        var found = false;
+        
+        $(itemsSelect).each(function(e) {
+            if (!$(this).is(':checked'))
+                found = true;
+        });
+        
+        return found;
+    } 
+    
+    function checkAll(status) {
+        $(itemsSelect).each(function(e) {
+            $(this).prop('checked', status);
+        });
+    }
+    function checkSelectAll(status) {
+        $(itemsSelectAll).each(function(e) {
+            $(this).prop('checked', status);
+        });
+    }
+    
+    function checkSelectAllStatus() {
+            checkSelectAll(areAllChecked());
+    }
+    
+    function areAllUnchecked() {
+        var found = true;
+        
+        $(itemsSelect).each(function(e) {
+            if ($(this).is(':checked'))
+                found = false;
+        });
+        
+        return found;
+    }
+    
+    function areAllChecked() {
+        var found = false;
+        
+        $(itemsSelect).each(function(e) {
+            if (!$(this).is(':checked'))
+                found = true;
+        });
+        
+        return !found;
+    }
+    
+    function deleteSelectedItems() {
+        var data = [];
+        
+        $(itemsSelect).each(function(e) {
+            if ($(this).is(':checked'))
+                data.push($(this).data('id'))
+        });
+        let url = $(deleteAllBtnSelect).data('url');
+        deleteItem(url, data);
+        
+    }
+    function deleteItem(url, data) {
+        debugger
+        $.ajax({
+                method: 'post',
+                url: url,
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    location.reload();
+                }
+            });
+    }
+});
+</script>

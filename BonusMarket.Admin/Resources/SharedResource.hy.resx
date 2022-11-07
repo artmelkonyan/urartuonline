@@ -1,0 +1,501 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>Մեր մասին</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Ադմինիստրատոր</value>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Դուք համոզվա՞ծ եք</value>
+  </data>
+  <data name="Armenian" xml:space="preserve">
+    <value>Հայերեն</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Վերադառնալ</value>
+  </data>
+  <data name="CardTypes" xml:space="preserve">
+    <value>Ֆայլի տեսակներ</value>
+  </data>
+  <data name="Collectings" xml:space="preserve">
+    <value>Հավաքագրող աշխատանքներ</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Կապ մեզ հետ</value>
+  </data>
+  <data name="Courts" xml:space="preserve">
+    <value>Դատավորներ</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Ստեղծել</value>
+  </data>
+  <data name="CreateNew" xml:space="preserve">
+    <value>Ստեղծել Նոր</value>
+  </data>
+  <data name="CreationDate" xml:space="preserve">
+    <value>Ստեղծման ամսաթիվ</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Հեռացնել</value>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>Բաժին</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Մանրամասն</value>
+  </data>
+  <data name="DOCTYPE_CHANNEL_NAME" xml:space="preserve">
+    <value>Նոր Անվանում</value>
+  </data>
+  <data name="DOCTYPE_NEW_BALANCES" xml:space="preserve">
+    <value>Նոր Բալանսներ</value>
+  </data>
+  <data name="DOCTYPE_OLD_BALANCES" xml:space="preserve">
+    <value>Հին Բալանսներ</value>
+  </data>
+  <data name="DOCTYPE_PAYMENTS" xml:space="preserve">
+    <value>Վճարումներ</value>
+  </data>
+  <data name="Document" xml:space="preserve">
+    <value>Ինֆորմացիայի մուտքագրում</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Փոփոխել</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Էլ Հասցե</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>Անգլերեն</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Ֆայլ</value>
+  </data>
+  <data name="ForgotYourPassword" xml:space="preserve">
+    <value>Մոռացե՞լ էք գաղտնաբառը</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Բարև՜</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Հիմնական Էջ</value>
+  </data>
+  <data name="IdentityType" xml:space="preserve">
+    <value>Նույնականացման տեսակ</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Հիմնական</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Լեզու</value>
+  </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>Մուտք</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Ելք</value>
+  </data>
+  <data name="Manager" xml:space="preserve">
+    <value>Մենեջեր</value>
+  </data>
+  <data name="ModificationDate" xml:space="preserve">
+    <value>Փոփոխման ամսաթիվ</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Անվանում</value>
+  </data>
+  <data name="PAYED_FIZ" xml:space="preserve">
+    <value>Ֆիզ․</value>
+  </data>
+  <data name="PAYED_IRAV" xml:space="preserve">
+    <value>Իրավ․</value>
+  </data>
+  <data name="Payments" xml:space="preserve">
+    <value>Վճարումներ</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Հեռախոսահամար</value>
+  </data>
+  <data name="POSTPAYED_FIZ" xml:space="preserve">
+    <value>Պոստ․ Ֆիզ․</value>
+  </data>
+  <data name="POSTPAYED_IRAV" xml:space="preserve">
+    <value>Պոստ․ Իրավ․</value>
+  </data>
+  <data name="PrepareForSid" xml:space="preserve">
+    <value>Նախապատրաստում  ՍԻԴ</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Հաշվետվություններ</value>
+  </data>
+  <data name="REPORT_COLLECTIONS" xml:space="preserve">
+    <value>Հավաքագրող աշխատանքներ</value>
+  </data>
+  <data name="REPORT_PREPARE_FOR_SID" xml:space="preserve">
+    <value>Նախապատրաստում  ՍԻԴ</value>
+  </data>
+  <data name="REPORT_SID" xml:space="preserve">
+    <value>ՍԻԴ</value>
+  </data>
+  <data name="Russian" xml:space="preserve">
+    <value>Ռուսերեն</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Հաստատել</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Ընտրել</value>
+  </data>
+  <data name="Sid" xml:space="preserve">
+    <value>ՍԻԴ</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Տեսակ</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Օգտատեր</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Ծածկանուն</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Օգտատերեր</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Անձնական Էջ</value>
+  </data>
+  <data name="AnotherParts" xml:space="preserve">
+    <value>Այլ բաժիններ</value>
+  </data>
+  <data name="MainParts" xml:space="preserve">
+    <value>Բաժիններ</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Գաղտնաբառ</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Հիշել</value>
+  </data>
+  <data name="AgreementStatus" xml:space="preserve">
+    <value>Համաձայնեցման կարգավիճակ</value>
+  </data>
+  <data name="Ban" xml:space="preserve">
+    <value>ԲԱՆ</value>
+  </data>
+  <data name="BanCancelDate" xml:space="preserve">
+    <value>BAN չեղարկման ամս․</value>
+  </data>
+  <data name="BanCreationDate" xml:space="preserve">
+    <value>BAN ստեղծման ամս․</value>
+  </data>
+  <data name="BanSt" xml:space="preserve">
+    <value>BAN կարգավիճակ</value>
+  </data>
+  <data name="BoxNumber" xml:space="preserve">
+    <value>Արկղի Համար</value>
+  </data>
+  <data name="ChannelName" xml:space="preserve">
+    <value>Կանալի Համար</value>
+  </data>
+  <data name="ClientIdentityType" xml:space="preserve">
+    <value>Նույնականացման Տեսակ</value>
+  </data>
+  <data name="ClientStatus" xml:space="preserve">
+    <value>Կարգավիճակ</value>
+  </data>
+  <data name="COLUMN_TYPE_ADDRESS" xml:space="preserve">
+    <value>Հասցե</value>
+  </data>
+  <data name="COLUMN_TYPE_BAN" xml:space="preserve">
+    <value>BAN</value>
+  </data>
+  <data name="COLUMN_TYPE_CTN" xml:space="preserve">
+    <value>CTN</value>
+  </data>
+  <data name="COLUMN_TYPE_INN" xml:space="preserve">
+    <value>INN</value>
+  </data>
+  <data name="COLUMN_TYPE_NAME" xml:space="preserve">
+    <value>Անուն</value>
+  </data>
+  <data name="COLUMN_TYPE_PASSPORT" xml:space="preserve">
+    <value>Անձնագիր</value>
+  </data>
+  <data name="Court" xml:space="preserve">
+    <value>Դատարան</value>
+  </data>
+  <data name="CreateReport" xml:space="preserve">
+    <value>Ստեղծ․ Հաշվետվություն</value>
+  </data>
+  <data name="Ctn" xml:space="preserve">
+    <value>CTN</value>
+  </data>
+  <data name="CtnCancelDate" xml:space="preserve">
+    <value>CTN չեղարկման ամս․</value>
+  </data>
+  <data name="CtnCreationDate" xml:space="preserve">
+    <value>CTN ստեղծման ամս․</value>
+  </data>
+  <data name="DATE_BAN_CANCEL" xml:space="preserve">
+    <value>BAN չեղարկման ամս․</value>
+  </data>
+  <data name="DATE_BAN_CREATION" xml:space="preserve">
+    <value>BAN ստեղծման ամս․</value>
+  </data>
+  <data name="DATE_CREATE" xml:space="preserve">
+    <value>Ստեղծման ամս․</value>
+  </data>
+  <data name="DATE_CTN_CANCEL" xml:space="preserve">
+    <value>CTN չեղարկման ամս․</value>
+  </data>
+  <data name="DATE_CTN_CREATION" xml:space="preserve">
+    <value>CTN ստեղծման ամս․</value>
+  </data>
+  <data name="DATE_MODIFY" xml:space="preserve">
+    <value>Փոփոխման ամս․</value>
+  </data>
+  <data name="DATE_PAYMENT" xml:space="preserve">
+    <value>Վճարման ամս․</value>
+  </data>
+  <data name="DATE_SEND" xml:space="preserve">
+    <value>Ուղարկման ամս․</value>
+  </data>
+  <data name="FieldsToShow" xml:space="preserve">
+    <value>Ցուցադրվող տողեր</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Ֆիլտրել</value>
+  </data>
+  <data name="FILTER_NEW_BALANCE" xml:space="preserve">
+    <value>Նոր Բալանս</value>
+  </data>
+  <data name="FILTER_OLD_BALANCE" xml:space="preserve">
+    <value>Հին Բալանս</value>
+  </data>
+  <data name="FILTER_PAYMENT_AMOUNT" xml:space="preserve">
+    <value>Վճարումներ</value>
+  </data>
+  <data name="FILTER_PAYMENT_BALANCE" xml:space="preserve">
+    <value>Վճարային Բալանս</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Ավարտել</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Համար</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Ինֆորմացիա</value>
+  </data>
+  <data name="Inn" xml:space="preserve">
+    <value>INN</value>
+  </data>
+  <data name="IsInArchive" xml:space="preserve">
+    <value>Արխիվային</value>
+  </data>
+  <data name="IsReadyForSid" xml:space="preserve">
+    <value>Պատրաստ է ՍԻԴ</value>
+  </data>
+  <data name="ItemDesc" xml:space="preserve">
+    <value>Նկարագրություն</value>
+  </data>
+  <data name="NewBalance" xml:space="preserve">
+    <value>Նոր Բալանս</value>
+  </data>
+  <data name="OldBalance" xml:space="preserve">
+    <value>Հին Բալանս</value>
+  </data>
+  <data name="Passport" xml:space="preserve">
+    <value>Անձնագիր</value>
+  </data>
+  <data name="PaymentAmount" xml:space="preserve">
+    <value>Վճարման Գումար</value>
+  </data>
+  <data name="PaymentBalance" xml:space="preserve">
+    <value>Վճարային Բալանս</value>
+  </data>
+  <data name="PaymentCount" xml:space="preserve">
+    <value>Վրարման Քանակ</value>
+  </data>
+  <data name="PaymentDate" xml:space="preserve">
+    <value>Վճարման Ամսաթիվ</value>
+  </data>
+  <data name="ResetFilter" xml:space="preserve">
+    <value>Չեղարկել</value>
+  </data>
+  <data name="Results" xml:space="preserve">
+    <value>Արդյունք</value>
+  </data>
+  <data name="SearchAmountFrom" xml:space="preserve">
+    <value>Սկզբն․ գումար</value>
+  </data>
+  <data name="SearchAmountTo" xml:space="preserve">
+    <value>Վերջն․ գումար</value>
+  </data>
+  <data name="SearchAmountType" xml:space="preserve">
+    <value>Գումարի տեսակ</value>
+  </data>
+  <data name="SearchChannelName" xml:space="preserve">
+    <value>Ըստ Անվանման (Channel)</value>
+  </data>
+  <data name="SearchClientIdentityType" xml:space="preserve">
+    <value>Ըստ Նույնականացման</value>
+  </data>
+  <data name="SearchClientStatus" xml:space="preserve">
+    <value>Ըստ կարգավիճակի</value>
+  </data>
+  <data name="SearchColumnFile" xml:space="preserve">
+    <value>Ֆայլ</value>
+  </data>
+  <data name="SearchColumnType" xml:space="preserve">
+    <value>Դաշտի տեսակ</value>
+  </data>
+  <data name="SearchColumnValue" xml:space="preserve">
+    <value>Արժեք</value>
+  </data>
+  <data name="SearchCourtId" xml:space="preserve">
+    <value>Ըստ դատարանի</value>
+  </data>
+  <data name="SearchDateFrom" xml:space="preserve">
+    <value>Սկիզբ ամս․</value>
+  </data>
+  <data name="SearchDateTo" xml:space="preserve">
+    <value>Վերջն․ ամս․</value>
+  </data>
+  <data name="SearchDateType" xml:space="preserve">
+    <value>Ամսաթվի տեսակ</value>
+  </data>
+  <data name="SearchUserId" xml:space="preserve">
+    <value>Ըստ աշխատակցի</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Ուղարկել</value>
+  </data>
+  <data name="SendDate" xml:space="preserve">
+    <value>Ուղարկման Ամսաթիվ</value>
+  </data>
+  <data name="StoreId" xml:space="preserve">
+    <value>Խանութ</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+</root>

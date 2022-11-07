@@ -1,0 +1,107 @@
+<div class="modal fade" id="deleteModel" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <form>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Confirm action</h4>
+                </div>
+                <div class="modal-body">
+                    Do you really want to remove this item(s)?
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success btn-flat" id="DeleteModalApprove">Yes</button>
+                    <button type="button" class="btn btn-default btn-flat" id="DeleteModalDecline" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+
+$(document).ready(function() {
+    
+    var deleteAllBtnSelect = '#deleteAllBtn';
+    var itemsSelect = '.selItems';
+    var itemsSelectAll = '.selectElems';
+    
+    $(deleteAllBtnSelect).click(function(e) {
+        if (areAllUnchecked())
+            return;
+        
+        let list = []
+        $(itemsSelect).each(function(e) {
+            if ($(this).is(':checked'))
+                found = false;
+            
+            list.push($(this).data('id'));
+        })
+        let url = $(this).data(url);
+        
+        fetchAndDisplayDeleteModal(url, list);
+    });
+    $(itemsSelectAll).click(function(e) {
+        checkAll($(this).is(':checked'));
+    });
+    $(itemsSelect).click(function(e) {
+        checkSelectAllStatus();
+    });
+    function checkAll(status) {
+        $(itemsSelect).each(function(e) {
+            $(this).prop('checked', status);
+        });
+    }
+    function checkSelectAll(status) {
+        $(itemsSelectAll).each(function(e) {
+            $(this).prop('checked', status);
+        });
+    }
+    function checkSelectAllStatus() {
+            checkSelectAll(areAllChecked());
+    }
+    function areAllUnchecked() {
+        var found = true;
+        
+        $(itemsSelect).each(function(e) {
+            if ($(this).is(':checked'))
+                found = false;
+        });
+        
+        return found;
+    }
+    function areAllChecked() {
+        var found = false;
+        $(itemsSelect).each(function(e) {
+            if (!$(this).is(':checked'))
+                found = true;
+        });
+        return !found;
+    }
+    function fetchAndDisplayDeleteModal(url, data) {
+        $.ajax({
+                        method: 'post',
+                        url: url,
+                        data: JSON.stringify(data),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                            $('#DeleteModelHolder').html(data);
+                            $('#deleteModel').modal('show');
+                        }
+                    });
+    }
+    
+    function deleteItem(url, data) {
+        $.ajax({
+                method: 'post',
+                url: url,
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    location.reload();
+                }
+            });
+    }
+});
+</script>

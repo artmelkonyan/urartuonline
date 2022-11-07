@@ -1,0 +1,35 @@
+<partial name="Item/_XhrScripts"/>
+<script>
+$(document).ready(function() {
+    // DateTime service
+    
+    /*****Main Function******/
+    window.datetimeServiceClass =  function () {
+    var _self = this;
+
+    function init() {
+
+    }
+
+    _self.Bind = function() {
+        init();
+    }
+
+    _self.BindDatePicker = function() {
+
+        $(".Dates").daterangepicker({
+            locale: {
+                format: 'YYYY-MM-DD'
+            },
+            singleDatePicker: true,
+            showDropdowns: true,
+            "buttonClasses": "btn btn-sm btn-flat",
+            "applyClass": "color-success-bg color-success-hover-bg color-text-white",
+            "cancelClass": "btn-default"
+        });
+    }
+}
+    /************************/
+    
+});
+</script>

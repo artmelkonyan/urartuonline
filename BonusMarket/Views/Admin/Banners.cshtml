@@ -1,0 +1,111 @@
+﻿@using Models
+@model List<Models.EntityModels.Banner>
+@{
+    ViewData["Title"] = "Admin";
+}
+@{
+    Layout = "";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    .curraent {
+        background-color: #97d3f7;
+    }
+
+    .fa-edit, fa-a {
+        margin-right: 12px;
+    }
+
+    .admin_h2 {
+        margin-bottom: 50px;
+        background-color: #d09f17;
+        color: white;
+        text-align: center;
+        display: block;
+        padding: 10px;
+    }
+</style>
+<h2 style="text-align:center;" class="container admin_h2">Ադմինիստրատոր</h2>
+<div class="container" style="background-color:#dfe0e2">
+
+
+
+
+    <h2 style="text-align:center;margin-left: -15px" class="container admin_h2">Կատեգորիաներ</h2>
+    <div>
+        <a asp-action="AddBanner" asp-controller="Admin" ><i class="fa fa-edit" style="color: gray;font-size: 20px;">Ավելացնել</i></a>
+        <form asp-action="Index" asp-controller="Admin">
+        </form>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th><b>ID</b></th>
+                <th>
+                    Նկար
+                </th>
+                <th>
+                    Հղում
+                </th>
+                <th>
+                    Կայքում հասանելի
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>
+                        @if (!string.IsNullOrWhiteSpace(item.Picture.FullPath))
+                        {
+                            <img style="height:70px;width:100px" src="https://urartuonline.am/uploads/images/@item.Picture.FullPath" />
+                        }
+                        else
+                        {
+                            <img style="height:70px;width:100px" src="~/img/products/noimg.jpg" />
+                        }
+                    </td>
+                    <td>
+                        @if (!string.IsNullOrWhiteSpace(item.Link))
+                        {
+                            <p>"Այո"</p>
+
+                        }
+                        else
+                        {
+                            <p>Ոչ</p>
+                        }
+                                    </td>
+
+                    <td>
+                        @if (item.Show)
+                        {
+                            <p>"Այո"</p>
+
+                        }
+                        else
+                        {
+                            <p>Ոչ</p>
+                        }
+                    </td>
+
+                    <td>
+                        <a asp-action="EditBanner" asp-route-id="@item.Id"><i class="fa fa-edit" style="color: gray;font-size: 20px;">Փոփոխել</i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

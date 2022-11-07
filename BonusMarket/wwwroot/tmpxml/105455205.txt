@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-16"?>
+<OrderEntityViewModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Id>0</Id>
+  <CreationDate>0001-01-01T00:00:00</CreationDate>
+  <ModificationDate>0001-01-01T00:00:00</ModificationDate>
+  <Status>false</Status>
+  <FirstName>Garegin</FirstName>
+  <LastName>Hambardzumyan</LastName>
+  <Email>yerevanrockcity@gmail.com</Email>
+  <Address>vilnyus 38</Address>
+  <Phone>5768875876</Phone>
+  <OrderedProducts>
+    <ProductEntity>
+      <Id>7774</Id>
+      <CreationDate xsi:nil="true" />
+      <ModificationDate xsi:nil="true" />
+      <Status xsi:nil="true" />
+      <Count>1</Count>
+      <Price>1100</Price>
+      <OldPrice xsi:nil="true" />
+      <ShowOnHomePage xsi:nil="true" />
+      <Published xsi:nil="true" />
+    </ProductEntity>
+  </OrderedProducts>
+  <PaymentMethod>true</PaymentMethod>
+  <ShipmentMetod>false</ShipmentMetod>
+  <OrderComment>hjkfkjf   hfggffhgf hfh hf hfhgf hffghhjkfkjf   hfggffhgf hfh hf hfhgf hffghhjkfkjf   hfggffhgf hfh hf hfhgf hffghhjkfkjf   hfggffhgf hfh hf hfhgf hffghhjkfkjf   hfggffhgf hfh hf hfhgf hffghhjkfkjf   hfggffhgf hfh hf hfhgf hffghhjkfkjf   hfggffhgf hfh hf hfhgf hffghhjkfkjf   hfggffhgf hfh hf hfhgf hffghhjkfkjf   hfggffhgf hfh hf hfhgf hffgh</OrderComment>
+  <ShipmentStatus>0</ShipmentStatus>
+  <BankOrderId>105455205</BankOrderId>
+  <TotalMoney>1600</TotalMoney>
+</OrderEntityViewModel>

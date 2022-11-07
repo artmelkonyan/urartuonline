@@ -1,0 +1,137 @@
+﻿@model List<Models.EntityModels.ViewModels.BrandModel>
+@{
+    ViewData["Title"] = "Brands";
+    Layout = "";
+}
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    .curraent {
+        background-color: #97d3f7;
+    }
+
+    .fa-edit, fa-a {
+        margin-right: 12px;
+    }
+
+    .admin_h2 {
+        margin-bottom: 50px;
+        background-color: #d09f17;
+        color: white;
+        text-align: center;
+        display: block;
+        padding: 10px;
+    }
+</style>
+<h2 style="text-align:center;" class="container admin_h2">Ադմինիստրատոր</h2>
+<div class="container" style="background-color:#dfe0e2">
+
+
+    <h2 style="text-align:center;margin-left: -15px" class="container admin_h2">Brands</h2>
+    <div>
+        <a asp-action="AddBrand" asp-controller="Admin">Ավելացնել բռենդ</a>
+        <form asp-action="Brands" asp-controller="Admin">
+            <input value="@ViewBag.SearchText" name="searchText" />
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th><b>ID</b></th>
+                <th>
+                    Նկար
+                </th>
+                <th>
+                    Անուն
+                </th>
+                <th>
+                    Կայքում հասանելի
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>
+                        @if (!string.IsNullOrWhiteSpace(item.Picture.FullPath))
+                        {
+                            <img style="height:70px;width:100px" src="https://urartuonline.am/uploads/images/@item.Picture.FullPath" />
+                        }
+                        else
+                        {
+                            <img style="height:70px;width:100px" src="~/img/products/noimg.jpg" />
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Translate.Name)
+                    </td>
+                    <td>
+                        @if (item.Show == true)
+                        {
+                            <p>"Այո"</p>
+
+                        }
+                        else
+                        {
+                            <p>Ոչ</p>
+                        }
+                    </td>
+                    <td>
+                        <a asp-action="EditBrand" asp-route-id="@item.Id"><i class="fa fa-edit" style="color: gray;font-size: 20px;">Փոփոխել</i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div style="display:flex">
+        @if (ViewBag.PageMax > 1)
+        {
+            <a asp-action="Brands"
+               asp-route-page="@(ViewBag.CurrentPage - 1)"
+               asp-route-searchText="@ViewBag.SearchText"
+               class="btn btn-default">
+                Նախորդ
+            </a>
+        }
+        <div class="page_numbers">
+            <a asp-action="Brands"
+               asp-route-page="@ViewBag.CurrentPage"
+               asp-route-searchText="@ViewBag.SearchText"
+               class="btn btn-default curraent">
+                @ViewBag.CurrentPage
+            </a>
+            @if (ViewBag.PageMax > ViewBag.PageMax + 2)
+            {
+                <a asp-action="Brands"
+                   asp-route-page="@(Int32.Parse(ViewBag.CurrentPage.ToString()) + 1)"
+                   asp-route-searchText="@ViewBag.SearchText"
+                   class="btn btn-default">
+                    @(Int32.Parse(ViewBag.CurrentPage.ToString()) + 1)
+                </a>
+                <a asp-action="Brands"
+                   asp-route-page="@(Int32.Parse(ViewBag.CurrentPage.ToString()) + 2)"
+                   asp-route-searchText="@ViewBag.SearchText"
+                   class="btn btn-default">
+                    @(Int32.Parse(ViewBag.CurrentPage.ToString()) + 2)
+                </a>}
+        </div>
+        @if (ViewBag.PageMax > 1)
+        {
+            <a asp-action="Brands"
+               asp-route-page="@(Int32.Parse(ViewBag.CurrentPage.ToString()) + 1)"
+               asp-route-searchText="@ViewBag.SearchText"
+               class="btn btn-default">
+                Հաջորդ
+            </a>
+        }
+    </div>
+</div>

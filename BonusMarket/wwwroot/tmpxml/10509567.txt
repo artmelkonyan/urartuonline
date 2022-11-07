@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-16"?>
+<OrderEntityViewModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Id>0</Id>
+  <CreationDate>0001-01-01T00:00:00</CreationDate>
+  <ModificationDate>0001-01-01T00:00:00</ModificationDate>
+  <Status>false</Status>
+  <OrderedProducts>
+    <ProductEntity>
+      <Id>9493</Id>
+      <CreationDate xsi:nil="true" />
+      <ModificationDate xsi:nil="true" />
+      <Status xsi:nil="true" />
+      <Count>1</Count>
+      <Price>470</Price>
+      <OldPrice xsi:nil="true" />
+      <ShowOnHomePage xsi:nil="true" />
+      <Published xsi:nil="true" />
+    </ProductEntity>
+  </OrderedProducts>
+  <PaymentMethod>true</PaymentMethod>
+  <ShipmentMetod>false</ShipmentMetod>
+  <OrderComment>GHJKGHKJGKJGJK</OrderComment>
+  <BankOrderId>10509567</BankOrderId>
+  <TotalMoney>970</TotalMoney>
+</OrderEntityViewModel>

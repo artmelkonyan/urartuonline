@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<RespMessage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Opaque>Opaque138</Opaque>
+  <Respcode>07</Respcode>
+  <Respmessage>Payment must be in approved state</Respmessage>
+</RespMessage>

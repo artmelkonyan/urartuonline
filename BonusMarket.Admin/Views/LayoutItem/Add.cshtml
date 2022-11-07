@@ -1,0 +1,223 @@
+﻿@inject LocalizationService SharedLocalizer
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+@using BonusMarket.Shared.Resources
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+@inject BonusMarket.Shared.Services.AuthorizeUserHelper authorizeUserHelper
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var currentCultureCode = requestCulture.RequestCulture.UICulture.TwoLetterISOLanguageName;
+    var cultureItems = LocOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem {Value = c.TwoLetterISOLanguageName, Text = c.NativeName})
+        .ToList();
+    
+}
+
+
+@{
+    ViewData["Title"] = "LayoutItems";
+}
+    <section class="contentWrapTop">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="contentWrapTopLeft">
+                    <h1>LayoutItem</h1>
+                </div>
+                <div class="contentWrapTopRight">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-edit"></i>
+                                <span>LayoutItem</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="contentWrap">
+        <form role="form" id="LayoutItemAddForm" class="clearfix" asp-controller="LayoutItem" asp-action="Add">
+            <input type="hidden" name="LayoutItem.ParentLayoutItemID" value="@Context.Request.Query["ParentId"]"/>
+            <div class="row">
+                <div class="col-xs-12 col-md-9 loaderHolder">
+                    <section class="boxWrap">
+                        <div class="box">
+                            <div class="boxHeader">
+                                <div class="boxHeaderLeft">
+                                    <h3><span>LayoutItem details</span></h3>
+                                </div>
+                            </div>
+                            <div class="boxBody">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="Language">Language</label>
+                                            <select id="Language" class="selectize collectItemEdit">
+                                                @foreach (var item in cultureItems)
+                                                {
+                                                    <option selected="@(item.Value == currentCultureCode)" value="@item.Value">@item.Text</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    @for (int i = 0; i < cultureItems.Count; i++)
+                                    {
+                                        <div class="languageElem languageElem@(cultureItems[i].Value) col-xs-12 col-md-4 @(cultureItems[i].Value != currentCultureCode ? "hidden" : "")">
+                                            <div class="form-group">
+                                                <label for="MainTitle">MainTitle</label>
+                                                <input type="hidden" name="LayoutItem.LayoutItemTranslations[@i].ID" value=""/>
+                                                <input type="hidden" name="LayoutItem.LayoutItemTranslations[@i].Language" value="@cultureItems[i].Value"/>
+                                                <input value="" name="LayoutItem.LayoutItemTranslations[@i].MainTitle" type="text" class="form-control collectItemEdit" id="MainTitle@(i)" data-valid="1" placeholder="MainTitle"/>
+                                            </div>
+                                        </div>
+                                    }
+                                    @for (int i = 0; i < cultureItems.Count; i++)
+                                    {
+                                        <div class="languageElem languageElem@(cultureItems[i].Value) col-xs-12 col-md-4 @(cultureItems[i].Value != currentCultureCode ? "hidden" : "")">
+                                            <div class="form-group">
+                                                <label for="FooterName">FooterName</label>
+                                                <input value="" name="LayoutItem.LayoutItemTranslations[@i].FooterName" type="text" class="form-control collectItemEdit" id="FooterName@(i)" data-valid="1" placeholder="FooterName"/>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="row">
+                                    @for (int i = 0; i < cultureItems.Count; i++)
+                                    {
+                                        <div class="languageElem languageElem@(cultureItems[i].Value) col-xs-12 col-md-4 @(cultureItems[i].Value != currentCultureCode ? "hidden" : "")">
+                                            <div class="form-group">
+                                                <label for="Address">Address</label>
+                                                <input value="" name="LayoutItem.LayoutItemTranslations[@i].Address" type="text" class="form-control collectItemEdit" id="Address@(i)" data-valid="1" placeholder="Address"/>
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="col-xs-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="DomainName">DomainName</label>
+                                            <input value="" name="LayoutItem.DomainName" type="text" class="form-control collectItemEdit" data-valid="1" placeholder="DomainName"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="IsActive">Is Active</label>
+                                            <input value="true" name="LayoutItem.IsActive" type="checkbox" class="collectItemEdit" data-valid="1" id="IsActive"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="BookShopUrl">Book Shop Url</label>
+                                            <input value="" name="LayoutItem.BookShopUrl" type="text" class="form-control collectItemEdit" data-valid="1" placeholder="Book Shop Url"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="Twitter">Twitter</label>
+                                            <input value="" name="LayoutItem.Twitter" type="text" class="form-control collectItemEdit" data-valid="1" placeholder="Twitter"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="Instagram">Instagram</label>
+                                            <input value="" name="LayoutItem.Instagram" type="text" class="form-control collectItemEdit" data-valid="1" placeholder="Instagram"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="Facebook">Facebook</label>
+                                            <input value="" name="LayoutItem.Facebook" type="text" class="form-control collectItemEdit" data-valid="1" placeholder="Facebook"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-12">
+                                        <label>Category Image</label>
+                                        <div class="row">
+                                            <div id="uploaded_imagesCategoryImage">
+
+                                            </div>
+                                        </div>
+                                        @Html.Partial("ImageUploader", new ImageUploaderVM()
+                                        {
+                                            Identifier = "CategoryImage",
+                                            Name = "LayoutItem.CategoryImage"
+                                        })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-12">
+                                        <label>Logo Image</label>
+                                        <div class="row">
+                                            <div id="uploaded_imagesLogoImage">
+
+                                            </div>
+                                        </div>
+                                        @Html.Partial("ImageUploader", new ImageUploaderVM()
+                                        {
+                                            Identifier = "LogoImage",
+                                            Name = "LayoutItem.LogoImage"
+                                        })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-12">
+                                        <label>Logo Short Image</label>
+                                        <div class="row">
+                                            <div id="uploaded_imagesLogoShortImage">
+
+                                            </div>
+                                        </div>
+                                        @Html.Partial("ImageUploader", new ImageUploaderVM()
+                                        {
+                                            Identifier = "LogoShortImage",
+                                            Name = "LayoutItem.LogoShortImage"
+                                        })
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-xs-12 col-md-3">
+
+                    <section class="boxWrap">
+                        <div class="box">
+                            <div class="boxHeader">
+                                <div class="boxHeaderLeft">
+                                    <h3><span>Actions</span></h3>
+                                </div>
+                            </div>
+                            <div class="boxBody">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-6">
+                                        <button type="submit" class="btn btn-block btn-success btn-flat" id="itemEditSave">Save</button>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <a href="/LayoutItem" type="button" class="btn btn-block btn-danger btn-flat">Discard</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </form>
+    </section>
+
+<script>
+$('#openAddCoverModalName').click(function(e) {
+   e.preventDefault();
+   $('#coverImageModalName').modal('show');
+    
+});
+
+</script>
+<partial name="Item/_ItemEditScripts"/>

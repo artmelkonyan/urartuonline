@@ -1,0 +1,125 @@
+﻿@inject BonusMarket.Shared.Services.AuthorizeUserHelper authorizeUserHelper
+
+@{
+    bool hasPermission = authorizeUserHelper.HasPermission(User);
+    string controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
+//    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+//    var showBanner = !consentFeature?.CanTrack ?? false;
+//    var cookieString = consentFeature?.CreateConsentCookie();
+}
+
+@if (hasPermission)
+{
+    <section class="mtSidebar">
+            <div class="sidebar-menu">
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default panel-bg">
+                        <div class="panel-heading" role="tab" id="heading-Brand">
+                            <h4 class="panel-title sidebar-title">
+                                <a class="@(controllerName == "Brand" ? "" : "collapsed")" href="#collapse-Brand-page" aria-controls="collapse-Brand-page" data-parent="#accordion" role="button" data-toggle="collapse" aria-expanded="false">
+                                    <div class="panel-title-left">
+                                        <i class="fa fa-cc"></i>
+                                        <span>Brands</span>
+                                    </div>
+                                    <div class="panel-title-right"></div>
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse-Brand-page" aria-labelledby="heading-Brand" class="panel-collapse @(controllerName == "Brand" ? "collapse in" : "collapse")" role="tabpanel">
+                            <div class="panel-body">
+                                <ul>
+                                    <li>
+                                        <a href="/Brand/Index">
+                                            <span>Brands</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default panel-bg">
+                        <div class="panel-heading" role="tab" id="heading-Picture">
+                            <h4 class="panel-title sidebar-title">
+                                <a class="@(controllerName == "Picture" ? "" : "collapsed")" href="#collapse-Picture-page" aria-controls="collapse-Picture-page" data-parent="#accordion" role="button" data-toggle="collapse" aria-expanded="false">
+                                    <div class="panel-title-left">
+                                        <i class="fa fa-cc"></i>
+                                        <span>Pictures</span>
+                                    </div>
+                                    <div class="panel-title-right"></div>
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse-Picture-page" aria-labelledby="heading-Picture" class="panel-collapse @(controllerName == "Picture" ? "collapse in" : "collapse")" role="tabpanel">
+                            <div class="panel-body">
+                                <ul>
+                                    <li>
+                                        <a href="/Picture/Index">
+                                            <span>Pictures</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default panel-bg">
+                        <div class="panel-heading" role="tab" id="heading-LayoutItem">
+                            <h4 class="panel-title sidebar-title">
+                                <a class="@(controllerName == "LayoutItem" ? "" : "collapsed")" href="#collapse-LayoutItem-page" aria-controls="collapse-LayoutItem-page" data-parent="#accordion" role="button" data-toggle="collapse" aria-expanded="false">
+                                    <div class="panel-title-left">
+                                        <i class="fa fa-home"></i>
+                                        <span>Main Settings</span>
+                                    </div>
+                                    <div class="panel-title-right"></div>
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse-LayoutItem-page" aria-labelledby="heading-LayoutItem" class="panel-collapse @(controllerName == "LayoutItem" ? "collapse in" : "collapse")" role="tabpanel">
+                            <div class="panel-body">
+                                <ul>
+                                    <li>
+                                        <a href="/LayoutItem/Index">
+                                            <span>Main Items</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default panel-bg">
+                        <div class="panel-heading" role="tab" id="heading-2">
+                            <h4 class="panel-title sidebar-title">
+                                <a class="@(controllerName == "Permission" || controllerName == "Role" ? "" : "collapsed")" href="#collapse-2-page" aria-controls="collapse-2-page" data-parent="#accordion" role="button" data-toggle="collapse" aria-expanded="false">
+                                    <div class="panel-title-left">
+                                        <i class="fa fa-users"></i>
+                                        <span>Permission, Roles, Users</span>
+                                    </div>
+                                    <div class="panel-title-right"></div>
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse-2-page" aria-labelledby="heading-2" class="panel-collapse @(controllerName == "Permission" || controllerName == "Role" ? "collapse in" : "collapse")" role="tabpanel">
+                            <div class="panel-body">
+                                <ul>
+                                    <li>
+                                        <a href="/Permission/Index">
+                                            <span>Permissions</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/Role/Index">
+                                            <span>Roles</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/User/Index">
+                                            <span>Users</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+}

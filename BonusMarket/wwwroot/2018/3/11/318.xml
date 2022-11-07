@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GetPaymentIDData>
+  <ClientID>1c5bccc8-8638-44d8-8428-f6528c8aee06</ClientID>
+  <Username>19533087_api</Username>
+  <Password>a7KWUMqC5v3l9jW</Password>
+  <Description>Bonus Market</Description>
+  <OrderID>318</OrderID>
+  <Opaque>Opaque318</Opaque>
+  <PaymentAmount>20</PaymentAmount>
+  <backURL>http://localhost:53732/Payment/PayStatus</backURL>
+</GetPaymentIDData>

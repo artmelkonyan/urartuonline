@@ -1,0 +1,93 @@
+﻿@inject LocalizationService SharedLocalizer
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+@using BonusMarket.Shared.Resources
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+@inject BonusMarket.Shared.Services.AuthorizeUserHelper authorizeUserHelper
+@model BonusMarket.Admin.Models.Picture.PictureEditVm
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var currentCultureCode = requestCulture.RequestCulture.UICulture.TwoLetterISOLanguageName;
+    var cultureItems = LocOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem {Value = c.TwoLetterISOLanguageName, Text = c.NativeName})
+        .ToList();
+}
+
+
+@{
+    ViewData["Title"] = "Pictures";
+}
+    <section class="contentWrapTop">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="contentWrapTopLeft">
+                    <h1>Picture</h1>
+                </div>
+                <div class="contentWrapTopRight">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-edit"></i>
+                                <span>Picture</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="contentWrap">
+        <form role="form" id="PictureAddForm" class="clearfix" method="POST" action="/Picture/Edit">
+            <div class="row">
+                <div class="col-xs-12 col-md-9 loaderHolder">
+                    <section class="boxWrap">
+                        <div class="box">
+                            <div class="boxHeader">
+                                <div class="boxHeaderLeft">
+                                    <h3><span>Picture details</span></h3>
+                                </div>
+                            </div>
+                            <input type="hidden" value="@Model.Picture.Id" name="Picture.Id"/>
+                            <div class="boxBody">
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-xs-12 col-md-3">
+
+                    <section class="boxWrap">
+                        <div class="box">
+                            <div class="boxHeader">
+                                <div class="boxHeaderLeft">
+                                    <h3><span>Actions</span></h3>
+                                </div>
+                            </div>
+                            <div class="boxBody">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-6">
+                                        <button type="submit" class="btn btn-block btn-success btn-flat" id="itemEditSave">Save</button>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <a href="/Picture" type="button" class="btn btn-block btn-danger btn-flat">Discard</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </form>
+    </section>
+
+<script>
+$('#openAddCoverModalName').click(function(e) {
+   e.preventDefault();
+   $('#coverImageModalName').modal('show');
+    
+});
+</script>
+
+<partial name="Item/_ItemEditScripts"/>

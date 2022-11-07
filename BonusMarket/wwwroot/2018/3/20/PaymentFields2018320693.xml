@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<PaymentFields xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <amount>10</amount>
+  <approveamount>0</approveamount>
+  <authcode>000000</authcode>
+  <cardnumber>457889**1023</cardnumber>
+  <clientname>GAREGIN HAMBARDZUMYAN</clientname>
+  <currency>051</currency>
+  <datetime>01.01.1970 04:00:00</datetime>
+  <depositamount>0</depositamount>
+  <descr>Decline. Card declined: - Նախնական ավտորիզացումը մերժված է:</descr>
+  <merchantid>19003087</merchantid>
+  <opaque>Opaque2018320693</opaque>
+  <orderid>2018320693</orderid>
+  <orderstatuscode>6</orderstatuscode>
+  <payment_state>payment_declined</payment_state>
+  <paymenttype>5</paymenttype>
+  <refundamount>0</refundamount>
+  <respcode>0125</respcode>
+  <rewardpoint>0</rewardpoint>
+  <rrn>b02c9253-16f4-4d9c-bce2-ae67f2b58401</rrn>
+  <terminalid>19533087</terminalid>
+  <trxnDetails>Bonus Market</trxnDetails>
+</PaymentFields>

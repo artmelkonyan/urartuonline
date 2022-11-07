@@ -1,0 +1,115 @@
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.Extensions.Options
+@inject IOptions<RequestLocalizationOptions> LocOptions
+@inject BonusMarket.Shared.Services.AuthorizeUserHelper authorizeUserHelper
+
+@{
+    bool hasPermission = authorizeUserHelper.HasPermission(User);
+//    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+//    var showBanner = !consentFeature?.CanTrack ?? false;
+//    var cookieString = consentFeature?.CreateConsentCookie();
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var currentCultureCode = requestCulture.RequestCulture.UICulture.TwoLetterISOLanguageName;
+    var cultureItems = LocOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem {Value = c.Name, Text = c.NativeName})
+        .ToList();
+
+}
+
+@if (hasPermission)
+{
+    <header class="color-white-bg">
+            <section class="headerLeft color-sidebar-bg">
+                <div class="mtadminLogo">
+                    <a href="/">
+                        @* <img src="/img/Visitka-logo.png" alt="" /> *@
+                        <span>BonusMarket Admin</span>
+                    </a>
+                </div>
+            </section>
+        <section class="headerRight">
+            <div class="headerRight-Left">
+                <div>
+                    <a href="#" class="sideMenuToggle color-white-hover-bg" title="Toggle Sidebar">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="headerRight-Right">
+                <div class="hdrLng dropdown">
+                    <a id="hdrLngToggle" data-lang="@currentCultureCode" class="hdrLngToggle color-white-hover-bg" title="Language" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span> @currentCultureCode </span>
+                    </a>
+                    <ul id="hdrLngWrap" class="dropdown-menu dropdown-menu-custom hdrDropdown lngDropdown" aria-labelledby="hdrLngToggle">
+                        <li class="dropdown-menu-body">
+                            <div>
+                                <ul class="hdrTasksMenu">
+                                    @foreach (var item in cultureItems)
+                                    {
+                                        <li>
+                                            <a href="/setLanguage?culture=@(item.Value)&returnUrl=@(Context.Request.Path)" class="changeMainLanguage" data-lang="@item.Value">@item.Value</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="hdrUser dropdown">
+                    <a id="hdrUSerToggle" class="hdrUserToggle color-white-hover-bg" title="User" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="/img/users/user-6.jpg" alt=""/>
+                        <h2><span>Administrator</span></h2>
+                    </a>
+                    <ul id="hdrUserWrap" class="dropdown-menu dropdown-menu-custom dropdown-menu-right userDropdown">
+                        <li class="dropdown-menu-header color-1-bg">
+                            <img src="/img/users/user-6.jpg" class="img-circle" alt=""/>
+
+                            <p>Administrator</p>
+                        </li>
+                        <li class="dropdown-menu-footer userMenuFooter">
+                            <div class="pull-right">
+                                <a href="/auth/logout" type="button" class="btn btn-sm btn-flat color-info-bg color-info-hover-bg color-text-white">
+                                    Sign out
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <a href="#" class="sideMenuToggle color-white-hover-bg" title="Settings">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <script>
+        // let elements = document.getElementsByClassName("changeMainLanguage");
+        //
+        // let myFunction = function() {
+        //     let lang = this.getAttribute("data-lang");
+        //     let url = "/setLanguage";
+        //     let data = {};
+        //     let json = JSON.stringify(data);
+        //     let xhr = new XMLHttpRequest();
+        //     xhr.open("GET", url+'?culture=' + lang+'&returnUrl='+location.href, true);
+        //     xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+        //     xhr.onload = function () {
+        //     	if (xhr.status == "200") {
+        //     	    // location.reload();
+        //     	} else {
+        //     	}
+        //     }
+        //     xhr.send(json);
+        //     alert(attribute);
+        // };
+        //
+        // for (let i = 0; i < elements.length; i++) {
+        //     elements[i].addEventListener('click', myFunction, false);
+        // }
+        
+        </script>
+    </header>
+}

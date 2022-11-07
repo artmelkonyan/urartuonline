@@ -1,0 +1,92 @@
+﻿<!-- This area will show the uploaded files -->
+
+@model ImageUploaderVM
+
+<div id="select_file@(Model.Identifier)">
+    <div class="form-group">
+        <label>Upload Image</label>
+    </div>
+    <div class="form-group">
+        <!-- The fileinput-button span is used to style the file input field as button -->
+        <span class="btn btn-success fileinput-button">
+            <i class="glyphicon glyphicon-plus"></i>
+            <span>Select file...</span>
+            <!-- The file input field used as target for the file upload widget -->
+            <input id="@Model.Identifier" type="file" name="files" accept="image/x-png, image/gif, image/jpeg, image/svg+xml" >
+        </span>
+        <br>
+        <br>
+        <!-- The global progress bar -->
+        <div id="progress@(Model.Identifier)" class="progress">
+            <div class="progress-bar progress-bar-success"></div>
+        </div>
+        <!-- The container for the uploaded files -->
+        <div id="files@(Model.Identifier)" class="files"></div>
+        <input type="text" name="uploaded_file_name@(Model.Identifier)" id="uploaded_file_name@(Model.Identifier)" hidden>
+        <br>
+    </div>
+</div>
+
+<script>
+    /*jslint unparam: true */
+    /*global window, $ */
+
+    var max_uploads = 5;
+
+    $(function () {
+        'use strict';
+
+        // Change this to the location of your server-side upload handler:
+        var url = '/File/Upload';
+        $('#@(Model.Identifier)').fileupload({
+            url: url,
+            dataType: 'html',
+            done: function (e, data) {
+
+                //console.log(data['result']);
+
+                if(data['result'] == 'FAILED'){
+                    alert('Invalid File');
+                }else{
+                    $('#uploaded_file_name@(Model.Identifier)').val(data['result']);
+                    $('#uploaded_images@(Model.Identifier)').append('<div class="uploaded_imageHolder uploaded_image@(Model.Identifier)"> <input type="text" value="'+data['result']+'" name="@Model.Name" id="" hidden> <img src="/File/Image/'+data['result']+'" /> <a href="#" class="img_rmv btn btn-danger"><i class="fa fa-times-circle" style="font-size:48px;color:red"></i></a> </div>');
+
+                    if($('.uploaded_image@(Model.Identifier)').length >= max_uploads){
+                        $('#select_file@(Model.Identifier)').hide();
+                    }else{
+                        $('#select_file@(Model.Identifier)').show();
+                    }
+                }
+
+                $('#progress@(Model.Identifier) .progress-bar').css(
+                    'width',
+                    0 + '%'
+                );
+
+                $.each(data.result.files, function (index, file) {
+                    $('<p/>').text(file.name).appendTo('#files@(Model.Identifier)');
+                });
+
+            },
+            progressall: function (e, data) {
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                $('#progress@(Model.Identifier) .progress-bar').css(
+                    'width',
+                    progress + '%'
+                );
+            }
+        }).prop('disabled', !$.support.fileInput)
+            .parent().addClass($.support.fileInput ? undefined : 'disabled');
+    });
+
+    $( "#uploaded_images@(Model.Identifier)" ).on( "click", ".img_rmv", function() {
+        $(this).parent().remove();
+        if($('.uploaded_image@(Model.Identifier)').length >= max_uploads){
+            $('#select_file@(Model.Identifier)').hide();
+        }else{
+            $('#select_file@(Model.Identifier)').show();
+        }
+    });
+</script>
+
+<link rel="stylesheet" href="~/dist/css/styles.css">

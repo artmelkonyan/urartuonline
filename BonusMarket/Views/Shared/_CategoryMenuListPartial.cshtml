@@ -1,0 +1,24 @@
+﻿@model Models.CategoryLeftMenuViewModel
+
+@using Models
+
+<li>
+    <a href="@(Model.Category.SubCategories.Count == 0 ? Url.Action("ProductsList", "Product", new {brandIds=Model.BrandsId,categoryId=Model.Category.Id})
+                    :
+        "/Category/GetCategoriesByParentId?parentid="+Model.Category.Id )"
+       data-id="@Model.Category.Id"
+       class="@((Model.Category.SubCategories.Count > 0) ?
+           "sidebar-dropdown-opener" : "") @((Model.ParentIds.FindAll(r=>r == Model.Category.ParentId).Count > 0) ? "sub-menu" : "")  @((Model.ParentIds.FindAll(r=>r == Model.Category.Id).Count > 0) ? "active" : "")">@Model.Category.Translation.Name</a>
+        @if (Model.Category.SubCategories.Count > 0)
+        {
+            <ul>
+                @foreach (CategoryEntity subData in Model.Category.SubCategories)
+                {
+                    CategoryLeftMenuViewModel tempModel = new CategoryLeftMenuViewModel();
+                    tempModel.Category = subData;
+                    tempModel.ParentIds = Model.ParentIds;
+                    @Html.Partial("_CategoryMenuListPartial", tempModel)
+                }
+            </ul>
+        }
+    </li>

@@ -1,0 +1,110 @@
+<div id="DeleteModelHolder"></div>
+<script>
+$(document).ready(function() {
+    
+    var deleteAllBtnSelect = '#deleteAllBtn';
+    var itemsSelect = '.selItems';
+    var itemsSelectAll = '.selectElems';
+    var deleteItemBtnSelect = '.deleteElem';
+    
+    
+    $(deleteItemBtnSelect).click(function(e) {
+        let list = [];
+        list.push($(this).data('id'))
+        let url = $(this).data('url');
+        
+        let data = {};
+        data['Ids'] = list;
+        data['ReturnUrl'] = $(this).data('returnurl');
+        data['Url'] = $(this).data('deleteurl');
+        
+        fetchAndDisplayDeleteModal(url, data);
+    });
+    
+    $(deleteAllBtnSelect).click(function(e) {
+        if (areAllUnchecked())
+            return;
+        
+        let list = []
+        $(itemsSelect).each(function(e) {
+            if ($(this).is(':checked'))
+                found = false;
+            
+            list.push($(this).data('id'));
+        })
+        let url = $(this).data('url');
+        
+        let data = {};
+        data['Ids'] = list;
+        data['ReturnUrl'] = $(this).data('returnurl');
+        data['Url'] = $(this).data('deleteurl');
+        
+        fetchAndDisplayDeleteModal(url, data);
+    });
+    $(itemsSelectAll).click(function(e) {
+        checkAll($(this).is(':checked'));
+    });
+    $(itemsSelect).click(function(e) {
+        checkSelectAllStatus();
+    });
+    function checkAll(status) {
+        $(itemsSelect).each(function(e) {
+            $(this).prop('checked', status);
+        });
+    }
+    function checkSelectAll(status) {
+        $(itemsSelectAll).each(function(e) {
+            $(this).prop('checked', status);
+        });
+    }
+    function checkSelectAllStatus() {
+            checkSelectAll(areAllChecked());
+    }
+    function areAllUnchecked() {
+        var found = true;
+        
+        $(itemsSelect).each(function(e) {
+            if ($(this).is(':checked'))
+                found = false;
+        });
+        
+        return found;
+    }
+    function areAllChecked() {
+        var found = false;
+        $(itemsSelect).each(function(e) {
+            if (!$(this).is(':checked'))
+                found = true;
+        });
+        return !found;
+    }
+    function fetchAndDisplayDeleteModal(url, data) {
+        $.ajax({
+                        method: 'post',
+                        url: url,
+                        data: JSON.stringify(data),
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            $('#DeleteModelHolder').html(data);
+                            $('#deleteModel').modal('show');
+                        },
+                        error: function(data) {
+                            console.log(data)
+                        }
+                    });
+    }
+    
+    function deleteItem(url, data) {
+        $.ajax({
+                method: 'post',
+                url: url,
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    location.reload();
+                }
+            });
+    }
+});
+</script>
