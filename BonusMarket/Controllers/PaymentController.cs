@@ -118,7 +118,7 @@ namespace BonusMarket.Controllers
             }
             if (validTotalMoney < 5000)
             {
-                validTotalMoney = validTotalMoney + 500;
+                validTotalMoney = validTotalMoney + 1000;
             }
             model.TotalMoney = (int)validTotalMoney;
 
@@ -241,7 +241,7 @@ namespace BonusMarket.Controllers
             }
             if (validTotalMoney < 5000)
             {
-                validTotalMoney = validTotalMoney + 500;
+                validTotalMoney = validTotalMoney + 1000;
             }
             model.TotalMoney = (int)validTotalMoney;
 

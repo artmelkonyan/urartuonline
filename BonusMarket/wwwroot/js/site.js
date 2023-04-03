@@ -12,7 +12,7 @@ var ProductEntity = function () {
 let BasketListEntity = function () {
     let _self = this;
     _self.ProductList = null;
-    _self.bringPrice = 500;
+    _self.bringPrice = 1000;
 
     _self.Init = function () {
         let _basketlist = localStorage.getItem("basketList");
@@ -202,7 +202,7 @@ let BasketListEntity = function () {
             _self.bringPrice = 0;
         }
         else
-            _self.bringPrice = 500;
+            _self.bringPrice = 1000;
 
         
         let holder  = $('.bringPriceHolder');
