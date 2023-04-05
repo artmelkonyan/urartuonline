@@ -12,7 +12,7 @@ var ProductEntity = function () {
 let BasketListEntity = function () {
     let _self = this;
     _self.ProductList = null;
-    _self.bringPrice = 1000;
+    _self.bringPrice = 1000; // updated to 1000
 
     _self.Init = function () {
         let _basketlist = localStorage.getItem("basketList");
