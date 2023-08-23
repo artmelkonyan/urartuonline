@@ -1,0 +1,83 @@
+﻿@model Models.HomeViewModel
+
+@using Models
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Localization
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@{
+    ViewData["Title"] = "Home Page";
+}
+<section> 
+    <div class="container categories ">
+        <!-- <div id="categories"> -->
+
+        <div class="row">
+            @foreach (var item in Model.HomePageCategories)
+            {
+                <div class=" col-xs-12 col-sm-6 col-md-4 category">
+                    <span class="category-title">@item.Translation.Name</span>
+                    <div class="category-image">
+                        <a href="@((item.SubItems == null) ? Url.Action("ProductsList", "Product", new {categoryId=item.Id }) : "/Category/GetCategoriesByParentId?parentid="+item.Id)"><img data-id="@item.Id" src="@ImageHelper.GenImageLink(item.Picture.FullPath)" alt=""></a>
+                    </div>
+                </div>
+            }
+            <br />
+            @if (Model.HomeBrands.Count >= 6)
+            {
+                <div style="text-align:center; margin-bottom:20px" class="heading">@SharedLocalizer["Brands"]</div>
+                @foreach (var item in Model.HomeBrands)
+                {
+                    <div class=" col-xs-12 col-sm-6 col-md-4 category">
+                        <div class="category-image">
+                            <a href="@Url.Action("ProductsList", "Product", new { brandIds =new int[] { item.Id } })"><img data-id="@item.Id" src="@ImageHelper.GenImageLink(item.Picture.FullPath)" alt=""></a>
+                        </div>
+                        <span class="category-title">@item.Translate.Name</span>
+                    </div>
+                }
+            }
+            <!-- carusel -->
+            <div class="row product-carousel-wrapper container">
+                <div class="">
+                    <div class="heading">@SharedLocalizer["News"]</div>
+                    <div class="owl-carousel ">
+                        @foreach (var item in Model.HomePageProducts)
+                        {
+                            <div class="carusel-product">
+                                <div class="carusel-image">
+                                    <a href="/product/OneProductById?id=@(item.Id)"><img src="@ImageHelper.GenImageLink(item.MainImage.FullPath)" data-id="@item.Id" alt="zardatup"></a>
+                                </div>
+                                <div class="carousel-item-content">
+                                    <div class="carousel-item-title">@item.Translation.NameTranslation</div>
+                                    <div class="carousel-item-info">
+                                        <div class="carousel-item-price old-price">
+                                            @if (item.OldPrice != 0)
+                                            {<span class="old-price-line">@GeneralHelper.GetPriceString(item.OldPrice.Value) <i class="dram">AMD</i></span>}<span>@GeneralHelper.GetPriceString(item.Price.Value) <i class="dram">AMD</i></span>
+                                        </div>
+                                        <div class="carousel-item-actions">
+                                            <span> <img class="wishItem" data-id="@item.Id" data-toggle="modal" data-target="#wishModal" src="/img/icons/heart-silver.png" alt="" title="ավելացնել"></span>
+                                            <span><img class="basketItem" data-id="@item.Id" data-toggle="modal" data-target="#basketModal" src="/img/icons/cart-silver.png" alt="" title="ցանկությունների ցուցակ"></span>
+                                            <div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="wishModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header"></div>
+            <h4 class="modal-text">@SharedLocalizer["AddedToWishList"]</h4>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@SharedLocalizer["Close"]</button>
+            </div>
+        </div>
+    </div>
+</div>

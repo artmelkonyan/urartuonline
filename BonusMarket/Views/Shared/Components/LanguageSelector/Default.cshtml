@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var CurCulture = requestCulture.RequestCulture.Culture.Name;
+
+    var cultureItems = LocOptions.Value.SupportedUICultures
+            .Select(c => new SelectListItem { Value = c.Name, Text = SharedLocalizer[c.DisplayName].Value })
+            .ToList();
+    
+}
+<ul class="lang-list">
+
+    @foreach (var item in cultureItems)
+    {
+        <li>
+            <a href="@("/Home/SetLanguage?culture="+item.Value + "&returnUrl=" + Context.Request.Path +Context.Request.QueryString )" class="@(item.Value == CurCulture ? "active" : "")">
+                <img src="./img/@(item.Value).png" alt="@item.Value">@item.Value
+            </a>
+        </li>
+    }  
+</ul>

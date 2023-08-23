@@ -1,0 +1,462 @@
+﻿<header class="header-desktop">
+    <!-- ----start of the lang part ----->
+    <div class="lang-full">
+        <div class="lang-part">
+            <div class="lang-img">
+                @await Component.InvokeAsync("LanguageSelector")
+            </div>
+
+            <div class="user-part">
+                <div class="wishlist">
+                    <div class="wish">
+                        <a href="wishlist.html">
+                            <img src="./img/likeBg.png" alt="likeBg">
+                        </a>
+                        <div>
+                            4
+                        </div>
+                    </div>
+                    <a href="register.html" class="register">
+                        <img src="./img/user.png" alt="user">
+                        Մուտք/գրանցում
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ----end of the lang part ----->
+    <!-- -----start of the logo part--- -->
+    <div class="site-logo">
+        <div>
+            <a href="#">
+                <img src="./img/urartu-logo.png" alt="urartu-logo">
+            </a>
+        </div>
+        <div class="search-part">
+            <input type="search" placeholder="Որոնել այստեղ" class="search">
+            <button>
+                <img src="./img/magnifying-glass.png" alt="search">
+            </button>
+        </div>
+        <div class="telephone-number">
+            <ul>
+                <li>
+                    <a href="tel:+37498-560-141">
+                        <img src="./img/telephone.png" alt="telephone">
+                        +37498-560-141
+                    </a>
+                </li>
+                <li>
+                    <a href="tel:+37491-560-141">
+                        <img src="./img/telephone.png" alt="telephone">
+                        +37491-560-141
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="./img/clock.png" alt="clock">
+                        10:00 - 19:00
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="basket-full">
+            <div class="basket">
+                <a href="#">
+                    <img src="./img/basketBG.png" alt="shopping-cart">
+                </a>
+                <div>4</div>
+            </div>
+            Զամբյուղ
+        </div>
+    </div>
+    <!-- -----end of the logo part--- -->
+    <!-- ---start of the menu--- -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <!-- <a class="navbar-brand" href="#">Hidden brand</a> -->
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0 general-menu">
+
+                <li class="nav-item dropdown main-link">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Սպասք
+                    </a>
+                    <ul class="dropdown-menu sub-link" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">Submenu</a>
+                            <ul class="dropdown-menu sub-link">
+                                <li><a class="dropdown-item" href="#">Submenu action</a></li>
+                                <li><a class="dropdown-item" href="#">Another submenu action</a></li>
+
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
+                                    <ul class="dropdown-menu sub-link">
+                                        <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+                                        <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
+                                    <ul class="dropdown-menu sub-link">
+                                        <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+                                        <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown main-link">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Խոհանոցային <br> պարագաներ
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown main-link">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Տնտեսական <br>ապրանքներ
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">Submenu</a>
+
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown main-link">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Հիգիենայի <br>պարագաներ
+                    </a>
+                </li>
+                <li class="nav-item dropdown main-link">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Կոսմետիկա
+                    </a>
+
+                </li>
+
+                <li class="nav-item dropdown main-link">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Գալանտերեա
+                    </a>
+
+                </li>
+                <li class="nav-item dropdown main-link">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Տան պարագաներ
+                    </a>
+
+                </li>
+                <li class="nav-item dropdown main-link">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Տեխնիկա
+                    </a>
+
+                </li>
+                <li class="nav-item dropdown main-link">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Գրենական <br> պիտույքներ
+                    </a>
+
+                </li>
+                <li class="nav-item dropdow main-link">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Խաղալիքներ և <br> հուշանվերներ
+                    </a>
+                </li>
+                <li class="nav-item dropdown main-link">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Զատիկ
+                    </a>
+                    <ul class="dropdown-menu sub-link" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">4</a></li>
+                        <li class="dropdown-submenu ">
+                            <a class="dropdown-item dropdown-toggle" href="#">5</a>
+                            <ul class="dropdown-menu d-submenu-left ">
+                                <li><a class="dropdown-item" href="#">9</a></li>
+                                <li><a class="dropdown-item" href="#">10</a></li>
+
+
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
+                                    <ul class="dropdown-menu d-submenu-left sub-link">
+                                        <li><a class="dropdown-item" href="#">S222222</a></li>
+                                        <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu ">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
+                                    <ul class="dropdown-menu d-submenu-left sub-link">
+                                        <li><a class="dropdown-item" href="#">33333</a></li>
+                                        <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+</header>
+
+<header class="header-mobile">
+    <div class="mobile-header-top">
+        <a href="#" class="navbar-brand">
+            <img src="./img/urartu-logo.png" alt="urartu-logo">
+        </a>
+        <nav class="navbar  navbar-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="mob-open-nav">
+                <div class="overlay"></div>
+                <span class="mob-menu-close">
+                    <div>
+                        <img src="./img/close.png" alt="shopping-cart">
+                    </div>
+                </span>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
+                    <!-- <a class="navbar-brand" href="#">Hidden brand</a> -->
+                    <ul class="navbar-nav mob-nav mr-auto  mt-lg-0 m-general-menu">
+                        <li class="nav-item dropdown m-main-link zatik">
+                            <a class="nav-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="zatik-name">
+                                    <img src="./img/egg.png"></span>
+                                    <p>Զատիկ</p>
+                                </div>
+
+                            </a>
+
+                        </li>
+                        <li class="nav-item dropdown m-main-link">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Սպասք
+                            </a>
+                            <ul class="dropdown-menu m-sub-link" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Sp 1</a></li>
+                                <li><a class="dropdown-item" href="#">Sp 2n</a></li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Sp11</a>
+                                    <ul class="dropdown-menu sub-link ">
+                                        <li><a class="dropdown-item" href="#">Submenu action</a></li>
+                                        <li><a class="dropdown-item" href="#">Another submenu action</a></li>
+
+                                        <li class="dropdown-submenu">
+                                            <a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
+                                            <ul class="dropdown-menu sub-link">
+                                                <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+                                                <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
+                                            <ul class="dropdown-menu sub-link">
+                                                <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+                                                <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown m-main-link">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Խոհանոցային պարագաներ
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Submenu</a>
+
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown m-main-link">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Տնտեսական ապրանքներ
+                            </a>
+                            <ul class="dropdown-menu sub-link" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">4</a></li>
+                                <li class="dropdown-submenu ">
+                                    <a class="dropdown-item dropdown-toggle" href="#">5</a>
+                                    <ul class="dropdown-menu  ">
+                                        <li><a class="dropdown-item" href="#">9</a></li>
+                                        <li><a class="dropdown-item" href="#">10</a></li>
+
+
+                                        <li class="dropdown-submenu">
+                                            <a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
+                                            <ul class="dropdown-menu  sub-link">
+                                                <li><a class="dropdown-item" href="#">S222222</a></li>
+                                                <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu ">
+                                            <a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
+                                            <ul class="dropdown-menu  sub-link">
+                                                <li><a class="dropdown-item" href="#">33333</a></li>
+                                                <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+
+
+
+                        <li class="nav-item dropdown m-main-link">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Հիգիենայի պարագաներ
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown m-main-link">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Կոսմետիկա
+                            </a>
+
+                        </li>
+
+                        <li class="nav-item dropdown m-main-link">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Գալանտերեա
+                            </a>
+
+                        </li>
+                        <li class="nav-item dropdown m-main-link">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Տան պարագաներ
+                            </a>
+
+                        </li>
+                        <li class="nav-item dropdown m-main-link">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Տեխնիկա
+                            </a>
+
+                        </li>
+                        <li class="nav-item dropdown m-main-link">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Գրենական պիտույքներ
+                            </a>
+
+                        </li>
+                        <li class="nav-item dropdow m-main-link">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Խաղալիքներ և հուշանվերներ
+                            </a>
+
+                        </li>
+
+                    </ul>
+                    <div>
+                        <div class="lang-img">
+                            <ul class="lang-list">
+                                <li>
+                                    <a href="#">
+                                        <img src="./img/arm.png" alt="arm">Arm
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="./img/eng.png" alt="eng">Eng
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="./img/rus.png" alt="rus">Rus
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </nav>
+    </div>
+    <div class="mobile-header-middle">
+        <div class="telephone-number">
+            <ul>
+                <li>
+                    <a href="tel:+37498-560-141">
+                        <img src="./img/telephone.png" alt="telephone">
+                        +37498-560-141
+                    </a>
+                </li>
+                <li>
+                    <a href="tel:+37491-560-141">
+                        <img src="./img/telephone.png" alt="telephone">
+                        +37491-560-141
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="./img/clock.png" alt="clock">
+                        10:00 - 19:00
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="middle-right">
+            <div class="user-part ">
+                <div class="wishlist">
+                    <div class="wish">
+                        <a href="wishlist.html">
+                            <img src="./img/likeBg.png" alt="likeBg">
+                        </a>
+                        <div>
+                            4
+                        </div>
+                    </div>
+
+                </div>
+                <div class="user-cont">
+                    <a href="register.html" class="register">
+                        <img src="./img/user.png" alt="user" class="center">
+
+                    </a>
+                </div>
+
+                <div class="basket-full">
+                    <div class="basket">
+                        <a href="#">
+                            <img src="./img/basketBG.png" alt="shopping-cart">
+                        </a>
+                        <div>4</div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="mobile-header-bottom">
+        <div class="search-part">
+            <input type="search" placeholder="Որոնել այստեղ" class="search">
+            <button>
+                <img src="./img/magnifying-glass.png" alt="search">
+            </button>
+        </div>
+    </div>
+
+
+
+</header>
