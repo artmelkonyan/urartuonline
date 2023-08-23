@@ -3,11 +3,13 @@ using System.Threading.Tasks;
 
 namespace BonusMarket.Components
 {
-    public class LanguageSelectorViewComponent : ViewComponent
+    public class WishListViewComponent : ViewComponent
     {
+
+
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            await Task.Delay(0);
+            await Task.Delay(10);
             return View();
         }
     }

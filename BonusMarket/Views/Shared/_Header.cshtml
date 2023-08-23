@@ -8,14 +8,7 @@
 
             <div class="user-part">
                 <div class="wishlist">
-                    <div class="wish">
-                        <a href="wishlist.html">
-                            <img src="./img/likeBg.png" alt="likeBg">
-                        </a>
-                        <div>
-                            4
-                        </div>
-                    </div>
+                    @await Component.InvokeAsync("WishList")
                     <a href="register.html" class="register">
                         <img src="./img/user.png" alt="user">
                         Մուտք/գրանցում
@@ -60,15 +53,8 @@
                 </li>
             </ul>
         </div>
-        <div class="basket-full">
-            <div class="basket">
-                <a href="#">
-                    <img src="./img/basketBG.png" alt="shopping-cart">
-                </a>
-                <div>4</div>
-            </div>
-            Զամբյուղ
-        </div>
+        @await Component.InvokeAsync("ShoppingCartMini")
+    
     </div>
     <!-- -----end of the logo part--- -->
     <!-- ---start of the menu--- -->
@@ -368,23 +354,7 @@
                     </ul>
                     <div>
                         <div class="lang-img">
-                            <ul class="lang-list">
-                                <li>
-                                    <a href="#">
-                                        <img src="./img/arm.png" alt="arm">Arm
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="./img/eng.png" alt="eng">Eng
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="./img/rus.png" alt="rus">Rus
-                                    </a>
-                                </li>
-                            </ul>
+                            @await Component.InvokeAsync("LanguageSelector")
                         </div>
                     </div>
                 </div>
@@ -418,32 +388,16 @@
         <div class="middle-right">
             <div class="user-part ">
                 <div class="wishlist">
-                    <div class="wish">
-                        <a href="wishlist.html">
-                            <img src="./img/likeBg.png" alt="likeBg">
-                        </a>
-                        <div>
-                            4
-                        </div>
-                    </div>
-
+                    @await Component.InvokeAsync("WishList")
                 </div>
                 <div class="user-cont">
                     <a href="register.html" class="register">
                         <img src="./img/user.png" alt="user" class="center">
-
                     </a>
                 </div>
 
-                <div class="basket-full">
-                    <div class="basket">
-                        <a href="#">
-                            <img src="./img/basketBG.png" alt="shopping-cart">
-                        </a>
-                        <div>4</div>
-                    </div>
-
-                </div>
+                @await Component.InvokeAsync("ShoppingCartMini", new {isMobile = true})
+                
             </div>
 
         </div>
