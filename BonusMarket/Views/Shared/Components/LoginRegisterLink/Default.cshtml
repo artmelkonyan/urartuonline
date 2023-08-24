@@ -1,0 +1,28 @@
+﻿@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <a href="/Account/Login" class="register">
+        @if (!(bool)(ViewBag.IsMobile))
+        {
+            <img src="./img/user.png" alt="user">
+            <text>@SharedLocalizer["LoginRegister"]</text>
+        }
+        else
+        {
+            <img src="./img/user.png" alt="user" class="center">
+            <text>@SharedLocalizer["LoginRegister"]</text>
+        }
+    </a>
+}
+else
+{
+    <div>
+        <form action="/Account/LogOut" method="post" class="loginForm">
+            @Html.AntiForgeryToken()
+            <input type="submit" value="@SharedLocalizer["LogOut"]" class="btn logoutBtn" />
+        </form>
+    </div>
+}
+

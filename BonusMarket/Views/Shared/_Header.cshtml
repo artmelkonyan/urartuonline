@@ -9,10 +9,7 @@
             <div class="user-part">
                 <div class="wishlist">
                     @await Component.InvokeAsync("WishList")
-                    <a href="register.html" class="register">
-                        <img src="./img/user.png" alt="user">
-                        Մուտք/գրանցում
-                    </a>
+                    @await Component.InvokeAsync("LoginRegisterLink")
                 </div>
             </div>
         </div>
@@ -391,9 +388,7 @@
                     @await Component.InvokeAsync("WishList")
                 </div>
                 <div class="user-cont">
-                    <a href="register.html" class="register">
-                        <img src="./img/user.png" alt="user" class="center">
-                    </a>
+                    @await Component.InvokeAsync("LoginRegisterLink", new {isMobile = true})
                 </div>
 
                 @await Component.InvokeAsync("ShoppingCartMini", new {isMobile = true})
