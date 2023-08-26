@@ -1,0 +1,151 @@
+﻿@model List<Models.CategoryEntity>
+
+@{
+    bool isMobile = ViewBag.IsMobile;
+
+    string cssClassPrefix = "";
+    string mobileClass = "";
+
+    if (isMobile)
+    {
+        cssClassPrefix = "m-";
+        mobileClass = "mob-nav";
+    }
+}
+
+<ul class="navbar-nav mr-auto @(mobileClass) mt-2 mt-lg-0 @(cssClassPrefix)general-menu">
+
+@*    @foreach (var item in Model)
+    {
+        @await Html.PartialAsync("_MenuListItem", new Models.MenuItemViewModel{
+                CategoryEntity  = item,
+                CssPrefix = cssClassPrefix,
+                MobileClass = mobileClass
+            })
+    }
+*@
+    <li class="nav-item dropdown @(cssClassPrefix)main-link">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Սպասք
+        </a>
+        <ul class="dropdown-menu @(cssClassPrefix)sub-link" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li class="dropdown-submenu">
+                <a class="dropdown-item dropdown-toggle" href="#">Submenu</a>
+                <ul class="dropdown-menu @(cssClassPrefix)sub-link">
+                    <li><a class="dropdown-item" href="#">Submenu action</a></li>
+                    <li><a class="dropdown-item" href="#">Another submenu action</a></li>
+
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
+                        <ul class="dropdown-menu @(cssClassPrefix)sub-link">
+                            <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+                            <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
+                        <ul class="dropdown-menu @(cssClassPrefix)sub-link">
+                            <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+                            <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+
+    <li class="nav-item dropdown @(cssClassPrefix)main-link">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Խոհանոցային <br> պարագաներ
+        </a>
+    </li>
+
+    <li class="nav-item dropdown @(cssClassPrefix)main-link">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Տնտեսական <br>ապրանքներ
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li class="dropdown-submenu">
+                <a class="dropdown-item dropdown-toggle" href="#">Submenu</a>
+
+            </li>
+        </ul>
+    </li>
+    <li class="nav-item dropdown @(cssClassPrefix)main-link">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Հիգիենայի <br>պարագաներ
+        </a>
+    </li>
+    <li class="nav-item dropdown @(cssClassPrefix)main-link">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Կոսմետիկա
+        </a>
+
+    </li>
+
+    <li class="nav-item dropdown @(cssClassPrefix)main-link">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Գալանտերեա
+        </a>
+
+    </li>
+    <li class="nav-item dropdown @(cssClassPrefix)main-link">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Տան պարագաներ
+        </a>
+
+    </li>
+    <li class="nav-item dropdown @(cssClassPrefix)main-link">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Տեխնիկա
+        </a>
+
+    </li>
+    <li class="nav-item dropdown @(cssClassPrefix)main-link">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Գրենական <br> պիտույքներ
+        </a>
+
+    </li>
+    <li class="nav-item dropdow @(cssClassPrefix)main-link">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Խաղալիքներ և <br> հուշանվերներ
+        </a>
+    </li>
+    <li class="nav-item dropdown @(cssClassPrefix)main-link">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Զատիկ
+        </a>
+        <ul class="dropdown-menu @(cssClassPrefix)sub-link" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">4</a></li>
+            <li class="dropdown-submenu ">
+                <a class="dropdown-item dropdown-toggle" href="#">5</a>
+                <ul class="dropdown-menu d-submenu-left ">
+                    <li><a class="dropdown-item" href="#">9</a></li>
+                    <li><a class="dropdown-item" href="#">10</a></li>
+
+
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
+                        <ul class="dropdown-menu d-submenu-left @(cssClassPrefix)sub-link">
+                            <li><a class="dropdown-item" href="#">S222222</a></li>
+                            <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu ">
+                        <a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
+                        <ul class="dropdown-menu d-submenu-left @(cssClassPrefix)sub-link">
+                            <li><a class="dropdown-item" href="#">33333</a></li>
+                            <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
