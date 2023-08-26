@@ -1,0 +1,26 @@
+﻿@model List<Models.EntityModels.Banner>
+
+<div class="general-slider">
+
+    <ul class="slider">
+        
+        @foreach(var item in Model)
+        {
+            <li>
+                @if (string.IsNullOrWhiteSpace(item.Link))
+                {
+                    <img src="/uploads/images/@item.Picture.FullPath" alt="slider">
+                }
+                else
+                {
+                    <a href="@item.Link">
+                        <img src="/uploads/images/@item.Picture.FullPath" alt="slider">
+                    </a>
+                }
+            </li>
+        }
+     @*   <li>
+            <img src="./img/about-us-banner.png" alt="bgSlider2">
+        </li>*@
+    </ul>
+</div>
