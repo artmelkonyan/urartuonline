@@ -1,0 +1,58 @@
+﻿@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+
+<footer>
+    <div class="footer-links">
+        <div class="footer-container">
+            <div class="footer-information">
+                <h3>@SharedLocalizer["Information"]</h3>
+                <ul>
+                    <li>  <a href="/Home/About">@SharedLocalizer["AboutUs"]</a></li>
+                    <li><a href="#">@SharedLocalizer["Job"]</a></li>
+                    <li><a href="#">@SharedLocalizer["News"]</a></li>
+                    <li> <a href="/Home/ReturnPolicy">@SharedLocalizer["ReturnPolicy"]</a></li>
+                    <li><a href="/Home/PrivacyPolicy">@SharedLocalizer["PrivacyPolicy"]</a></li>
+                    <li><a href="/Home/Contacts">@SharedLocalizer["Contacts"]</a></li>
+                    <li><a href="#">@SharedLocalizer["FAQ"]</a></li>
+                </ul>
+            </div>
+            <div class="footer-customer-service">
+                <h3>@SharedLocalizer["CustomerService"]</h3>
+                <ul>
+                    <li><a href="#">@SharedLocalizer["Search1"]</a></li>
+                </ul>
+            </div>
+            <div class="footer-account-info">
+                <h3>@SharedLocalizer["MyAccount"]</h3>
+                <ul>
+                    <li> <a href="/Home/Basket">@SharedLocalizer["Basket"]</a></li>
+                    <li> <a href="/Home/Wishlist">@SharedLocalizer["Wishlist"]</a></li>
+                    <li><a href="/Account/Login">@SharedLocalizer["Register"]</a></li>
+                </ul>
+            </div>
+            <div class="footer-4">
+                <div class="footer-payment-option">
+                    <h3>@SharedLocalizer["PaymentOptions"]</h3>
+                    <img src="./img/cart-name.png" alt="cart-name">
+                </div>
+                <div class="footer-follow-link">
+                    <h3>@SharedLocalizer["FollowUs"]</h3>
+                    <ul class="social-media">
+                        <li>
+                            <a href="https://www.facebook.com/Urartumarket/" target="_blank"><img src="./img/facebook.png" alt="facebook"></a>
+                        </li>
+                        <li>
+                            <a href="https://instagram.com/urartu_market?igshid=um02lbqhjzc8"><img src="./img/instagram.png" alt="instagram"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p class="copyright-text">Copyright @DateTime.Now.Year urartuonline.am</p>
+    </div>
+    <a href="#" class="live-chat">
+        <img src="./img/live-chat-icon.png" alt="live-chat-icon">
+    </a>
+</footer>

@@ -516,62 +516,7 @@
 
 
     <!------start of the footer--- ----- -->
-    <footer>
-        <div class="footer-links">
-            <div class="footer-container">
-                <div class="footer-information">
-                    <h3>Տեղեկություն</h3>
-                    <ul>
-                        <li><a href="#">Մեր մասին</a></li>
-                        <li><a href="#">Աշխատատեղեր</a></li>
-                        <li><a href="#">Նորույթներ/Բլոգ</a></li>
-                        <li><a href="#">Առաքման և վերադարձի պայմաններ</a></li>
-                        <li><a href="#">Գաղտնիության քաղաքականություն</a></li>
-                        <li><a href="#">Կապ</a></li>
-                        <li><a href="#">ՀՏՀ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-customer-service">
-                    <h3>Հաճախորդների սպասարկում</h3>
-                    <ul>
-                        <li><a href="#">Փնտրել</a></li>
-                    </ul>
-                </div>
-                <div class="footer-account-info">
-                    <h3>Իմ հաշիվը</h3>
-                    <ul>
-                        <li><a href="#">Զամբյուղ</a></li>
-                        <li><a href="#">Ցանկությունների ցուցակ</a></li>
-                        <li><a href="#">Գրանցում</a></li>
-                        <li><a href="#">Համեմատում</a></li>
-                    </ul>
-                </div>
-                <div class="footer-4">
-                    <div class="footer-payment-option">
-                        <h3>Վճարման տարբերակներ</h3>
-                        <img src="./img/cart-name.png" alt="cart-name">
-                    </div>
-                    <div class="footer-follow-link">
-                        <h3>Հետևել մեզ</h3>
-                        <ul class="social-media">
-                            <li>
-                                <a href="#"><img src="./img/facebook.png" alt="facebook"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="./img/instagram.png" alt="instagram"></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            <p class="copyright-text">Copyright 2020 urartuonline.am</p>
-        </div>
-        <a href="#" class="live-chat">
-            <img src="./img/live-chat-icon.png" alt="live-chat-icon">
-        </a>
-    </footer>
+    @await Component.InvokeAsync("Footer")
     <!-- ---end of the footer----------- -->
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
