@@ -29,6 +29,7 @@ namespace Models
         public ProductTranslationEntityViewModel Translation { get; set; }
         public List<ProductTranslationEntityViewModel> TranslationList { get; set; }
         public bool Published { get; set; }
+        public bool? IsNew { get; set; }
         public ProductToCategory ProductCategory { get; set; }
     }
 }

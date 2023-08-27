@@ -1556,7 +1556,7 @@ namespace DataLayer
             return CurItem;
         }
 
-        public List<ProductEntity> GetHomePageProducts(string lang)
+        public List<ProductEntity> GetHomePageProducts(string lang, bool? isNew = null)
         {
             List<ProductEntity> list = new List<ProductEntity>();
 
@@ -1575,6 +1575,7 @@ namespace DataLayer
                 cmd.Parameters.AddWithValue("Language", lang);
                 cmd.Parameters.AddWithValue("Status", true);
                 cmd.Parameters.AddWithValue("Published", true);
+                cmd.Parameters.AddWithValue("IsNew", isNew);
 
                 DataTable dt = new DataTable();
 

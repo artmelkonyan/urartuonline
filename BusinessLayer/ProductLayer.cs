@@ -136,11 +136,11 @@ namespace BusinessLayer
             tuple = db.GetProductListForUser( brandId, CategoryId, CurrentPage, ViewCount, OrderBy, RequestLanguage);
             return tuple;
         }
-        public List<ProductEntity> GetHomePageProducts(string lang)
+        public List<ProductEntity> GetHomePageProducts(string lang, bool? isNew = null)
         {
             List<ProductEntity> products = new List<ProductEntity>();
             ProductDbProxy db = new ProductDbProxy();
-            products = db.GetHomePageProducts(lang);
+            products = db.GetHomePageProducts(lang, isNew: isNew);
 
             PictureDbProxy dbPic = new PictureDbProxy();
             foreach (ProductEntity oneproduct in products)

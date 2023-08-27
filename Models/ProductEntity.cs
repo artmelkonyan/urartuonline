@@ -36,5 +36,6 @@ namespace Models
         public bool? Published { get; set; } = null;
         public int? BrandId { get; set; } = null;
         public ProductToCategory ProductCategory { get; set; } = null;
+        public bool? IsNew { get; set; } = null;
     }
 }

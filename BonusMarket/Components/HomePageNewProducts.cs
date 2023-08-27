@@ -17,7 +17,7 @@ namespace BonusMarket.Components
 
         public IViewComponentResult Invoke()
         {
-            var result = p_layer.GetHomePageProducts(RequestLanguage).Where(x => x.Count > 0).ToList();
+            var result = p_layer.GetHomePageProducts(RequestLanguage, isNew: true).Where(x => x.Count > 0).ToList();
             return View(result);
         }
     }

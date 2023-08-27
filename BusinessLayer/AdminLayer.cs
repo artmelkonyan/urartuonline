@@ -730,6 +730,7 @@ namespace BusinessLayer
             curProduct.Count = entity.Count;
             curProduct.ShowOnHomePage = entity.ShowOnHomePage;
             curProduct.Published = entity.Published;
+            curProduct.IsNew = entity.IsNew;
             curProduct.ModificationDate = DateTime.Now;
             curProduct.BrandId = entity.BrandId;
             bool prodUpdated = prodDb.UpdateProduct(curProduct);

@@ -526,6 +526,7 @@ namespace DataLayer
                         OldPrice = (decimal)dt.Rows[0]["OldPrice"],
                         PictureList = p_list,
                         Published = (bool)dt.Rows[0]["Published"],
+                        IsNew = (bool?)dt.Rows[0]["IsNew"],
                         Price = (decimal)dt.Rows[0]["Price"],
                         BrandId=(int)(dt.Rows[0]["BrandId"]==DBNull.Value?0: dt.Rows[0]["BrandId"]),
                         ShowOnHomePage = (bool)dt.Rows[0]["ShowOnHomePage"],
