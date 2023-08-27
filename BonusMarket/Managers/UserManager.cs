@@ -15,6 +15,7 @@ namespace BonusMarket.Managers
             var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
             identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, model.UserName));
             identity.AddClaim(new Claim(ClaimTypes.Name, model.UserName));
+            identity.AddClaim(new Claim("UserId", model.User.Id.ToString()));
 
             // Authenticate using the identity
             var principal = new ClaimsPrincipal(identity);

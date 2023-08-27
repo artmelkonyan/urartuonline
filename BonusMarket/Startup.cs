@@ -144,7 +144,7 @@ namespace BonusMarket
             {
                 app.UseExceptionHandler("/Home/Error?isTechnical=true");
             }
-            app.UseStatusCodePagesWithRedirects("/Home/Error");
+           // app.UseStatusCodePagesWithRedirects("/Home/Error");
             app.UseSession();
             app.UseStaticFiles();
             app.UseAuthentication();
@@ -157,6 +157,15 @@ namespace BonusMarket
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(name: "AddProductToCart-Catalog",
+                pattern: $"addproducttocart/catalog/{{productId:min(0)}}/{{shoppingCartTypeId:min(0)}}/{{quantity:min(0)}}",
+                defaults: new { controller = "ShoppingCartItem", action = "AddProductToCart_Catalog" });
+
+                endpoints.MapControllerRoute(name: "Login",
+                    pattern: "/Account/Login",
+                    defaults: new { controller = "Account", action = "Login" }
+                    );
             });
         }
     }

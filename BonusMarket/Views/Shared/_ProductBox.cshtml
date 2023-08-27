@@ -3,6 +3,11 @@
 
 @inject IHtmlLocalizer<SharedResource> SharedLocalizer
 
+@{
+    var addtocartlink = Url.RouteUrl("AddProductToCart-Catalog", new { productId = Model.Id, shoppingCartTypeId = (int)(Models.EntityModels.ShoppingCartItemType.ShoppingCartItem), quantity = 1 });
+    var addtowishlistlink = Url.RouteUrl("AddProductToCart-Catalog", new { productId = Model.Id, shoppingCartTypeId = (int)(Models.EntityModels.ShoppingCartItemType.WishListItem), quantity = 1 });
+}
+
 <div class="resp-div">
     <a href="/product/OneProductById?id=@(Model.Id)" class="link-to-product">
         <div class="img-cont1">
@@ -20,13 +25,13 @@
     </a>
     <div class="basket-arrow">
         <div class="basket-part">
-            <button type="button">
+            <button type="button" onclick="AjaxCart.addproducttocart_catalog('@addtocartlink');return false;">
                 <img src="./img/shopping-cart.png" alt="shopping-cart">
                 @SharedLocalizer["AddToCart"]
             </button>
         </div>
         <div class="heart-arrow">
-            <button type="button" class="btn-link" title="@SharedLocalizer["AddToWishlist"]">
+            <button type="button" class="btn-link" title="@SharedLocalizer["AddToWishlist"]" onclick="AjaxCart.addproducttocart_catalog('@addtowishlistlink');return false;">
                 <img src="./img/like1.png" alt="like">
             </button>
         </div>

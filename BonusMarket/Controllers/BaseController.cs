@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Threading;
 using Microsoft.EntityFrameworkCore;
+using BonusMarket.Managers;
+using BonusMarket.Shared.Models.Core.User;
 
 namespace BonusMarket.Controllers
 {
@@ -17,6 +19,7 @@ namespace BonusMarket.Controllers
 
         public string RequestLanguage { get; set; }
         public BaseViewModel BaseModel { get; set; }
+
         public BaseController()
         {
             RequestLanguage = Thread.CurrentThread.CurrentUICulture.Name;

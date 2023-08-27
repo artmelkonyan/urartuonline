@@ -30,6 +30,7 @@ namespace BonusMarket.Controllers
             this.ViewData["BaseModel"] = this.BaseModel;
             return View();
         }
+
         [HttpPost]
         public IActionResult SignIn(LoginEntity model)
         {
@@ -43,7 +44,9 @@ namespace BonusMarket.Controllers
             {
                 return RedirectToAction("Login",loginEntity);
             }
-            var principal = UserManager.GetPrincipal(model);
+
+            var principal = UserManager.GetPrincipal(loginEntity);
+
             HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal: principal);
 
             return RedirectToAction("Index","Home");

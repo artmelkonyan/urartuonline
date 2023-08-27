@@ -543,10 +543,12 @@ $(document).ready(function() {
 });
 // function deleteRow(btn) {
 //   if(!confirm("Are you sure you want to delete?")) return;
-  
+
 //   // var tbl = el.parentNode.parentNode.parentNode;
 //   // var row = el.parentNode.parentNode.rowIndex;
 //   // tbl.deleteRow(row);
 //   var row = btn.parentNode.parentNode;
 //   row.parentNode.removeChild(row);
 // }
+
+

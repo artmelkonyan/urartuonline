@@ -20,7 +20,7 @@
     {
         <li>
             <a href="@("/Home/SetLanguage?culture="+item.Value + "&returnUrl=" + Context.Request.Path +Context.Request.QueryString )" class="@(item.Value == CurCulture ? "active" : "")">
-                <img src="./img/@(item.Value).png" alt="@item.Value">@item.Value
+                <img src="/img/@(item.Value).png" alt="@item.Value">@item.Value
             </a>
         </li>
     }  

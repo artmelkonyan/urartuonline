@@ -35,14 +35,50 @@
     <!------start of the footer--- ----- -->
     @await Component.InvokeAsync("Footer")
     <!-- ---end of the footer----------- -->
+    <div id="wishModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content ">
+                <div class="modal-header"></div>
+                <h4 class="modal-text">@SharedLocalizer["AddedToWishList"]</h4>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@SharedLocalizer["Close"]</button>
+                </div>
+            </div>
+        </div>
+    </div>
     
+    <!-- Modal basket -->
+    <div id="basketModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content ">
+                <div class="modal-header"></div>
+                <h4 class="modal-text">@SharedLocalizer["AddedToBasket"]</h4>
+                <div class="basket-modal">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="basket-modal-buttons">
+                                <a href="/Home/Basket"> @SharedLocalizer["PlaceOrder"]</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@SharedLocalizer["Close"]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
     <script src="~/js/script_v2.js" asp-append-version="true"></script>
-    <script src="~/js/header_v2.js asp-append-version="true"></script>
+    <script src="~/js/header_v2.js" asp-append-version="true"></script>
+    <script src="~/js/public.ajaxcart.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)
-
+    <script>
+        AjaxCart.init(false, ".basket-full .cart-qty", ".wish .wish-qty", null, {})
+    </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164236183-1"></script>
     <script>
