@@ -445,6 +445,7 @@ namespace DataLayer
                 cmd.Parameters.AddWithValue("Status", true);
                 cmd.Parameters.AddWithValue("Published", true);
                 cmd.Parameters.AddWithValue("Language", lang);
+                cmd.Parameters.AddWithValue("Count", 8);
 
                 DataTable dt = new DataTable();
 
