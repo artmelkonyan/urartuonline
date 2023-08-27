@@ -19,6 +19,14 @@ namespace BusinessLayer
             var bannerdb = new BannerDbProxy();
             return bannerdb.GetAllBanners();
         }
+
+         public List<AdvertismentBanner> GetAdvertismentBannersAll()
+        {
+            var bannerdb = new BannerDbProxy();
+            return bannerdb.GetAllAdvertismentBanners();
+        }
+
+
         public bool Update(BannerModel model, string webroot = "")
         {
             var picL = new PictureLayer();
@@ -34,7 +42,37 @@ namespace BusinessLayer
             }
             return bannerdb.UpdateBanner(model);
         }
+
+        public bool UpdateAdvertismentBanner(BannerModel model, string webroot = "")
+        {
+            var picL = new PictureLayer();
+            var bannerdb = new BannerDbProxy();
+            if (model.File != null)
+            {
+                var picId = picL.AddImage(model.File, true, webroot);
+                if (picId.HasValue)
+                {
+                    picL.RemoveImage(model.PictureId);
+                    model.PictureId = picId.Value;
+                }
+            }
+            return bannerdb.UpdateAdvertismentBanner(model);
+        }
+
         public int? Insert(BannerModel model, string webroot = "")
+        {
+            var picL = new PictureLayer();
+            var bannerdb = new BannerDbProxy();
+            if (model.File != null)
+            {
+                var picId = picL.AddImage(model.File, true, webroot);
+                if (picId.HasValue)
+                    model.PictureId = picId.Value;
+            }
+            return bannerdb.Insert(model);
+        }
+
+        public int? InsertAdvertismentBanner(BannerModel model, string webroot = "")
         {
             var picL = new PictureLayer();
             var bannerdb = new BannerDbProxy();

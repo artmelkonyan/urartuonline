@@ -1,0 +1,24 @@
+﻿@model List<Models.EntityModels.AdvertismentBanner>
+
+<section class="gift-part adv-part">
+    <div class=" adv-part-parent ">
+        @foreach (var item in Model)
+        {
+            @if (string.IsNullOrWhiteSpace(item.Link))
+            {
+                <a href="#">
+                    @*<img src="/uploads/images/@item.Picture.FullPath" alt="paisly-product">*@
+                    <img src="./img/paisly-product.png" alt="paisly-product">
+                </a>
+            }
+            else
+            {
+                <a href="@item.Link">
+                    @*<img src="/uploads/images/@item.Picture.FullPath" alt="paisly-product">*@
+                    <img src="./img/paisly-product.png" alt="paisly-product">
+                </a>
+            }
+        }
+
+    </div>
+</section>
