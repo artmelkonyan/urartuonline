@@ -708,6 +708,7 @@ nav {
 
 .responsive .slick-slide {
     margin: 0 24px;
+    max-width:250px;
 }
 
 /* 
@@ -813,10 +814,22 @@ nav {
     color: #2A58A5;
 
 }
-
-.basket-part {
-    border: 1px solid #E6E8EC;
+.basket-part button {
+    display: flex;
+    border:none;
+    align-items: center;
+    justify-content: space-around;
+    width: 98px;
+    height: 30px;
+    color: #2A58A5;
 }
+    .basket-part button:focus{
+        border:none;
+    }
+
+    .basket-part {
+        border: 1px solid #E6E8EC;
+    }
 
 .basket-part img {
     margin: 0;
@@ -831,20 +844,26 @@ nav {
     margin-right: 10px;
 }
 
+
+    .heart-arrow button {
+        border:none;
+        background-color:transparent;
+    }
+
 .heart-arrow img {
     transition: 0.2s;
 }
 
-.heart-arrow a:first-child img:hover {
-    filter: invert(30%) sepia(61%) saturate(5735%) hue-rotate(338deg) brightness(98%) contrast(90%);
-}
+    .heart-arrow a:first-child img:hover, .heart-arrow button:first-child img:hover {
+        filter: invert(30%) sepia(61%) saturate(5735%) hue-rotate(338deg) brightness(98%) contrast(90%);
+    }
 
 
-.basket-part a {
+.basket-part a, .basket-part button {
     transition: 0.3s;
 }
 
-.basket-part:hover a {
+.basket-part:hover a, .basket-part:hover button {
     background-color: #2A58A5;
     color: white;
 }
