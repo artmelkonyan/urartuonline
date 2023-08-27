@@ -1,0 +1,12 @@
+﻿@using Models;
+@model List<Models.EntityModels.ViewModels.BrandModel>
+
+<section class="customer-logos slider-parners">
+    @foreach (var item in Model)
+    {
+        <a href=@Url.Action("ProductsList", "Product", new { brandIds =new int[] { item.Id } })" class="slide">
+            @*<img data-id="@item.Id" src="@ImageHelper.GenImageLink(item.Picture.FullPath)" alt="@item.Translate.Name">*@
+            <img src="./img/giaretti.png">
+        </a>
+    }
+</section>
