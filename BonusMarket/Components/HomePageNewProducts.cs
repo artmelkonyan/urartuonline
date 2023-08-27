@@ -5,20 +5,19 @@ using System.Threading;
 
 namespace BonusMarket.Components
 {
-    public class HomePageNewProductsViewComponent : ViewComponent
+    public class HomePageNewProductsViewComponent : BaseViewComponent
     {
         protected ProductLayer p_layer;
-        protected string requestLanguage;
+        
 
         public HomePageNewProductsViewComponent()
-        {
-            requestLanguage = Thread.CurrentThread.CurrentUICulture.Name;
+        {        
             p_layer = new ProductLayer();
         }
 
         public IViewComponentResult Invoke()
         {
-            var result = p_layer.GetHomePageProducts(requestLanguage).Where(x => x.Count > 0).ToList();
+            var result = p_layer.GetHomePageProducts(RequestLanguage).Where(x => x.Count > 0).ToList();
             return View(result);
         }
     }

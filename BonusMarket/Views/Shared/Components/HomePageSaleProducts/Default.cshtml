@@ -1,0 +1,16 @@
+﻿@using Models;
+@model List<Models.ProductEntity>
+
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+<div class="sale-cont">
+    <section class="sale-div">
+        <h3 class="sale-title">@SharedLocalizer["Sales"]</h3>
+        <div class="responsive">
+            @foreach (var item in Model)
+            {
+                @await Html.PartialAsync("_ProductBox", item)
+            }
+        </div>
+    </section>
+</div>

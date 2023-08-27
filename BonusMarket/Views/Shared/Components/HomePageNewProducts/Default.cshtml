@@ -9,40 +9,7 @@
     <div class="responsive">
         @foreach (var item in Model)
         {
-            <div class="resp-div">
-                <a href="/product/OneProductById?id=@(item.Id)" class="link-to-product">
-                    <div class="img-cont1">
-                        @*<img src="@ImageHelper.GenImageLink(item.MainImage.FullPath)" alt="@item.Translation.NameTranslation">*@
-                        <img src="./img/tenerella2.png" alt="tene">
-                    </div>
-                    <h3 class="news-div-title">@item.Translation.NameTranslation</h3>
-                    <p>
-                        @GeneralHelper.GetPriceString(item.Price.Value) Դ
-                        @if (item.OldPrice != 0)
-                        {
-                            <del>@GeneralHelper.GetPriceString(item.OldPrice.Value) Դ</del>
-                        }
-                    </p>
-                </a>
-                <div class="basket-arrow">
-                    <div class="basket-part">
-                        <button type="button">
-                            <img src="./img/shopping-cart.png" alt="shopping-cart">
-                            @SharedLocalizer["AddToCart"]
-                        </button>
-                    </div>
-                    <div class="heart-arrow">
-                        <button type="button" class="btn-link" title="@SharedLocalizer["AddToWishlist"]">
-                            <img src="./img/like1.png" alt="like">
-                        </button>
-                    </div>
-                </div>
-                <div class="red"> Նոր</div>
-                @if (item.OldPrice != 0)
-                {
-                    <div class="black">@GeneralHelper.GetDiscountPercent(item.Price.Value, item.OldPrice.Value) %</div>
-                }
-            </div>
+            @await Html.PartialAsync("_ProductBox", item)
         }
     </div>
 </section>
