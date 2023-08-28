@@ -3,59 +3,113 @@
     ViewData["Title"] = "Get Categories By Parent";
 }
 
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
 @using Models
-
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-3">
-                <ul class="left-sidebar-menu">
-                    @{
-                        var BaseModel = (BaseViewModel)ViewData["BaseModel"];
-
-                        int SearchId = Model.CategoryId;
-
-                        while (true)
-                        {
-                            if (BaseModel.CategoryList.FindAll(r=>r.Id == SearchId).Count != 0)
-                            {
-                                CategoryEntity tempEntity = BaseModel.CategoryList.FindAll(r => r.Id == SearchId)[0];
-                                BaseModel.ParentIds.Add(tempEntity.Id.Value);
-                                SearchId = tempEntity.ParentId.Value;
-                            } else
-                            {
-                                break;
-                            }
-                        }
+@{
+    var BaseModel = (BaseViewModel)ViewData["BaseModel"];
+}
 
 
-                        @foreach (var item in BaseModel.Categories)
-                        {
-
-                            CategoryLeftMenuViewModel tempModel = new CategoryLeftMenuViewModel();
-                            tempModel.Category = item;
-                            tempModel.ParentIds = BaseModel.ParentIds;
-
-                            @Html.Partial("~/Views/Shared/_CategoryMenuListPartial.cshtml", tempModel)
-                        }
-                    }
-                </ul>
+<manin class="header-cont">
+    <div class="general-slider">
+        <ul class="slider">
+            <li>
+                <img src="./img/product-page-slider-baner1.png" alt="slider">
+            </li>
+            <li>
+                <img src="./img/bgSlider2.jpg" alt="bgSlider2">
+            </li>
+        </ul>
+    </div>
+    <section class="product-page ">
+        <div class="product-page-container pad">
+            <div class="cat-desktop">
+                <div class="product-filter">
+                    <div class="category-name-container">
+                        <h3 class="category-title">@SharedLocalizer["Categories"]</h3>
+                        <nav class="navbar navbar-expand-lg navbar-light category-menu">
+                            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                                    @foreach (var item in BaseModel.Categories)
+                                    {
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="@(item.SubCategories.Count == 0 ? Url.Action("ProductsList", "Product", new { categoryId = item.Id })
+                                           :
+                                           "/Category/GetCategoriesByParentId?parentid=" + item.Id)" id="@($"navbarDropdownMenuLink{item.Id}")" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                @item.Translation.Name
+                                            </a>
+                                            @if (item.SubCategories.Count > 0)
+                                            {
+                                                await Html.RenderPartialAsync("_CategoryMenuItem", item);
+                                            }
+                                        </li>
+                                    }                                    
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
             </div>
-            <h2 class="page-heading">@Model.CategoryName</h2>
-            <div class="col-md-9 categories container">
-                <div class="row">
+
+
+
+            <div class="cat-mob">
+                <div class="product-filter">
+                    <div class="category-name-container">
+
+                        <nav class="navbar navbar-expand-lg navbar-light category-menu">
+                            <div class="filter-cont" id="navbarTogglerDemo01">
+                                <ul class="navbar-nav ">
+                                    <li class="nav-item">
+                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            @SharedLocalizer["Categories"]
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            @foreach (var item in BaseModel.Categories)
+                                            {
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="@(item.SubCategories.Count == 0 ? Url.Action("ProductsList", "Product", new { categoryId = item.Id })
+                                                   :
+                                                   "/Category/GetCategoriesByParentId?parentid=" + item.Id)" id="@($"navbarDropdownMenuLink{item.Id}")" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        @item.Translation.Name
+                                                    </a>
+                                                    @if (item.SubCategories.Count > 0)
+                                                    {
+                                                        await Html.RenderPartialAsync("_CategoryMenuItem", item);
+                                                    }
+                                                </li>
+                                            }
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-page-products">
+                <h3 class="category-page-title">@Model.CategoryName</h3>
+                <div class="category-names-and-svg">
                     @foreach (var item in Model.CategoriesByParent)
                     {
-                        <div class=" col-xs-12 col-sm-6 col-md-4 category">
-                            <span class="category-title">@item.Translation.Name</span>
-                            <div class="category-image">
-                                <a href="@(item.SubCategories.Count == 0 ? Url.Action("ProductsList", "Product", new {categoryId=item.Id }) : "/Category/GetCategoriesByParentId?parentid="+item.Id)"><img src="@ImageHelper.GenImageLink(item.Picture.FullPath)" alt=""></a>
-                            </div>
+                        <div>
+                            <a href="@(item.SubCategories.Count == 0 ? Url.Action("ProductsList", "Product", new {categoryId=item.Id }) : "/Category/GetCategoriesByParentId?parentid="+item.Id)">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                     width="94" height="122" viewBox="0 0 94 122">
+                                    <image id="coffee-beans" width="94" height="122"
+                                           xlink:href="data:img/png;base64,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">
+                                    </image>
+                                </svg>
+                                <h3 class="category-part-title">@item.Translation.Name</h3>
+                                <p class="category-part-text">
+                                    @item.Translation.DescriptionTranslation
+                                </p>
+                            </a>
                         </div>
-                    }
+                    }                   
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
+    </section>
+</manin>

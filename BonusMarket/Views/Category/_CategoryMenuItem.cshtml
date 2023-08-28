@@ -1,0 +1,17 @@
+﻿@model Models.CategoryEntity
+
+
+<ul class="dropdown-menu " aria-labelledby="@($"navbarDropdownMenuLink{Model.Id}")">
+    @foreach(var item in Model.SubCategories)
+    {
+        <li class="@(item.SubCategories.Count > 0?"dropdown-submenu":"")">
+            <a class="dropdown-item @(item.SubCategories.Count > 0?"dropdown-toggle":"") " href="@(item.SubCategories.Count == 0 ? Url.Action("ProductsList", "Product", new {categoryId=item.Id})
+                    :
+        "/Category/GetCategoriesByParentId?parentid="+Model.Id )">@item.Translation.Name</a>
+            @if (item.SubCategories.Count > 0)
+            {
+                await Html.RenderPartialAsync("_CategoryMenuItem", item);
+            }
+        </li>
+    }
+</ul>
