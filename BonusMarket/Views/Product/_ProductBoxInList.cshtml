@@ -8,12 +8,11 @@
     var addtowishlistlink = Url.RouteUrl("AddProductToCart-Catalog", new { productId = Model.Id, shoppingCartTypeId = (int)(Models.EntityModels.ShoppingCartItemType.WishListItem), quantity = 1 });
 }
 
-<div class="resp-div">
-    <a href="/product/OneProductById?id=@(Model.Id)" class="link-to-product">
-        <div class="img-cont1">
-            @*<img src="@ImageHelper.GenImageLink(item.MainImage.FullPath)" alt="@item.Translation.NameTranslation">*@
-            <img src="/img/tenerella2.png" alt="tene">
-        </div>
+<div class="product-item">
+    <a href="/product/OneProductById?id=@(Model.Id)" class="product-link">
+        @*<img src="@ImageHelper.GenImageLink(item.MainImage.FullPath)" alt="@item.Translation.NameTranslation">*@
+        <img src="/img/tenerella2.png" alt="tene">
+
         <h3 class="news-div-title">@Model.Translation.NameTranslation</h3>
         <p>
             @GeneralHelper.GetPriceString(Model.Price.Value) Դ
@@ -24,7 +23,7 @@
         </p>
     </a>
     <div class="basket-arrow">
-        <div class="basket-part">
+        <div class="basket-part" tabindex="0">
             <button type="button" onclick="AjaxCart.addproducttocart_catalog('@addtocartlink');return false;">
                 <img src="/img/shopping-cart.png" alt="shopping-cart">
                 @SharedLocalizer["AddToCart"]

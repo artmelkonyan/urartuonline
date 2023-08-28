@@ -1,0 +1,36 @@
+﻿@model Models.CategoryViewModel
+
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@using Models
+@{
+    var BaseModel = (BaseViewModel)ViewData["BaseModel"];
+}
+<div class="category-name-container">
+    <nav class="navbar navbar-expand-lg navbar-light category-menu">
+        <div class="filter-cont" id="navbarTogglerDemo01">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @SharedLocalizer["Categories"]
+                    </a>
+                    <ul class="dropdown-menu">
+                        @foreach (var item in BaseModel.Categories)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="@(item.SubCategories.Count == 0 ? Url.Action("ProductsList", "Product", new { categoryId = item.Id })
+                                                   :
+                                                   "/Category/GetCategoriesByParentId?parentid=" + item.Id)" id="@($"navbarDropdownMenuLink{item.Id}")" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    @item.Translation.Name
+                                </a>
+                                @if (item.SubCategories.Count > 0)
+                                {
+                                    await Html.RenderPartialAsync("_CategoryMenuItem", item);
+                                }
+                            </li>
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

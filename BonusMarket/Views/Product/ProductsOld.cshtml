@@ -1,0 +1,358 @@
+﻿
+@using Models
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Localization
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@model Models.ProductsViewModel
+@{
+    ViewData["Title"] = "Products";
+
+}
+<link href="~/css/fontawesome-all.css" rel="stylesheet" />
+<style>
+    .select2-container--open .select2-dropdown--below, .select2-dropdown {
+        border: 0;
+        border-bottom: 1px solid #ced4da;
+        border-radius: 0;
+        z-index: 100;
+    }
+
+    .select2-results__option {
+        border: 1px solid #ced4da;
+        border-top: 0;
+        padding-right: 20px;
+        vertical-align: middle;
+        padding: 4px;
+    }
+
+        .select2-results__option:last-of-type {
+            border-bottom: 0;
+        }
+
+    /* when any value selected*/
+    .select2-container--default.select2-container--focus .select2-selection--multiple,
+    .select2-container--default .select2-results__option--highlighted[aria-selected],
+    .select2-container--default .select2-selection--multiple,
+    .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple,
+    .select2-selection select2-selection--multiple {
+        border: 1px solid #ced4da;
+        border-radius: 0;
+    }
+    /* checkbox unchecked */
+    #select2-category-container .select2-results__option:before,
+    #select2-brand-container .select2-results__option:before {
+        content: "";
+        display: inline-block;
+        position: relative;
+        height: 22px;
+        width: 22px;
+        background-color: #ced4da;
+        margin-right: 20px;
+        vertical-align: middle;
+    }
+    /* checkbox checked */
+    #select2-category-container .select2-results__option[aria-selected=true]:before,
+    #select2-brand-container .select2-results__option[aria-selected=true]:before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: bold;
+        content: "\f00c";
+        color: white;
+        background-color: #f89b1c;
+        border: 0;
+        display: inline-block;
+        padding-left: 2px;
+        font-size: 18px;
+    }
+    /* select responsive fix */
+    .select2,
+    .select2-search__field,
+    .select2-search,
+    .select2-search--inline {
+        width: 100% !important;
+    }
+    /* left-side container  */
+    #select2-category-container,
+    #select2-brand-container {
+        height: 200px;
+    }
+
+    #clear_cats_select,
+    #clear_brands_select {
+        background-color: #ff4e00;
+    }
+    /* header search*/
+    select#header_product_select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+
+    .select2-result-repository__title,
+    .select2-result-repository__price {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    #select2-header-container .select2-results__option {
+        padding: 0;
+    }
+
+    .select2-result-repository__avatar {
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+
+    .select2-result-repository {
+        color: black;
+        background-color: white;
+        transition: background-color 0.2s ease, color 0.3s ease;
+    }
+
+        .select2-result-repository:hover {
+            color: white;
+            background-color: #ff4e00;
+        }
+
+    #select2-header-container .select2-results__options {
+        max-height: 300px;
+    }
+</style>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-3">
+                <ul class="left-sidebar-menu">
+
+                    @{
+                        var BaseModel = (BaseViewModel)ViewData["BaseModel"];
+                        var Brands = (List<Models.EntityModels.ViewModels.BrandModel>)ViewData["Brands"];
+                        var Categoryes = new List<CategoryEntity>();
+                        if (ViewData["Categories"] != null)
+                        {
+                            Categoryes = (List<CategoryEntity>)ViewData["Categories"];
+                        }
+                        else
+                        {
+                            Categoryes = BaseModel.Categories;
+                        }
+                        int SearchId = Model.CategoryId;
+
+                        while (true)
+                        {
+                            if (Categoryes.FindAll(r => r.Id == SearchId).Count != 0)
+                            {
+                                CategoryEntity tempEntity = BaseModel.CategoryList.FindAll(r => r.Id == SearchId)[0];
+                                BaseModel.ParentIds.Add(tempEntity.Id.Value);
+                                SearchId = tempEntity.ParentId.Value;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+
+
+                        @foreach (var item in Categoryes)
+                        {
+
+                            CategoryLeftMenuViewModel tempModel = new CategoryLeftMenuViewModel();
+                            tempModel.Category = item;
+                            tempModel.ParentIds = BaseModel.ParentIds;
+                            tempModel.BrandsId = Model.BrandIds;
+                            @Html.Partial("~/Views/Shared/_CategoryMenuListPartial.cshtml", tempModel)
+                        }
+                    }
+                </ul>
+                @if (Brands != null && Brands.Any())
+                {
+                    <form id="selectedForm" action="/Product/ProductsList">
+                        <div id="container">
+                            <select id="cats_select" name="brandIds" asp-for="@Model.BrandIds" asp-items="@(new SelectList(Brands, "Id", "Translate.Name"))" multiple="multiple"></select>
+                            <div id="select2-category-container"></div>
+                        </div>
+                        <input type="hidden" name="CategoryId" value="@(Model.CategoryId)" />
+                        <input type="hidden" name="CurrentPage" value="@(Model.CurrentPage)" />
+                        <input type="hidden" name="ViewCount" value="@(Model.ViewCount)" />
+                    </form>
+                    <script src="~/lib/Select2/select2.js"></script>
+                    <link href="~/lib/Select2/select2.min.css" rel="stylesheet" />
+                    <script>
+                        $('#cats_select').select2({
+                            placeholder: "@SharedLocalizer["SearchBrandPlaceholder"]",
+                            multiple: true,
+                            closeOnSelect: false,
+                            dropdownParent: $("#select2-category-container"),
+                        })
+                            .on("select2:open", function (e) {
+                                $('.select2-selection__rendered li:not(.select2-search--inline)').hide();
+                            })
+                            .on('select2:select', function (e) {
+                                $('.select2-selection__rendered li:not(.select2-search--inline)').hide();
+                                $("#selectedForm").submit();
+                            })
+                            .on('select2:unselect', function (e) {
+                                $('.select2-selection__rendered li:not(.select2-search--inline)').hide();
+                                $("#selectedForm").submit();
+
+                            })
+                            .on("select2:closing", function (e) { e.preventDefault(); })
+                            .on("select2:closed", function (e) { $("#cats_select").select2("open"); });
+                        $("#cats_select").select2("open");
+                   
+                    </script>
+                }
+            </div>
+            <div class="col-sm-12 col-md-9">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2 class="page-heading">@Model.CategoryName</h2>
+                        <ol class="breadcrumb">
+                            <li>@SharedLocalizer["OrderBy"]</li>
+                            <li>
+                                <form action="/Product/ProductsList">
+                                    <input type="hidden" name="CategoryId" value="@(Model.CategoryId)" />
+                                    <input type="hidden" name="CurrentPage" value="@(Model.CurrentPage)" />
+                                    <input type="hidden" name="brandIds" value="@(Model.BrandIds)" />
+                                    <input type="hidden" name="ViewCount" value="@(Model.ViewCount)" />
+                                    <select name="OrderBy" onchange="this.form.submit()">
+                                        <option selected="@(Model.Order == "" || Model.Order == "name")" value="name">@SharedLocalizer["ByName"]</option>
+                                        <option selected="@(Model.Order == "price")" value="price">@SharedLocalizer["PriceIncrease"]</option>
+                                        <option selected="@(Model.Order == "priceDesc")" value="priceDesc">@SharedLocalizer["DecreasePrice"]</option>
+                                    </select>
+                                </form>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="row product-row">
+                    @foreach (var item in Model.Products)
+                    {
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="single-product">
+                                <div class="product-image">
+                                    <a href="@("/Product/OneProductById?id="+item.Id)"><img src="@ImageHelper.GenImageLink(item.MainImage.FullPath)" alt=""></a>
+                                </div>
+                                <div class="product-item-content">
+                                    <div class="product-item-title">@item.Translation.NameTranslation</div>
+                                    <div class="productl-item-info">
+                                        <div class="product-item-price">
+                                            @if (item.OldPrice != 0)
+                                            {
+                                                <span class="old-price-line">@GeneralHelper.GetPriceString(item.OldPrice.Value) <i class="dram">AMD</i></span>
+                                            }
+                                            <span>@GeneralHelper.GetPriceString(item.Price.Value) <i class="dram">AMD</i></span>
+                                        </div>
+                                        <div class="product-item-actions">
+                                            <span><img class="wishItem" data-id="@item.Id" data-toggle="modal" data-target="#wishModal" src="~/img/icons/heart-silver.png" alt="" title="ավելացնել ցանկությունների ցուցակ"></span>
+                                            <span><img class="basketItem" data-id="@item.Id" data-toggle="modal" data-target="#basketModal" src="~/img/icons/cart-silver.png" alt="" title="ավելացնել զամբյուղ"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- Modal basket -->
+                    <div id="basketModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content ">
+                                <div class="modal-header"></div>
+                                <h4 class="modal-text">Ապրանքն ավելացվել է զամբյուղում</h4>
+                                <div class="basket-modal">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="basket-modal-buttons">
+                                                <a href=""> ձեվակերպել պատվեր</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">ՓԱԿԵԼ</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ...............modal end.................    -->
+                </div>
+            </div>
+
+            <div class="row container">
+
+                <div class="col-md-12">
+                    <div class="text-right">
+
+                        <nav class="products-pagination">
+                            @if (Model.Products != null && Model.TotalCount > 1)
+                            {
+                                string backClass = "";
+                                string nextClass = "";
+                                if (Model.CurrentPage == 1)
+                                {
+                                    backClass = "disabled";
+                                }
+
+                                if (Model.CurrentPage == Model.TotalPages)
+                                {
+                                    nextClass = "disabled";
+                                }
+
+                                if (backClass == "")
+                                {
+                                    <a href="@Url.Action("ProductsList","Product",new {categoryId=Model.CategoryId,brandIds=Model.BrandIds, orderBy=Model.Order, currentPage=1 })"
+                                       data-pagenumber="">@("<<")</a>
+                                    <a href="@Url.Action("ProductsList","Product",new {categoryId=Model.CategoryId,brandIds=Model.BrandIds, orderBy=Model.Order, currentPage=Model.CurrentPage-1 })">@("<")</a>
+                                }
+                                else
+                                {
+                                    @*<a data-pagenumber="1"></a>
+                                        <a data-pagenumber="@(Model.CurrentPage - 1)">@(Model.CurrentPage - 1)</a>*@
+                                }
+
+                                int i = 1;
+                                int t = Model.TotalPages;
+                                int c = Model.CurrentPage;
+                                int v = Model.ViewCount;
+                                int l = v;
+
+                                if (t > v)
+                                {
+                                    if (c > ((double)v / 2.0) && c <= t - ((double)v / 2.0))
+                                    {
+                                        i = c - (v / 2 - 1) - v % 2;
+                                        l = c + v / 2;
+                                    }
+                                    else if (c >= t - ((double)v / 2.0))
+                                    {
+                                        i = t - v + 1;
+                                        l = t;
+                                    }
+                                }
+                                else if (t < v)
+                                {
+                                    l = t;
+                                }
+                                for (; i <= l; i++)
+                                {
+                                    <a href="@Url.Action("ProductsList","Product",new {categoryId=Model.CategoryId,brandIds=Model.BrandIds, orderBy=Model.Order, currentPage=i })" class="@((i == Model.CurrentPage) ? "active" : "")">@i</a>
+                                }
+                                if (nextClass == "")
+                                {
+                                    <a href="@Url.Action("ProductsList","Product",new {categoryId=Model.CategoryId,brandIds=Model.BrandIds, orderBy=Model.Order, currentPage=Model.CurrentPage+1 })" data-pagenumber="@(c + 1)">></a>
+                                    <a href="@Url.Action("ProductsList","Product",new {categoryId=Model.CategoryId,brandIds=Model.BrandIds, orderBy=Model.Order, currentPage=Model.TotalPages })" data-pagenumber="@t">>></a>
+                                }
+                                else
+                                {
+                                    @*<a data-pagenumber="@(c + 1)">></a>
+                                        <a data-pagenumber="@t ">>></a>*@
+                                }
+                            }
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
