@@ -1,30 +1,25 @@
 ﻿@model Models.MenuItemViewModel
 
 @using Models
-@{
-    var hasSubCategory = Model.CategoryEntity.SubCategories.Count > 0;
-}
 
-<ul class="dropdown-menu @(Model.CssPrefix)sub-link" aria-labelledby="navbarDropdownMenuLink">
+<ul class="dropdown-menu @(Model.CssPrefix)sub-link" aria-labelledby="@($"navbarDropdownMainMenuLink{Model.CategoryEntity.Id}")">
     
-    @foreach(var item in Model.CategoryEntity.SubCategories)
+    @foreach (var item in Model.CategoryEntity.SubCategories)
     {
-        if (hasSubCategory)
-        {
-            <a class="dropdown-item dropdown-toggle" href="#">@Model.CategoryEntity.Translation.Name</a>
+        <li class="@(item.SubCategories.Count > 0?"dropdown-submenu":"")">
+            <a class="dropdown-item @(item.SubCategories.Count > 0?"dropdown-toggle":"")" href="@(item.SubCategories.Count == 0 ? Url.Action("ProductsList", "Product", new {categoryId=item.Id})
+           :
+           "/Category/GetCategoriesByParentId?parentid="+item.Id )">@item.Translation.Name</a>
+            @if (item.SubCategories.Count > 0)
             {
                 await Html.RenderPartialAsync("_MenuListItems", new Models.MenuItemViewModel
-                        {
-                            CategoryEntity = item,
-                            CssPrefix = Model.CssPrefix,
-                            MobileClass = Model.MobileClass
-                        });
+                    {
+                        CategoryEntity = item,
+                        CssPrefix = Model.CssPrefix,
+                        MobileClass = Model.MobileClass
+                    });
             }
-        }
-        else
-        {
-            <li><a class="dropdown-item" href="#">@Model.CategoryEntity.Translation.Name</a></li>
-        }
+        </li>
     }
 
    @* <li><a class="dropdown-item" href="#">Action</a></li>
@@ -49,6 +44,5 @@
                     <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
                 </ul>
             </li>
-        </ul>*@
-    </li>
+        </ul>*@    
 </ul>

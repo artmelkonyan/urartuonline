@@ -15,16 +15,34 @@
 
 <ul class="navbar-nav mr-auto @(mobileClass) mt-2 mt-lg-0 @(cssClassPrefix)general-menu">
 
-@*    @foreach (var item in Model)
+    @foreach (var item in Model)
     {
-        @await Html.PartialAsync("_MenuListItem", new Models.MenuItemViewModel{
-                CategoryEntity  = item,
-                CssPrefix = cssClassPrefix,
-                MobileClass = mobileClass
-            })
+        <li class="nav-item dropdown @(cssClassPrefix)main-link">
+            <a class="nav-link dropdown-toggle" href="/Category/GetCategoriesByParentId?parentid=275" id="@($"navbarDropdownMainMenuLink{item.Id}")" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @item.Translation.Name
+            </a>
+            @if (item.SubCategories.Count > 0)
+            {
+                await Html.RenderPartialAsync("_MenuListItems", new Models.MenuItemViewModel
+                    {
+                        CategoryEntity = item,
+                        CssPrefix = cssClassPrefix,
+                        MobileClass = mobileClass
+                    });
+            }
+        </li>
     }
-*@
-    <li class="nav-item dropdown @(cssClassPrefix)main-link">
+
+    @*    @foreach (var item in Model)
+    {
+    @await Html.PartialAsync("_MenuListItem", new Models.MenuItemViewModel{
+    CategoryEntity  = item,
+    CssPrefix = cssClassPrefix,
+    MobileClass = mobileClass
+    })
+    }
+    *@
+    @*<li class="nav-item dropdown @(cssClassPrefix)main-link">
         <a class="nav-link dropdown-toggle" href="/Category/GetCategoriesByParentId?parentid=275" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Սպասք
         </a>
@@ -147,5 +165,5 @@
                 </ul>
             </li>
         </ul>
-    </li>
+    </li>*@
 </ul>
